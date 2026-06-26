@@ -405,3 +405,149 @@ Configuration:
   Rank-1 identification acc. :  65.02 % (n=223)
 
 ========================================================================
+
+
+
+
+
+(imu_auth) dev@berry:~/wearable_behaviour_based_imu_user_auth$ CUDA_VISIBLE_DEVICES=1 python eval_m2.py \
+  --model m2a \
+  --checkpoint checkpoints_verification/m2a.pt \
+  --split test \
+  --data_dirs dataset \
+  --cache_dir cache_verification
+2026-06-26 14:44:10,997 verification Split: train=816 val=59 test=224 | CSVs on disk=1099 | seed=42
+2026-06-26 14:44:10,997 verification window=300 stride=150 enroll_ratio=0.70 gap=1200 samples nan_ratio=0.20
+2026-06-26 14:44:11,000 verification Cached 224/224 subjects in cache_verification
+2026-06-26 14:44:11,001 eval Evaluating 224 test subjects.
+2026-06-26 14:44:21,485 verification run_verification: skipped 1 subject(s) with empty enroll/verify.
+
+========================================================================
+OPEN-SET USER VERIFICATION — model: M2A
+========================================================================
+Configuration:
+  checkpoint            : checkpoints_verification/m2a.pt
+  enroll_ratio          : 0.7
+  gap_seconds           : 60.0
+  impostors_per_user    : 2000
+  model                 : m2a
+  n_subjects            : 224
+  seed                  : 42
+  split                 : test
+========================================================================
+
+[ scorer = cosine ]
+  Test subjects (gallery)    : 223
+  Genuine / impostor attempts: 223 / 49,506
+  EER                        :   0.87 %
+  FAR @ EER threshold        :   0.84 %
+  FRR @ EER threshold        :   0.90 %
+  EER threshold (tau)        : 0.9869
+  Rank-1 identification acc. :  77.13 % (n=223)
+
+========================================================================
+(imu_auth) dev@berry:~/wearable_behaviour_based_imu_user_auth$ CUDA_VISIBLE_DEVICES=1 python eval_m2.py   --model m2a   --checkpoint checkpoints_verificatio
+n/m2a.best.pt   --split test   --data_dirs dataset   --cache_dir cache_verification
+2026-06-26 14:45:48,414 verification Split: train=816 val=59 test=224 | CSVs on disk=1099 | seed=42
+2026-06-26 14:45:48,414 verification window=300 stride=150 enroll_ratio=0.70 gap=1200 samples nan_ratio=0.20
+2026-06-26 14:45:48,418 verification Cached 224/224 subjects in cache_verification
+2026-06-26 14:45:48,418 eval Evaluating 224 test subjects.
+2026-06-26 14:45:58,723 verification run_verification: skipped 1 subject(s) with empty enroll/verify.
+
+========================================================================
+OPEN-SET USER VERIFICATION — model: M2A
+========================================================================
+Configuration:
+  checkpoint            : checkpoints_verification/m2a.best.pt
+  enroll_ratio          : 0.7
+  gap_seconds           : 60.0
+  impostors_per_user    : 2000
+  model                 : m2a
+  n_subjects            : 224
+  seed                  : 42
+  split                 : test
+========================================================================
+
+[ scorer = cosine ]
+  Test subjects (gallery)    : 223
+  Genuine / impostor attempts: 223 / 49,506
+  EER                        :   0.87 %
+  FAR @ EER threshold        :   0.84 %
+  FRR @ EER threshold        :   0.90 %
+  EER threshold (tau)        : 0.9869
+  Rank-1 identification acc. :  77.13 % (n=223)
+
+========================================================================
+
+
+
+
+
+
+(imu_auth) dev@berry:~/wearable_behaviour_based_imu_user_auth$ CUDA_VISIBLE_DEVICES=2 python eval_m2.py \
+  --model m2b \
+  --checkpoint checkpoints_verification/m2b.pt \
+  --split test \
+  --data_dirs dataset \
+  --cache_dir cache_verification
+2026-06-26 14:44:37,501 verification Split: train=816 val=59 test=224 | CSVs on disk=1099 | seed=42
+2026-06-26 14:44:37,501 verification window=300 stride=150 enroll_ratio=0.70 gap=1200 samples nan_ratio=0.20
+2026-06-26 14:44:37,505 verification Cached 224/224 subjects in cache_verification
+2026-06-26 14:44:37,505 eval Evaluating 224 test subjects.
+2026-06-26 14:44:47,925 verification run_verification: skipped 1 subject(s) with empty enroll/verify.
+
+========================================================================
+OPEN-SET USER VERIFICATION — model: M2B
+========================================================================
+Configuration:
+  checkpoint            : checkpoints_verification/m2b.pt
+  enroll_ratio          : 0.7
+  gap_seconds           : 60.0
+  impostors_per_user    : 2000
+  model                 : m2b
+  n_subjects            : 224
+  seed                  : 42
+  split                 : test
+========================================================================
+
+[ scorer = cosine ]
+  Test subjects (gallery)    : 223
+  Genuine / impostor attempts: 223 / 49,506
+  EER                        :   2.69 %
+  FAR @ EER threshold        :   2.69 %
+  FRR @ EER threshold        :   2.69 %
+  EER threshold (tau)        : 0.7785
+  Rank-1 identification acc. :  73.99 % (n=223)
+
+========================================================================
+(imu_auth) dev@berry:~/wearable_behaviour_based_imu_user_auth$ CUDA_VISIBLE_DEVICES=2 python eval_m2.py   --model m2b   --checkpoint checkpoints_verification/m2b.best.pt   --split test   --data_dirs dataset   --cache_dir cache_verification
+2026-06-26 14:46:01,780 verification Split: train=816 val=59 test=224 | CSVs on disk=1099 | seed=42
+2026-06-26 14:46:01,780 verification window=300 stride=150 enroll_ratio=0.70 gap=1200 samples nan_ratio=0.20
+2026-06-26 14:46:01,784 verification Cached 224/224 subjects in cache_verification
+2026-06-26 14:46:01,784 eval Evaluating 224 test subjects.
+2026-06-26 14:46:12,166 verification run_verification: skipped 1 subject(s) with empty enroll/verify.
+
+========================================================================
+OPEN-SET USER VERIFICATION — model: M2B
+========================================================================
+Configuration:
+  checkpoint            : checkpoints_verification/m2b.best.pt
+  enroll_ratio          : 0.7
+  gap_seconds           : 60.0
+  impostors_per_user    : 2000
+  model                 : m2b
+  n_subjects            : 224
+  seed                  : 42
+  split                 : test
+========================================================================
+
+[ scorer = cosine ]
+  Test subjects (gallery)    : 223
+  Genuine / impostor attempts: 223 / 49,506
+  EER                        :   2.69 %
+  FAR @ EER threshold        :   2.69 %
+  FRR @ EER threshold        :   2.69 %
+  EER threshold (tau)        : 0.7785
+  Rank-1 identification acc. :  73.99 % (n=223)
+
+========================================================================
