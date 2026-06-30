@@ -35,7 +35,7 @@ from verification import (
     VerificationData, DEFAULT_DATA_DIRS, build_model,
     compute_deep_embeddings, compute_b0_embeddings, fit_b0_scaler,
     CosineScorer, OCSVMScorer, run_verification, format_report, result_to_dict,
-    compute_score_matrix,
+    compute_score_matrix, bootstrap_metrics,
 )
 
 
@@ -104,20 +104,39 @@ def main(args):
             except Exception as e:                                   # noqa: BLE001
                 log.warning("heatmap skipped (%s)", e)
 
-    print("\n" + format_report(args.model, results, config))
+    report = format_report(args.model, results, config)
+
+    # Subject-level bootstrap 95% CIs (cosine), so EER / Rank-1 gaps between
+    # models can be judged against the noise. Resamples the test SUBJECTS.
+    boot = None
+    if args.bootstrap > 0:
+        sids, M = compute_score_matrix(emb, CosineScorer())
+        boot = bootstrap_metrics(M, n_boot=args.bootstrap, seed=args.seed)
+        e, r = boot["eer"], boot["rank1"]
+        report += (
+            f"\n[ bootstrap 95% CI over {len(sids)} subjects, {boot['n_boot']} resamples ]"
+            f"\n  EER    : {e[0]*100:6.2f} %   95% CI [{e[1]*100:.2f}, {e[2]*100:.2f}]"
+            f"\n  Rank-1 : {r[0]*100:6.2f} %   95% CI [{r[1]*100:.2f}, {r[2]*100:.2f}]"
+            f"\n\n{'=' * 72}")
+
+    print("\n" + report)
 
     if args.out_json:
         Path(args.out_json).parent.mkdir(parents=True, exist_ok=True)
         with open(args.out_json, "w") as f:
-            json.dump({"config": config, "results": [result_to_dict(r) for r in results]},
+            json.dump({"config": config,
+                       "results": [result_to_dict(r) for r in results],
+                       "bootstrap": boot},
                       f, indent=2, default=str)
         log.info("Wrote results → %s", args.out_json)
 
 
 def build_argparser():
     p = argparse.ArgumentParser(description="Evaluate B0/B1/B2/M1 verification models")
-    p.add_argument("--model", choices=["b0", "b1", "b2", "m1", "m1a", "m1b"], required=True)
-    p.add_argument("--checkpoint", default=None, help="required for b1/b2/m1")
+    p.add_argument("--model",
+                   choices=["b0", "b1", "b2", "m1", "m1a", "m1b", "m2", "m2a", "m2b",
+                            "g2", "g2a", "g2b"], required=True)
+    p.add_argument("--checkpoint", default=None, help="required for b1/b2/m1/m2/g2")
     p.add_argument("--split", choices=["val", "test"], default="test")
     p.add_argument("--data_dirs", nargs="+", default=list(DEFAULT_DATA_DIRS))
     p.add_argument("--split_file", default="split_ids.json")
@@ -136,6 +155,9 @@ def build_argparser():
                    help="cap on the number of OTHER subjects' probes scored against each gallery")
     p.add_argument("--ocsvm", action="store_true", help="also run OC-SVM for b1/b2/m1")
     p.add_argument("--ocsvm_nu", type=float, default=0.1)
+    p.add_argument("--bootstrap", type=int, default=1000,
+                   help="subject-level bootstrap resamples for 95%% CIs on EER/Rank-1 "
+                        "(0 disables)")
     p.add_argument("--hidden_size", type=int, default=256)
     p.add_argument("--batch_size", type=int, default=256)
     p.add_argument("--device", default="cuda", choices=["cuda", "cpu"])

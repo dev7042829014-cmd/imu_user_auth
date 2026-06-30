@@ -526,19 +526,140 @@ def _make_gru(hidden_size, embed_dim):
     return GRUEmbedding()
 
 
+def _make_gru_fusion(hidden_size, embed_dim, n_channels: int = N_INPUT_CHANNELS):
+    """G2 = "frequency-hybrid GRU" — the improved recurrent model.
+
+    B2 (the baseline GRU) is just a Bi-GRU over the raw 28-channel stream with
+    mean+last pooling. It already matches the much heavier CNN, so we lean into
+    recurrence and give it the three things the CNN had and it lacked:
+      1. a CONV STEM (2 strided Conv1d blocks) that denoises and downsamples the
+         300-sample window to ~75 steps before the GRU — standard for IMU and
+         lets the GRU see a cleaner, shorter sequence;
+      2. ATTENTION POOLING over the GRU outputs (reusing apw_network._AttentionPool1D)
+         instead of mean+last — the model weights the most discriminative steps;
+      3. explicit SPECTRAL + BAND-POWER branches (reusing the apw_network encoders)
+         on the raw window and fused in — tremor identity lives in the frequency
+         domain, which a time-domain GRU does not see directly.
+    Like m1a/m1b, g2a = G2 + SupCon, g2b = G2 + a margin loss.
+    """
+    import torch
+    import torch.nn as nn
+    import torch.nn.functional as F
+    from apw_network import _AttentionPool1D, _SpectralEncoder, _BandPowerEncoder
+
+    class GRUFusionEmbedding(nn.Module):
+        """Conv-stem → Bi-GRU → attention pool, fused with spectral + band-power."""
+
+        def __init__(self):
+            super().__init__()
+            self.embed_dim = embed_dim
+            H = hidden_size
+            # Conv stem: 28 -> H, two stride-2 blocks (300 -> 150 -> 75 samples).
+            self.stem = nn.Sequential(
+                nn.Conv1d(n_channels, H, kernel_size=5, stride=2, padding=2),
+                nn.GroupNorm(8, H), nn.GELU(),
+                nn.Conv1d(H, H, kernel_size=3, stride=2, padding=1),
+                nn.GroupNorm(8, H), nn.GELU(),
+            )
+            self.gru = nn.GRU(H, H, num_layers=2, batch_first=True,
+                              bidirectional=True, dropout=0.1)
+            # Attention pool over the (B, 2H, T') GRU output (time-weighted).
+            self.attn_pool = _AttentionPool1D(2 * H)
+            # Frequency branches on the RAW window (same encoders the CNN uses).
+            self.spectral = _SpectralEncoder(n_channels, H // 2)
+            self.band_enc = _BandPowerEncoder(n_dyn_channels=6, out_size=32)
+            fused_in = 2 * H + H // 2 + 32
+            self.proj = nn.Sequential(
+                nn.Linear(fused_in, H), nn.GELU(), nn.Dropout(0.1),
+                nn.Linear(H, embed_dim))
+
+        def forward(self, x):                       # x : (B, 28, 300)
+            h = self.stem(x)                        # (B, H, T'~75)
+            out, _ = self.gru(h.transpose(1, 2))    # (B, T', 2H)
+            pooled = self.attn_pool(out.transpose(1, 2))   # (B, 2H)
+            feat = torch.cat([pooled, self.spectral(x), self.band_enc(x)], dim=-1)
+            return F.normalize(self.proj(feat), dim=-1)
+
+    return GRUFusionEmbedding()
+
+
+def _make_m2(hidden_size, embed_dim, smooth_kernel: int = 11, se: bool = True):
+    """M2 = "slow / fast (tremor) split" model  (folded in from the old m2_model.py).
+
+    Idea (plain words): every 15 s window is separated into
+      * SLOW  = the smooth, voluntary motion (low frequency), and
+      * FAST  = what's left over = the tremor / jitter (high frequency).
+    Both streams are stacked (28 + 28 = 56 channels) and fed to the SAME SE-CNN
+    encoder used by M1. The FAST stream is the always-present, activity-independent
+    identity signal we want the model to lean on.
+
+    The split is a simple moving-average low-pass (easy to read / change later):
+    slow = local average over `smooth_kernel` samples; fast = x - slow.
+    """
+    import torch
+    import torch.nn as nn
+    import torch.nn.functional as F
+    from apw_network import APW_Net
+
+    def moving_average(x, k):
+        # Centred moving average; reflect-pad so the output length is preserved.
+        pad = k // 2
+        x_padded = F.pad(x, (pad, pad), mode="reflect")
+        return F.avg_pool1d(x_padded, kernel_size=k, stride=1)
+
+    class M2Embedding(APW_Net):
+        """SE-CNN over the stacked (slow ‖ fast) streams → 128-d L2 embedding."""
+
+        def __init__(self):
+            # 56 input channels = 28 slow + 28 fast. APW_Net's SE flag is `use_se`.
+            super().__init__(n_channels=2 * N_INPUT_CHANNELS,
+                             hidden_size=hidden_size, use_se=se)
+            del self.age_head
+            del self.gender_head
+            self.embed_dim = embed_dim
+            self.smooth_kernel = smooth_kernel
+            self.proj = nn.Sequential(
+                nn.Linear(hidden_size, hidden_size), nn.GELU(), nn.Dropout(0.1),
+                nn.Linear(hidden_size, embed_dim))
+
+        def split_slow_fast(self, x):
+            slow = moving_average(x, self.smooth_kernel)   # voluntary motion (low freq)
+            fast = x - slow                                # tremor / jitter (high freq)
+            return torch.cat([slow, fast], dim=1)          # (B, 28, T) -> (B, 56, T)
+
+        def forward(self, x):
+            x = self.split_slow_fast(x)
+            a = self.enc_A(x); b = self.enc_B(a); c = self.enc_C(b)
+            fused = self.fusion(torch.cat([
+                self.pool_fine(a), self.pool_mid(b), self.pool_coarse(c),
+                self.spectral(x), self.stats_enc(x), self.band_enc(x)], dim=-1))
+            return F.normalize(self.proj(fused), dim=-1)
+
+    return M2Embedding()
+
+
 def build_model(name: str, hidden_size: int = 256, embed_dim: int = EMBED_DIM_DEFAULT):
     name = name.lower()
     if name == "b1":
         return _make_cnn(hidden_size, embed_dim)
     if name == "b2":
         return _make_gru(max(128, hidden_size // 2), embed_dim)
-    
+
     # M1 = B1 CNN + SE channel attention. m1a/m1b share this architecture and
     # differ only in the training loss (SupCon vs ArcFace), not the network
 
     if name in ("m1", "m1a", "m1b"):
         return _make_cnn(hidden_size, embed_dim, use_se=True)
-    raise ValueError(f"build_model: '{name}' is not a deep model (use b1/b2/m1).")
+
+    # M2 = slow/fast (tremor) split SE-CNN. m2a = SupCon, m2b = margin loss.
+    if name in ("m2", "m2a", "m2b"):
+        return _make_m2(hidden_size, embed_dim)
+
+    # G2 = frequency-hybrid GRU (conv stem + attention pool + spectral/band fusion).
+    # g2a = SupCon, g2b = margin loss. The "improved" recurrent model vs B2.
+    if name in ("g2", "g2a", "g2b"):
+        return _make_gru_fusion(hidden_size, embed_dim)
+    raise ValueError(f"build_model: '{name}' is not a deep model (use b1/b2/m1/m2/g2).")
 
 
 def supcon_loss(embeddings, labels, temperature: float = 0.1):
@@ -592,6 +713,81 @@ def build_arcface_loss(num_classes: int, embed_dim: int,
              scale, margin_deg)
     return ArcFaceLoss(num_classes=num_classes, embedding_size=embed_dim,
                        margin=margin_deg, scale=scale)
+
+
+# Which losses own a trainable parameter matrix that must join the optimizer.
+MARGIN_LOSSES = ("arcface", "subcenter", "adacos")
+
+
+def build_adacos_loss(num_classes: int, embed_dim: int):
+    """AdaCos (Zhang et al. 2019): cosine-softmax with an ADAPTIVE scale and NO
+    margin to tune — it removes exactly the brittle scale/margin knobs that make
+    plain ArcFace (m1b/m2b) under-perform here. The scale s is re-estimated each
+    step from the batch's median target angle, so there is nothing to warm up.
+
+    Owns a class-prototype matrix (num_classes x embed_dim) → add to the optimizer
+    (weight-decay 0, like ArcFace). Expects L2-normalised embeddings."""
+    import math
+    import torch
+    import torch.nn as nn
+    import torch.nn.functional as F
+
+    class AdaCosLoss(nn.Module):
+        def __init__(self):
+            super().__init__()
+            self.num_classes = num_classes
+            self.s = math.sqrt(2.0) * math.log(max(2, num_classes) - 1)  # init scale
+            self.W = nn.Parameter(torch.empty(num_classes, embed_dim))
+            nn.init.xavier_uniform_(self.W)
+
+        def forward(self, embeddings, labels):
+            W = F.normalize(self.W, dim=1)
+            logits = (embeddings @ W.t()).clamp(-1 + 1e-7, 1 - 1e-7)   # cos θ
+            theta = torch.acos(logits)
+            one_hot = F.one_hot(labels, self.num_classes).float()
+            with torch.no_grad():                                     # dynamic scale
+                B_avg = ((1.0 - one_hot) * torch.exp(self.s * logits)).sum(1).mean()
+                theta_med = torch.median(theta[one_hot.bool()])
+                s_new = torch.log(B_avg.clamp(min=1e-12)) / torch.cos(
+                    torch.clamp(theta_med, max=math.pi / 4))
+                if torch.isfinite(s_new):
+                    self.s = float(s_new)
+            return F.cross_entropy(self.s * logits, labels)
+
+    log.info("AdaCos: adaptive-scale cosine softmax (no margin, %d classes).",
+             num_classes)
+    return AdaCosLoss()
+
+
+def build_margin_loss(loss_type: str, num_classes: int, embed_dim: int,
+                      scale: float = 30.0, margin_deg: float = 20.0,
+                      sub_centers: int = 3):
+    """Factory for the parametric ('b'-variant) losses, all of which own a class
+    matrix and join the optimizer:
+      • arcface   — plain ArcFace (legacy m1b/m2b default).
+      • subcenter — Sub-center ArcFace: K sub-centers PER identity, so one subject
+                    doing many activities over 3 h isn't crushed onto a single
+                    prototype. Data-motivated upgrade over plain ArcFace.
+      • adacos    — adaptive-scale, margin-free (de-brittles tuning).
+    SupCon (the workhorse, m?a) is handled separately by supcon_loss()."""
+    loss_type = loss_type.lower()
+    if loss_type == "arcface":
+        return build_arcface_loss(num_classes, embed_dim, scale=scale,
+                                  margin_deg=margin_deg)
+    if loss_type == "adacos":
+        return build_adacos_loss(num_classes, embed_dim)
+    if loss_type == "subcenter":
+        try:
+            from pytorch_metric_learning.losses import SubCenterArcFaceLoss
+        except Exception as e:                                       # noqa: BLE001
+            raise RuntimeError("subcenter needs pytorch_metric_learning — "
+                               "`pip install pytorch-metric-learning`.") from e
+        log.info("Sub-center ArcFace: scale=%.1f, margin=%.1f deg, sub_centers=%d.",
+                 scale, margin_deg, sub_centers)
+        return SubCenterArcFaceLoss(num_classes=num_classes, embedding_size=embed_dim,
+                                    margin=margin_deg, scale=scale,
+                                    sub_centers=sub_centers)
+    raise ValueError(f"build_margin_loss: unknown loss '{loss_type}'.")
 
 
 # class _ArcFaceLoss(nn.Module):
@@ -726,6 +922,57 @@ def compute_eer(genuine, impostor):
     return float((far[i] + frr[i]) / 2), float(ts[i]), float(far[i]), float(frr[i])
 
 
+# Standard biometric operating points: report the genuine reject rate (FRR) at
+# fixed low false-accept rates. Unlike EER (which is floored/saturated here),
+# FRR@FAR=0.1%/0.01% still separates strong models.
+FAR_TARGETS = (1e-2, 1e-3, 1e-4)
+
+
+def compute_frr_at_far(genuine, impostor, far_targets=FAR_TARGETS) -> Dict[float, float]:
+    """For each target FAR t, pick the threshold whose impostor-accept rate is t
+    (the (1-t) quantile of impostor scores) and report the genuine reject rate
+    FRR = P(genuine < threshold). NOTE: with ~50k impostors, FAR=0.01% rests on
+    only ~5 impostor scores, so the deepest point is coarse — read it as a trend."""
+    genuine = np.asarray(genuine, float)
+    impostor = np.asarray(impostor, float)
+    if len(genuine) == 0 or len(impostor) == 0:
+        return {float(t): float("nan") for t in far_targets}
+    g = np.sort(genuine)
+    out: Dict[float, float] = {}
+    for t in far_targets:
+        tau = np.quantile(impostor, 1.0 - t)                 # FAR(tau) ≈ t
+        out[float(t)] = float(np.searchsorted(g, tau, "left") / len(g))
+    return out
+
+
+def bootstrap_metrics(M: np.ndarray, n_boot: int = 1000, seed: int = 42) -> dict:
+    """Subject-level bootstrap 95% CIs for EER and Rank-1 on the N×N probe-vs-
+    gallery score matrix (rows=probe, cols=gallery; diagonal=genuine).
+
+    Subjects — not windows — are the independent unit (windows within a person are
+    correlated), so we resample the N subjects WITH replacement, recompute the
+    metric on the resampled gallery∪probe set, and take the 2.5/97.5 percentiles.
+    Returns {'eer': (mean, lo, hi), 'rank1': (mean, lo, hi), 'n_boot': n_boot}."""
+    M = np.asarray(M, float)
+    N = M.shape[0]
+    if N < 2:
+        return {"eer": (float("nan"),) * 3, "rank1": (float("nan"),) * 3, "n_boot": 0}
+    rng = np.random.default_rng(seed)
+    eers, r1s = np.empty(n_boot), np.empty(n_boot)
+    for b in range(n_boot):
+        S = rng.integers(0, N, N)                 # resampled subject indices
+        sub = M[np.ix_(S, S)]
+        same = S[:, None] == S[None, :]           # genuine iff same subject id
+        r1s[b] = (S[sub.argmax(1)] == S).mean()   # nearest gallery shares identity
+        eers[b] = compute_eer(sub[same], sub[~same])[0]
+
+    def ci(a):
+        a = np.asarray(a, float)
+        return (float(np.nanmean(a)), float(np.nanpercentile(a, 2.5)),
+                float(np.nanpercentile(a, 97.5)))
+    return {"eer": ci(eers), "rank1": ci(r1s), "n_boot": n_boot}
+
+
 class CosineScorer:
     """Reference = L2-normalised mean enroll embedding; score = cosine similarity."""
     name = "cosine"
@@ -772,6 +1019,8 @@ class VerificationResult:
     rank1: float
     rank1_n: int
     seed: int
+    # FRR at fixed low FARs {target_far: frr}; empty for scorers we don't compute it on.
+    frr_at_far: Dict[float, float] = field(default_factory=dict)
 
 
 def run_verification(emb_by_subject, scorer, seed: int = 42,
@@ -824,10 +1073,12 @@ def run_verification(emb_by_subject, scorer, seed: int = 42,
     scores, is_gen = np.asarray(scores), np.asarray(is_gen)
     gmask = is_gen == 1
     eer, thr, far, frr = compute_eer(scores[gmask], scores[~gmask])
+    frr_at_far = compute_frr_at_far(scores[gmask], scores[~gmask])
 
     rank1, rank1_n = _rank1(probes, models, scorer, sids)
     return VerificationResult(scorer.name, len(sids), int(gmask.sum()), int((~gmask).sum()),
-                              eer, thr, far, frr, rank1, rank1_n, seed)
+                              eer, thr, far, frr, rank1, rank1_n, seed,
+                              frr_at_far=frr_at_far)
 
 
 def _rank1(probes, models, scorer, sids):
@@ -888,6 +1139,11 @@ def format_report(model_name, results, config) -> str:
             out.append(f"  FAR @ EER threshold        : {r.far_at_eer*100:6.2f} %")
             out.append(f"  FRR @ EER threshold        : {r.frr_at_eer*100:6.2f} %")
             out.append(f"  EER threshold (tau)        : {r.threshold:.4f}")
+        if r.frr_at_far:
+            for t in sorted(r.frr_at_far, reverse=True):       # 1% , 0.1% , 0.01%
+                v = r.frr_at_far[t]
+                vs = f"{v*100:6.2f} %" if v == v else "   n/a "
+                out.append(f"  {f'FRR @ FAR={t*100:g}%':27s}: {vs}")
         rank = f"{r.rank1*100:6.2f} % (n={r.rank1_n:,})" if r.rank1 == r.rank1 else "n/a"
         out.append(f"  Rank-1 identification acc. : {rank}")
         #out.append("  EER by activity state (unsupervised, 0.5-2 Hz band):")
