@@ -1,0 +1,429 @@
+(imu_auth) dev@berry:~/wearable_behaviour_based_imu_user_auth$ CUDA_VISIBLE_DEVICES=0 \
+python eval_verification.py \
+--model b1 \
+--checkpoint checkpoints_verification/b1_supcon.best.pt \
+--split test \
+--data_dirs dataset \
+--cache_dir cache_verification \
+--bootstrap 1000 \
+--plot_dir plots/b1_supcon \
+&& \
+python plot_metrics.py curves \
+--history checkpoints_verification/b1_supcon_history.csv \
+--out_dir plots/b1_supcon \
+&& \
+CUDA_VISIBLE_DEVICES=0 \
+python eval_verification.py \
+--model b2 \
+--checkpoint checkpoints_verification/b2_supcon.best.pt \
+--split test \
+--data_dirs dataset \
+--cache_dir cache_verification \
+--bootstrap 1000 \
+--plot_dir plots/b2_supcon \
+&& \
+python plot_metrics.py curves \
+--history checkpoints_verification/b2_supcon_history.csv \
+--out_dir plots/b2_supcon
+2026-07-01 11:44:31,303 verification Split: train=816 val=59 test=224 | CSVs on disk=1099 | seed=42
+2026-07-01 11:44:31,303 verification window=300 stride=150 enroll_ratio=0.70 gap=1200 samples nan_ratio=0.20
+2026-07-01 11:44:31,307 verification Cached 224/224 subjects in cache_verification
+2026-07-01 11:44:31,307 eval Evaluating 224 test subjects.
+2026-07-01 11:44:40,793 verification run_verification: skipped 1 subject(s) with empty enroll/verify.
+2026-07-01 11:44:40,850 eval Score matrix (223, 223) (mean diag=0.996).
+2026-07-01 11:44:41,368 eval Wrote heatmap → plots/b1_supcon/b1_test_matrix.png
+
+========================================================================
+OPEN-SET USER VERIFICATION — model: B1
+========================================================================
+Configuration:
+  checkpoint            : checkpoints_verification/b1_supcon.best.pt
+  enroll_ratio          : 0.7
+  gap_seconds           : 60.0
+  impostors_per_user    : 2000
+  model                 : b1
+  n_subjects            : 224
+  seed                  : 42
+  split                 : test
+========================================================================
+
+[ scorer = cosine ]
+  Test subjects (gallery)    : 223
+  Genuine / impostor attempts: 223 / 49,506
+  EER                        :   1.44 %
+  FAR @ EER threshold        :   1.53 %
+  FRR @ EER threshold        :   1.35 %
+  EER threshold (tau)        : 0.9670
+  FRR @ FAR=1%               :   6.28 %
+  FRR @ FAR=0.1%             :  96.86 %
+  FRR @ FAR=0.01%            :  99.55 %
+  Rank-1 identification acc. :  57.40 % (n=223)
+
+========================================================================
+[ bootstrap 95% CI over 223 subjects, 1000 resamples ]
+  EER    :   1.55 %   95% CI [0.87, 2.84]
+  Rank-1 :  68.22 %   95% CI [61.42, 75.34]
+
+========================================================================
+wrote plots/b1_supcon/b1_supcon_loss.png
+wrote plots/b1_supcon/b1_supcon_eer.png
+wrote plots/b1_supcon/b1_supcon_loss_eer.png
+2026-07-01 11:44:49,332 verification Split: train=816 val=59 test=224 | CSVs on disk=1099 | seed=42
+2026-07-01 11:44:49,332 verification window=300 stride=150 enroll_ratio=0.70 gap=1200 samples nan_ratio=0.20
+2026-07-01 11:44:49,336 verification Cached 224/224 subjects in cache_verification
+2026-07-01 11:44:49,336 eval Evaluating 224 test subjects.
+2026-07-01 11:44:54,510 verification run_verification: skipped 1 subject(s) with empty enroll/verify.
+2026-07-01 11:44:54,575 eval Score matrix (223, 223) (mean diag=0.996).
+2026-07-01 11:44:55,094 eval Wrote heatmap → plots/b2_supcon/b2_test_matrix.png
+
+========================================================================
+OPEN-SET USER VERIFICATION — model: B2
+========================================================================
+Configuration:
+  checkpoint            : checkpoints_verification/b2_supcon.best.pt
+  enroll_ratio          : 0.7
+  gap_seconds           : 60.0
+  impostors_per_user    : 2000
+  model                 : b2
+  n_subjects            : 224
+  seed                  : 42
+  split                 : test
+========================================================================
+
+[ scorer = cosine ]
+  Test subjects (gallery)    : 223
+  Genuine / impostor attempts: 223 / 49,506
+  EER                        :   1.38 %
+  FAR @ EER threshold        :   1.41 %
+  FRR @ EER threshold        :   1.35 %
+  EER threshold (tau)        : 0.9736
+  FRR @ FAR=1%               :   4.48 %
+  FRR @ FAR=0.1%             :  97.76 %
+  FRR @ FAR=0.01%            :  99.55 %
+  Rank-1 identification acc. :  63.68 % (n=223)
+
+========================================================================
+[ bootstrap 95% CI over 223 subjects, 1000 resamples ]
+  EER    :   1.31 %   95% CI [0.73, 1.95]
+  Rank-1 :  73.73 %   95% CI [66.82, 80.27]
+
+========================================================================
+wrote plots/b2_supcon/b2_supcon_loss.png
+wrote plots/b2_supcon/b2_supcon_eer.png
+wrote plots/b2_supcon/b2_supcon_loss_eer.png
+(imu_auth) dev@berry:~/wearable_behaviour_based_imu_user_auth$ CUDA_VISIBLE_DEVICES=1 \
+python eval_verification.py \
+--model m1b \
+--checkpoint checkpoints_verification/m1b_adacos.best.pt \
+--split test \
+--data_dirs dataset \
+--cache_dir cache_verification \
+--bootstrap 1000 \
+--plot_dir plots/m1b_adacos \
+&& \
+python plot_metrics.py curves \
+--history checkpoints_verification/m1b_adacos_history.csv \
+--out_dir plots/m1b_adacos \
+&& \
+CUDA_VISIBLE_DEVICES=1 \
+python eval_verification.py \
+--model m2b \
+--checkpoint checkpoints_verification/m2b_adacos.best.pt \
+--split test \
+--data_dirs dataset \
+--cache_dir cache_verification \
+--bootstrap 1000 \
+--plot_dir plots/m2b_adacos \
+&& \
+python plot_metrics.py curves \
+--history checkpoints_verification/m2b_adacos_history.csv \
+--out_dir plots/m2b_adacos \
+&& \
+CUDA_VISIBLE_DEVICES=1 \
+python eval_verification.py \
+--model g2b \
+--checkpoint checkpoints_verification/g2b_adacos.best.pt \
+--split test \
+--data_dirs dataset \
+--cache_dir cache_verification \
+--bootstrap 1000 \
+--plot_dir plots/g2b_adacos \
+&& \
+python plot_metrics.py curves \
+--history checkpoints_verification/g2b_adacos_history.csv \
+--out_dir plots/g2b_adacos
+2026-07-01 11:45:47,108 verification Split: train=816 val=59 test=224 | CSVs on disk=1099 | seed=42
+2026-07-01 11:45:47,108 verification window=300 stride=150 enroll_ratio=0.70 gap=1200 samples nan_ratio=0.20
+2026-07-01 11:45:47,112 verification Cached 224/224 subjects in cache_verification
+2026-07-01 11:45:47,112 eval Evaluating 224 test subjects.
+2026-07-01 11:45:57,402 verification run_verification: skipped 1 subject(s) with empty enroll/verify.
+2026-07-01 11:45:57,462 eval Score matrix (223, 223) (mean diag=0.963).
+2026-07-01 11:45:57,979 eval Wrote heatmap → plots/m1b_adacos/m1b_test_matrix.png
+
+========================================================================
+OPEN-SET USER VERIFICATION — model: M1B
+========================================================================
+Configuration:
+  checkpoint            : checkpoints_verification/m1b_adacos.best.pt
+  enroll_ratio          : 0.7
+  gap_seconds           : 60.0
+  impostors_per_user    : 2000
+  model                 : m1b
+  n_subjects            : 224
+  seed                  : 42
+  split                 : test
+========================================================================
+
+[ scorer = cosine ]
+  Test subjects (gallery)    : 223
+  Genuine / impostor attempts: 223 / 49,506
+  EER                        :   3.62 %
+  FAR @ EER threshold        :   3.65 %
+  FRR @ EER threshold        :   3.59 %
+  EER threshold (tau)        : 0.9146
+  FRR @ FAR=1%               :  28.25 %
+  FRR @ FAR=0.1%             :  77.13 %
+  FRR @ FAR=0.01%            :  94.62 %
+  Rank-1 identification acc. :  73.09 % (n=223)
+
+========================================================================
+[ bootstrap 95% CI over 223 subjects, 1000 resamples ]
+  EER    :   3.80 %   95% CI [2.81, 5.33]
+  Rank-1 :  79.55 %   95% CI [73.54, 85.65]
+
+========================================================================
+wrote plots/m1b_adacos/m1b_adacos_loss.png
+wrote plots/m1b_adacos/m1b_adacos_eer.png
+wrote plots/m1b_adacos/m1b_adacos_loss_eer.png
+2026-07-01 11:46:05,939 verification Split: train=816 val=59 test=224 | CSVs on disk=1099 | seed=42
+2026-07-01 11:46:05,939 verification window=300 stride=150 enroll_ratio=0.70 gap=1200 samples nan_ratio=0.20
+2026-07-01 11:46:05,943 verification Cached 224/224 subjects in cache_verification
+2026-07-01 11:46:05,943 eval Evaluating 224 test subjects.
+2026-07-01 11:46:16,535 verification run_verification: skipped 1 subject(s) with empty enroll/verify.
+2026-07-01 11:46:16,593 eval Score matrix (223, 223) (mean diag=0.890).
+2026-07-01 11:46:17,111 eval Wrote heatmap → plots/m2b_adacos/m2b_test_matrix.png
+
+========================================================================
+OPEN-SET USER VERIFICATION — model: M2B
+========================================================================
+Configuration:
+  checkpoint            : checkpoints_verification/m2b_adacos.best.pt
+  enroll_ratio          : 0.7
+  gap_seconds           : 60.0
+  impostors_per_user    : 2000
+  model                 : m2b
+  n_subjects            : 224
+  seed                  : 42
+  split                 : test
+========================================================================
+
+[ scorer = cosine ]
+  Test subjects (gallery)    : 223
+  Genuine / impostor attempts: 223 / 49,506
+  EER                        :   1.42 %
+  FAR @ EER threshold        :   1.49 %
+  FRR @ EER threshold        :   1.35 %
+  EER threshold (tau)        : 0.7320
+  FRR @ FAR=1%               :   7.62 %
+  FRR @ FAR=0.1%             :  42.60 %
+  FRR @ FAR=0.01%            :  80.27 %
+  Rank-1 identification acc. :  85.20 % (n=223)
+
+========================================================================
+[ bootstrap 95% CI over 223 subjects, 1000 resamples ]
+  EER    :   1.50 %   95% CI [0.84, 2.79]
+  Rank-1 :  89.75 %   95% CI [85.20, 94.17]
+
+========================================================================
+wrote plots/m2b_adacos/m2b_adacos_loss.png
+wrote plots/m2b_adacos/m2b_adacos_eer.png
+wrote plots/m2b_adacos/m2b_adacos_loss_eer.png
+2026-07-01 11:46:25,260 verification Split: train=816 val=59 test=224 | CSVs on disk=1099 | seed=42
+2026-07-01 11:46:25,260 verification window=300 stride=150 enroll_ratio=0.70 gap=1200 samples nan_ratio=0.20
+2026-07-01 11:46:25,264 verification Cached 224/224 subjects in cache_verification
+2026-07-01 11:46:25,264 eval Evaluating 224 test subjects.
+2026-07-01 11:46:31,630 verification run_verification: skipped 1 subject(s) with empty enroll/verify.
+2026-07-01 11:46:31,692 eval Score matrix (223, 223) (mean diag=0.877).
+2026-07-01 11:46:32,210 eval Wrote heatmap → plots/g2b_adacos/g2b_test_matrix.png
+
+========================================================================
+OPEN-SET USER VERIFICATION — model: G2B
+========================================================================
+Configuration:
+  checkpoint            : checkpoints_verification/g2b_adacos.best.pt
+  enroll_ratio          : 0.7
+  gap_seconds           : 60.0
+  impostors_per_user    : 2000
+  model                 : g2b
+  n_subjects            : 224
+  seed                  : 42
+  split                 : test
+========================================================================
+
+[ scorer = cosine ]
+  Test subjects (gallery)    : 223
+  Genuine / impostor attempts: 223 / 49,506
+  EER                        :   5.02 %
+  FAR @ EER threshold        :   5.10 %
+  FRR @ EER threshold        :   4.93 %
+  EER threshold (tau)        : 0.7437
+  FRR @ FAR=1%               :  25.11 %
+  FRR @ FAR=0.1%             :  53.36 %
+  FRR @ FAR=0.01%            :  75.34 %
+  Rank-1 identification acc. :  79.37 % (n=223)
+
+========================================================================
+[ bootstrap 95% CI over 223 subjects, 1000 resamples ]
+  EER    :   5.06 %   95% CI [3.72, 6.70]
+  Rank-1 :  84.03 %   95% CI [78.92, 89.24]
+
+========================================================================
+
+
+
+
+========================================================================
+OPEN-SET USER VERIFICATION — model: G2A
+========================================================================
+Configuration:
+  checkpoint            : sweep_supcon/g2a/g2a_t0.05.best.pt
+  enroll_ratio          : 0.7
+  gap_seconds           : 60.0
+  impostors_per_user    : 2000
+  model                 : g2a
+  n_subjects            : 224
+  seed                  : 42
+  split                 : test
+========================================================================
+
+[ scorer = cosine ]
+  Test subjects (gallery)    : 223
+  Genuine / impostor attempts: 223 / 49,506
+  EER                        :   0.79 %
+  FAR @ EER threshold        :   0.68 %
+  FRR @ EER threshold        :   0.90 %
+  EER threshold (tau)        : 0.9873
+  FRR @ FAR=1%               :   0.00 %
+  FRR @ FAR=0.1%             :  43.95 %
+  FRR @ FAR=0.01%            :  91.48 %
+  Rank-1 identification acc. :  85.65 % (n=223)
+
+========================================================================
+[ bootstrap 95% CI over 223 subjects, 1000 resamples ]
+  EER    :   0.62 %   95% CI [0.25, 1.04]
+  Rank-1 :  90.09 %   95% CI [85.64, 94.17]
+
+========================================================================
+wrote plots/g2a_final/g2a_t0.05_loss.png
+wrote plots/g2a_final/g2a_t0.05_eer.png
+wrote plots/g2a_final/g2a_t0.05_loss_eer.png
+(imu_auth) dev@berry:~/wearable_behaviour_based_imu_user_auth$ CUDA_VISIBLE_DEVICES=1 python eval_verification.py \
+--model m1a \
+--checkpoint sweep_supcon/m1a/m1a_t0.03.best.pt \
+--split test \
+--data_dirs dataset \
+--cache_dir cache_verification \
+--bootstrap 1000 \
+--plot_dir plots/m1a_final
+
+python plot_metrics.py curves \
+--history sweep_supcon/m1a/m1a_t0.03_history.csv \
+--out_dir plots/m1a_final
+2026-07-01 12:10:21,576 verification Split: train=816 val=59 test=224 | CSVs on disk=1099 | seed=42
+2026-07-01 12:10:21,576 verification window=300 stride=150 enroll_ratio=0.70 gap=1200 samples nan_ratio=0.20
+2026-07-01 12:10:21,580 verification Cached 224/224 subjects in cache_verification
+2026-07-01 12:10:21,580 eval Evaluating 224 test subjects.
+2026-07-01 12:10:31,864 verification run_verification: skipped 1 subject(s) with empty enroll/verify.
+2026-07-01 12:10:31,925 eval Score matrix (223, 223) (mean diag=1.000).
+2026-07-01 12:10:32,445 eval Wrote heatmap → plots/m1a_final/m1a_test_matrix.png
+
+========================================================================
+OPEN-SET USER VERIFICATION — model: M1A
+========================================================================
+Configuration:
+  checkpoint            : sweep_supcon/m1a/m1a_t0.03.best.pt
+  enroll_ratio          : 0.7
+  gap_seconds           : 60.0
+  impostors_per_user    : 2000
+  model                 : m1a
+  n_subjects            : 224
+  seed                  : 42
+  split                 : test
+========================================================================
+
+[ scorer = cosine ]
+  Test subjects (gallery)    : 223
+  Genuine / impostor attempts: 223 / 49,506
+  EER                        :   0.85 %
+  FAR @ EER threshold        :   0.81 %
+  FRR @ EER threshold        :   0.90 %
+  EER threshold (tau)        : 0.9968
+  FRR @ FAR=1%               :   0.45 %
+  FRR @ FAR=0.1%             :  98.21 %
+  FRR @ FAR=0.01%            : 100.00 %
+  Rank-1 identification acc. :  77.13 % (n=223)
+
+========================================================================
+[ bootstrap 95% CI over 223 subjects, 1000 resamples ]
+  EER    :   0.79 %   95% CI [0.38, 1.60]
+  Rank-1 :  83.10 %   95% CI [76.68, 88.79]
+
+========================================================================
+wrote plots/m1a_final/m1a_t0.03_loss.png
+wrote plots/m1a_final/m1a_t0.03_eer.png
+wrote plots/m1a_final/m1a_t0.03_loss_eer.png
+(imu_auth) dev@berry:~/wearable_behaviour_based_imu_user_auth$ CUDA_VISIBLE_DEVICES=2 python eval_verification.py \
+--model m2a \
+--checkpoint sweep_supcon/m2a/m2a_t0.15.best.pt \
+--split test \
+--data_dirs dataset \
+--cache_dir cache_verification \
+--bootstrap 1000 \
+--plot_dir plots/m2a_final
+
+python plot_metrics.py curves \
+--history sweep_supcon/m2a/m2a_t0.15_history.csv \
+--out_dir plots/m2a_final
+2026-07-01 12:10:44,645 verification Split: train=816 val=59 test=224 | CSVs on disk=1099 | seed=42
+2026-07-01 12:10:44,645 verification window=300 stride=150 enroll_ratio=0.70 gap=1200 samples nan_ratio=0.20
+2026-07-01 12:10:44,649 verification Cached 224/224 subjects in cache_verification
+2026-07-01 12:10:44,649 eval Evaluating 224 test subjects.
+2026-07-01 12:10:55,200 verification run_verification: skipped 1 subject(s) with empty enroll/verify.
+2026-07-01 12:10:55,261 eval Score matrix (223, 223) (mean diag=0.999).
+2026-07-01 12:10:55,777 eval Wrote heatmap → plots/m2a_final/m2a_test_matrix.png
+
+========================================================================
+OPEN-SET USER VERIFICATION — model: M2A
+========================================================================
+Configuration:
+  checkpoint            : sweep_supcon/m2a/m2a_t0.15.best.pt
+  enroll_ratio          : 0.7
+  gap_seconds           : 60.0
+  impostors_per_user    : 2000
+  model                 : m2a
+  n_subjects            : 224
+  seed                  : 42
+  split                 : test
+========================================================================
+
+[ scorer = cosine ]
+  Test subjects (gallery)    : 223
+  Genuine / impostor attempts: 223 / 49,506
+  EER                        :   0.85 %
+  FAR @ EER threshold        :   0.81 %
+  FRR @ EER threshold        :   0.90 %
+  EER threshold (tau)        : 0.9860
+  FRR @ FAR=1%               :   0.00 %
+  FRR @ FAR=0.1%             :  97.76 %
+  FRR @ FAR=0.01%            :  99.55 %
+  Rank-1 identification acc. :  77.58 % (n=223)
+
+========================================================================
+[ bootstrap 95% CI over 223 subjects, 1000 resamples ]
+  EER    :   0.71 %   95% CI [0.33, 1.22]
+  Rank-1 :  83.65 %   95% CI [77.58, 89.24]
+
+========================================================================
+wrote plots/m2a_final/m2a_t0.15_loss.png
+wrote plots/m2a_final/m2a_t0.15_eer.png
+wrote plots/m2a_final/m2a_t0.15_loss_eer.png

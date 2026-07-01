@@ -790,6 +790,40 @@ def build_margin_loss(loss_type: str, num_classes: int, embed_dim: int,
     raise ValueError(f"build_margin_loss: unknown loss '{loss_type}'.")
 
 
+# Pairwise / prototype-free losses suited to OPEN-SET (no class matrix to discard
+# at test, unlike ArcFace). All come from pytorch_metric_learning and, like
+# SupCon, have NO trainable parameters — they do not join the optimizer.
+PAIRWISE_LOSSES = ("triplet", "multisim", "circle")
+
+
+def build_pairwise_loss(loss_type: str, margin: float = 0.2):
+    """Return a callable loss_fn(embeddings, labels) for the pairwise losses:
+      • triplet  — FaceNet triplet margin loss with SEMI-HARD online mining
+                   (the FaceNet recipe: anchor-positive closer than anchor-negative
+                   by `margin`, mining the semi-hard negatives that drive learning).
+      • multisim — Multi-Similarity loss (weights all informative pairs; a strong,
+                   well-calibrated open-set default).
+      • circle   — Circle loss (self-paced weighting of pair similarities).
+    Embeddings must be L2-normalised (our encoders already normalise)."""
+    from pytorch_metric_learning import losses, miners
+    loss_type = loss_type.lower()
+    if loss_type == "triplet":
+        loss = losses.TripletMarginLoss(margin=margin)
+        miner = miners.TripletMarginMiner(margin=margin, type_of_triplets="semihard")
+        log.info("Triplet (FaceNet) loss, semi-hard mining, margin=%.2f.", margin)
+        return lambda emb, y: loss(emb, y, miner(emb, y))
+    if loss_type == "multisim":
+        loss = losses.MultiSimilarityLoss()
+        miner = miners.MultiSimilarityMiner()
+        log.info("Multi-Similarity loss with MultiSimilarityMiner.")
+        return lambda emb, y: loss(emb, y, miner(emb, y))
+    if loss_type == "circle":
+        loss = losses.CircleLoss()
+        log.info("Circle loss.")
+        return lambda emb, y: loss(emb, y)
+    raise ValueError(f"build_pairwise_loss: unknown loss '{loss_type}'.")
+
+
 # class _ArcFaceLoss(nn.Module):
 #     """Self-contained ArcFace (Deng et al. 2019). Expects L2-normalised
 #     embeddings; normalises its own class prototypes each step.
@@ -974,15 +1008,29 @@ def bootstrap_metrics(M: np.ndarray, n_boot: int = 1000, seed: int = 42) -> dict
 
 
 class CosineScorer:
-    """Reference = L2-normalised mean enroll embedding; score = cosine similarity."""
+    """Reference = L2-normalised mean enroll embedding; score = cosine similarity.
+
+    trim > 0 enables a robust gallery template: enroll windows whose cosine to the
+    mean falls in the bottom `trim` fraction (outliers — a hand drop, a bump, a
+    transition) are removed and the mean is recomputed on the survivors. trim=0
+    keeps the original plain-mean behaviour (backward compatible)."""
     name = "cosine"
+
+    def __init__(self, trim: float = 0.0):
+        self.trim = float(trim)
 
     @staticmethod
     def _unit(v):
         return v / (np.linalg.norm(v, axis=-1, keepdims=True) + 1e-12)
 
     def fit(self, enroll):
-        return self._unit(enroll.mean(0))
+        ref = self._unit(enroll.mean(0))
+        if self.trim > 0.0 and len(enroll) > 4:
+            sims = self._unit(enroll) @ ref               # cosine of each window to mean
+            keep = sims >= np.quantile(sims, self.trim)   # drop the bottom `trim`
+            if keep.any():
+                ref = self._unit(enroll[keep].mean(0))
+        return ref
 
     def score(self, ref, attempts):
         return self._unit(attempts) @ ref

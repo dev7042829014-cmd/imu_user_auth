@@ -34,6 +34,7 @@ from torch.optim.lr_scheduler import CosineAnnealingLR, LinearLR, SequentialLR
 from verification import (
     VerificationData, DEFAULT_DATA_DIRS, EMBED_DIM_DEFAULT,
     build_model, supcon_loss, build_arcface_loss, build_margin_loss, MARGIN_LOSSES,
+    build_pairwise_loss, PAIRWISE_LOSSES,
     compute_deep_embeddings, CosineScorer, run_verification,
 )
 
@@ -166,13 +167,17 @@ def main(args):
     log.info("Loss: %s", loss_type)
 
     # The margin losses (arcface / subcenter / adacos) own a trainable class
-    # matrix, so it joins the optimizer. SupCon has no parameters.
+    # matrix, so it joins the optimizer. SupCon and the pairwise losses (triplet /
+    # multisim / circle) have NO parameters.
     arcface = None                       # kept name: holds the margin-loss module
     if loss_type in MARGIN_LOSSES:
         arcface = build_margin_loss(loss_type, ds.n_classes, args.embed_dim,
                                     scale=args.arcface_scale,
                                     margin_deg=args.arcface_margin,
                                     sub_centers=args.sub_centers).to(device)
+
+    # Pairwise open-set losses: a parameter-free callable loss_fn(emb, labels).
+    pairwise_fn = build_pairwise_loss(loss_type) if loss_type in PAIRWISE_LOSSES else None
 
     trainable = list(model.parameters()) + (list(arcface.parameters()) if arcface else [])
     log.info("Trainable parameters: %d",
@@ -206,9 +211,11 @@ def main(args):
     # --out defaults to a model-specific name so B2 never overwrites B1.
     ckpt_path = Path(args.out or f"./checkpoints_verification/{args.model}.pt")
     ckpt_path.parent.mkdir(parents=True, exist_ok=True)
-    # Model selection is on val RANK-1 (val EER is saturated/noisy here and its
-    # argmin was picking checkpoints WORSE than the final epoch). EER still logged.
-    best_rank1 = -1.0
+    # Checkpoint selection metric: --select_by {eer,rank1}. EER -> lower is better,
+    # rank1 -> higher is better. (rank1 avoids the saturated-EER argmin trap, but
+    # EER selection is back as the default per request; both are logged regardless.)
+    sel_eer = (args.select_by == "eer")
+    best_metric = float("inf") if sel_eer else -1.0
 
     # Per-epoch metric history (training loss + val EER) → CSV for plotting.
     history = []
@@ -233,7 +240,12 @@ def main(args):
         for x, y in loader:
             x, y = x.to(device), y.to(device)
             emb = model(x)
-            loss = arcface(emb, y) if arcface is not None else supcon_loss(emb, y, args.temperature)
+            if arcface is not None:
+                loss = arcface(emb, y)
+            elif pairwise_fn is not None:
+                loss = pairwise_fn(emb, y)
+            else:
+                loss = supcon_loss(emb, y, args.temperature)
             optimizer.zero_grad(); loss.backward()
             torch.nn.utils.clip_grad_norm_(trainable, 1.0)
             optimizer.step()
@@ -256,10 +268,11 @@ def main(args):
             except Exception as e:                                   # noqa: BLE001
                 log.warning("val eval skipped: %s", e)
 
-        # Select on rank-1 (higher is better), not EER.
-        is_best = val_rank1 == val_rank1 and val_rank1 > best_rank1
+        # Select on the chosen metric (eer: lower better; rank1: higher better).
+        cur = val_eer if sel_eer else val_rank1
+        is_best = cur == cur and (cur < best_metric if sel_eer else cur > best_metric)
         if is_best:
-            best_rank1 = val_rank1; msg += "  ★ best"
+            best_metric = cur; msg += "  ★ best"
         log.info(msg)
 
         history.append({"epoch": epoch, "train_loss": round(train_loss, 6),
@@ -278,8 +291,9 @@ def main(args):
         if is_best:
             torch.save(ckpt, ckpt_path.with_suffix(".best.pt"))
 
-    log.info("Done. Best val Rank-1: %.2f%% → %s",
-             best_rank1 * 100 if best_rank1 >= 0 else float("nan"), ckpt_path)
+    log.info("Done. Best val %s: %.4f → %s", args.select_by,
+             best_metric if abs(best_metric) != float("inf") and best_metric >= 0
+             else float("nan"), ckpt_path)
     log.info("Per-epoch history → %s  (plot: python plot_metrics.py curves --history %s)",
              history_path, history_path)
 
@@ -292,11 +306,15 @@ def build_argparser():
                    help="b1/b2 baselines; m1 = CNN+SE; m2 = slow/fast split SE-CNN; "
                         "g2 = frequency-hybrid GRU. ?a=SupCon, ?b=ArcFace (the model "
                         "name sets the default loss; --loss overrides it).")
-    p.add_argument("--loss", choices=["supcon", "arcface", "subcenter", "adacos"],
-                   default=None,
+    p.add_argument("--loss",
+                   choices=["supcon", "arcface", "subcenter", "adacos",
+                            "triplet", "multisim", "circle"], default=None,
                    help="metric-learning loss; default follows the model name "
-                        "(?a->supcon, ?b->arcface). subcenter = sub-center ArcFace, "
-                        "adacos = adaptive-scale margin-free.")
+                        "(?a->supcon, ?b->arcface). Open-set recommended: supcon, "
+                        "adacos, triplet (FaceNet), multisim, circle. "
+                        "subcenter/arcface kept for the comparison baseline.")
+    p.add_argument("--select_by", choices=["eer", "rank1"], default="eer",
+                   help="val metric used to pick the .best.pt checkpoint")
     p.add_argument("--arcface_scale", type=float, default=30.0,
                    help="ArcFace s (logit scale). 30 suits ~10^3 identities; 64 is the "
                         "large-scale face default and tends to over-sharpen here.")
@@ -328,7 +346,7 @@ def build_argparser():
                    help="fraction of the session (first, contiguous) used for enroll; rest = verify")
     p.add_argument("--gap_seconds", type=float, default=60.0,
                    help="total guard gap (default 1 min) dropped at the single enroll->verify boundary")
-    p.add_argument("--workers", type=int, default=16)
+    p.add_argument("--workers", type=int, default=32)
     p.add_argument("--batch_size", type=int, default=256, help="inference batch for val eval")
     p.add_argument("--eval_every", type=int, default=10, help="0 disables val EER")
     p.add_argument("--impostors_per_user", type=int, default=2000)

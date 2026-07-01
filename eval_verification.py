@@ -57,13 +57,18 @@ def main(args):
               "gap_seconds": args.gap_seconds,
               "impostors_per_user": args.impostors_per_user}
 
+    # Cosine scorer with optional robust gallery (outlier removal); trim=0 => plain mean.
+    cos = CosineScorer(trim=args.gallery_trim)
+    if args.gallery_trim > 0:
+        config["gallery_trim"] = args.gallery_trim
+
     results = []
     if args.model == "b0":
         train_ids = data.prepare_cache(data.split["train"])   # stats + scaler from TRAIN only
         data.fit_channel_stats(train_ids)
         scaler = fit_b0_scaler(data, train_ids, seed=args.seed)
         emb = compute_b0_embeddings(data, eval_ids, scaler)
-        for scorer in (CosineScorer(), OCSVMScorer(nu=args.ocsvm_nu)):
+        for scorer in (cos, OCSVMScorer(nu=args.ocsvm_nu)):
             log.info("scorer: %s", scorer.name)
             results.append(run_verification(emb, scorer, args.seed, args.impostors_per_user))
     else:
@@ -80,14 +85,14 @@ def main(args):
         data.set_channel_stats(ckpt["channel_mean"], ckpt["channel_std"])
         emb = compute_deep_embeddings(model, data, eval_ids, device, args.batch_size)
         config["checkpoint"] = args.checkpoint
-        results.append(run_verification(emb, CosineScorer(), args.seed, args.impostors_per_user))
+        results.append(run_verification(emb, cos, args.seed, args.impostors_per_user))
         if args.ocsvm:
             results.append(run_verification(emb, OCSVMScorer(nu=args.ocsvm_nu),
                                             args.seed, args.impostors_per_user))
 
     # N x N probe-vs-gallery similarity matrix (diagonal = genuine).
     if args.matrix_out or args.plot_dir:
-        sids, M = compute_score_matrix(emb, CosineScorer())
+        sids, M = compute_score_matrix(emb, cos)
         log.info("Score matrix %s (mean diag=%.3f).", M.shape,
                  float(np.mean(np.diag(M))) if M.size else float("nan"))
         if args.matrix_out:
@@ -110,7 +115,7 @@ def main(args):
     # models can be judged against the noise. Resamples the test SUBJECTS.
     boot = None
     if args.bootstrap > 0:
-        sids, M = compute_score_matrix(emb, CosineScorer())
+        sids, M = compute_score_matrix(emb, cos)
         boot = bootstrap_metrics(M, n_boot=args.bootstrap, seed=args.seed)
         e, r = boot["eer"], boot["rank1"]
         report += (
@@ -158,6 +163,10 @@ def build_argparser():
     p.add_argument("--bootstrap", type=int, default=1000,
                    help="subject-level bootstrap resamples for 95%% CIs on EER/Rank-1 "
                         "(0 disables)")
+    p.add_argument("--gallery_trim", type=float, default=0.0,
+                   help="robust gallery: drop this bottom fraction of enroll windows "
+                        "(by cosine to the mean) as outliers before averaging "
+                        "(0 = plain mean; try 0.1-0.2)")
     p.add_argument("--hidden_size", type=int, default=256)
     p.add_argument("--batch_size", type=int, default=256)
     p.add_argument("--device", default="cuda", choices=["cuda", "cpu"])
