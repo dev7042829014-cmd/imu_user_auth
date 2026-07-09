@@ -12,11 +12,8 @@
 
 > **Lower is better** for EER. **Higher is better** for Rank-1 accuracy.
 
-A **self-contained** recreation of [dynobo/ContinAuth](https://github.com/dynobo/ContinAuth)
-(Buech, 2019 — *"Continuous Authentication via Smartphone Inertial Sensors"*),
-adapted to test **his model on your dataset**. It does **not** import your
-`apw_network.py` / `verification.py`, so you can run and compare it independently
-of your own work.
+recreation of [dynobo/ContinAuth](https://github.com/dynobo/ContinAuth)
+
 
 ## What his model is
 
