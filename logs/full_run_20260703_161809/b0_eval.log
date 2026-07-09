@@ -1,0 +1,35 @@
+2026-07-03 16:18:10,932 verification Split: train=816 val=59 test=224 | CSVs on disk=1095 | seed=42
+2026-07-03 16:18:10,932 verification window=300 stride=150 enroll_ratio=0.70 gap=1200 samples nan_ratio=0.20
+2026-07-03 16:20:16,393 verification Cached 224/224 subjects in cache_verification
+2026-07-03 16:20:16,395 eval Evaluating 224 test subjects.
+2026-07-03 16:22:30,618 verification [skip] no CSV for 133-06
+2026-07-03 16:22:38,665 verification [skip] no CSV for 134-14
+2026-07-03 16:22:56,186 verification [skip] no CSV for 137-11
+2026-07-03 16:27:06,974 verification Cached 813/816 subjects in cache_verification
+2026-07-03 16:27:11,748 verification Channel stats from 813 subjects, 95165321 frames.
+2026-07-03 16:28:12,440 verification B0 scaler fit on 49593 windows (248 features).
+Traceback (most recent call last):
+  File "/home/dev/wearable_behaviour_based_imu_user_auth/eval_verification.py", line 178, in <module>
+    main(build_argparser().parse_args())
+  File "/home/dev/wearable_behaviour_based_imu_user_auth/eval_verification.py", line 70, in main
+    emb = compute_b0_embeddings(data, eval_ids, scaler)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dev/wearable_behaviour_based_imu_user_auth/verification.py", line 929, in compute_b0_embeddings
+    part = data.partition(sid)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/dev/wearable_behaviour_based_imu_user_auth/verification.py", line 397, in partition
+    total_len = int(self._load(sid).shape[0])
+                    ^^^^^^^^^^^^^^^
+  File "/home/dev/wearable_behaviour_based_imu_user_auth/verification.py", line 348, in _load
+    self._mmap[sid] = np.load(self._data_path(sid), mmap_mode="r")
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dev/miniconda3/envs/imu_auth/lib/python3.12/site-packages/numpy/lib/_npyio_impl.py", line 480, in load
+    return format.open_memmap(file, mode=mmap_mode,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dev/miniconda3/envs/imu_auth/lib/python3.12/site-packages/numpy/lib/_format_impl.py", line 994, in open_memmap
+    marray = numpy.memmap(filename, dtype=dtype, shape=shape, order=order,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dev/miniconda3/envs/imu_auth/lib/python3.12/site-packages/numpy/_core/memmap.py", line 290, in __new__
+    mm = mmap.mmap(fid.fileno(), bytes, access=acc, offset=start)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 24] Too many open files

@@ -1,0 +1,45 @@
+{
+  "config": {
+    "model": "m1b",
+    "split": "test",
+    "seed": 42,
+    "n_subjects": 224,
+    "enroll_ratio": 0.7,
+    "gap_seconds": 60.0,
+    "impostors_per_user": 2000,
+    "checkpoint": "checkpoints_verification/m1b_adacos.best.pt"
+  },
+  "results": [
+    {
+      "scorer": "cosine",
+      "n_subjects": 223,
+      "n_genuine": 223,
+      "n_impostor": 49506,
+      "eer": 0.0362077323960732,
+      "threshold": 0.9145963191986084,
+      "far_at_eer": 0.036541025330262995,
+      "frr_at_eer": 0.03587443946188341,
+      "rank1": 0.7309417040358744,
+      "rank1_n": 223,
+      "seed": 42,
+      "frr_at_far": {
+        "0.01": 0.2825112107623318,
+        "0.001": 0.7713004484304933,
+        "0.0001": 0.9461883408071748
+      }
+    }
+  ],
+  "bootstrap": {
+    "eer": [
+      0.03797253663747056,
+      0.028147999550776126,
+      0.053308982525513596
+    ],
+    "rank1": [
+      0.7954663677130045,
+      0.7354260089686099,
+      0.8565022421524664
+    ],
+    "n_boot": 1000
+  }
+}

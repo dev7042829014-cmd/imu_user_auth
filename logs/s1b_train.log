@@ -1,0 +1,198 @@
+==================================================
+2026年  7月  3日 金曜日 17:51:20 JST: TRAIN s1b
+2026-07-03 17:51:21,859 train Device cuda | model s1b | seed 42
+2026-07-03 17:51:21,865 verification Split: train=816 val=59 test=224 | CSVs on disk=1095 | seed=42
+2026-07-03 17:51:21,865 verification window=300 stride=150 enroll_ratio=0.70 gap=1200 samples nan_ratio=0.20
+2026-07-03 17:51:21,869 verification [skip] no CSV for 133-06
+2026-07-03 17:51:21,869 verification [skip] no CSV for 134-14
+2026-07-03 17:51:21,870 verification [skip] no CSV for 137-11
+2026-07-03 17:51:21,876 verification Cached 813/816 subjects in cache_verification
+2026-07-03 17:51:26,018 verification Channel stats from 813 subjects, 95165321 frames.
+2026-07-03 17:51:26,238 train Dataset: 813 identities, 631782 windows.
+2026-07-03 17:51:26,608 train Loss: arcface
+2026-07-03 17:51:27,155 verification ArcFace: pytorch_metric_learning (scale=30.0, margin=20.0 deg).
+2026-07-03 17:51:27,156 train Trainable parameters: 21675032
+2026-07-03 17:51:27,156 train arcface head: lr=1.0e-03, weight_decay=0, margin warm-up over 15 epoch(s).
+2026-07-03 17:51:27,863 train Training 150 epochs (500 batches/epoch, batch=256)...
+2026-07-03 17:51:46,031 train Epoch 001/150 | arcface 8.6843 | LR 3.00e-05
+2026-07-03 17:52:01,975 train Epoch 002/150 | arcface 8.7019 | LR 8.40e-05
+2026-07-03 17:52:19,055 train Epoch 003/150 | arcface 8.9601 | LR 1.38e-04
+2026-07-03 17:52:36,111 train Epoch 004/150 | arcface 9.4298 | LR 1.92e-04
+2026-07-03 17:52:52,603 train Epoch 005/150 | arcface 9.9073 | LR 2.46e-04
+2026-07-03 17:53:09,168 train Epoch 006/150 | arcface 10.2550 | LR 3.00e-04
+2026-07-03 17:53:26,230 train Epoch 007/150 | arcface 10.5007 | LR 3.00e-04
+2026-07-03 17:53:43,234 train Epoch 008/150 | arcface 10.7923 | LR 3.00e-04
+2026-07-03 17:54:00,235 train Epoch 009/150 | arcface 11.1485 | LR 3.00e-04
+2026-07-03 17:54:16,601 verification [skip] no CSV for 131-03
+2026-07-03 17:54:16,602 verification Cached 58/59 subjects in cache_verification
+2026-07-03 17:54:18,672 train Epoch 010/150 | arcface 11.5814 | LR 2.99e-04 | val EER 12.07% rank1 37.9%  ★ best
+2026-07-03 17:54:37,006 train Epoch 011/150 | arcface 12.0164 | LR 2.99e-04
+2026-07-03 17:54:55,281 train Epoch 012/150 | arcface 12.4831 | LR 2.99e-04
+2026-07-03 17:55:13,611 train Epoch 013/150 | arcface 13.0053 | LR 2.98e-04
+2026-07-03 17:55:31,918 train Epoch 014/150 | arcface 13.5090 | LR 2.98e-04
+2026-07-03 17:55:50,242 train Epoch 015/150 | arcface 14.0035 | LR 2.97e-04
+2026-07-03 17:56:08,492 train Epoch 016/150 | arcface 13.8329 | LR 2.96e-04
+2026-07-03 17:56:26,786 train Epoch 017/150 | arcface 13.6572 | LR 2.96e-04
+2026-07-03 17:56:44,958 train Epoch 018/150 | arcface 13.5263 | LR 2.95e-04
+2026-07-03 17:57:03,187 train Epoch 019/150 | arcface 13.3423 | LR 2.94e-04
+2026-07-03 17:57:21,387 verification [skip] no CSV for 131-03
+2026-07-03 17:57:21,389 verification Cached 58/59 subjects in cache_verification
+2026-07-03 17:57:23,396 train Epoch 020/150 | arcface 13.2209 | LR 2.93e-04 | val EER 8.62% rank1 43.1%  ★ best
+2026-07-03 17:57:41,832 train Epoch 021/150 | arcface 13.0661 | LR 2.92e-04
+2026-07-03 17:58:00,058 train Epoch 022/150 | arcface 12.9383 | LR 2.91e-04
+2026-07-03 17:58:18,169 train Epoch 023/150 | arcface 12.7542 | LR 2.90e-04
+2026-07-03 17:58:36,399 train Epoch 024/150 | arcface 12.6440 | LR 2.89e-04
+2026-07-03 17:58:54,683 train Epoch 025/150 | arcface 12.4899 | LR 2.87e-04
+2026-07-03 17:59:12,942 train Epoch 026/150 | arcface 12.3938 | LR 2.86e-04
+2026-07-03 17:59:31,154 train Epoch 027/150 | arcface 12.2730 | LR 2.85e-04
+2026-07-03 17:59:49,422 train Epoch 028/150 | arcface 12.1306 | LR 2.83e-04
+2026-07-03 18:00:07,708 train Epoch 029/150 | arcface 12.0211 | LR 2.82e-04
+2026-07-03 18:00:25,904 verification [skip] no CSV for 131-03
+2026-07-03 18:00:25,905 verification Cached 58/59 subjects in cache_verification
+2026-07-03 18:00:27,864 train Epoch 030/150 | arcface 11.8750 | LR 2.80e-04 | val EER 8.30% rank1 60.3%  ★ best
+2026-07-03 18:00:46,171 train Epoch 031/150 | arcface 11.7714 | LR 2.79e-04
+2026-07-03 18:01:04,412 train Epoch 032/150 | arcface 11.6765 | LR 2.77e-04
+2026-07-03 18:01:22,652 train Epoch 033/150 | arcface 11.4852 | LR 2.75e-04
+2026-07-03 18:01:40,964 train Epoch 034/150 | arcface 11.3919 | LR 2.73e-04
+2026-07-03 18:01:59,179 train Epoch 035/150 | arcface 11.2841 | LR 2.71e-04
+2026-07-03 18:02:17,477 train Epoch 036/150 | arcface 11.1313 | LR 2.69e-04
+2026-07-03 18:02:35,693 train Epoch 037/150 | arcface 11.0426 | LR 2.67e-04
+2026-07-03 18:02:53,823 train Epoch 038/150 | arcface 10.9336 | LR 2.65e-04
+2026-07-03 18:03:12,107 train Epoch 039/150 | arcface 10.7873 | LR 2.63e-04
+2026-07-03 18:03:30,384 verification [skip] no CSV for 131-03
+2026-07-03 18:03:30,385 verification Cached 58/59 subjects in cache_verification
+2026-07-03 18:03:32,390 train Epoch 040/150 | arcface 10.6904 | LR 2.61e-04 | val EER 6.90% rank1 69.0%  ★ best
+2026-07-03 18:03:50,899 train Epoch 041/150 | arcface 10.6362 | LR 2.59e-04
+2026-07-03 18:04:09,085 train Epoch 042/150 | arcface 10.5040 | LR 2.57e-04
+2026-07-03 18:04:27,353 train Epoch 043/150 | arcface 10.3971 | LR 2.54e-04
+2026-07-03 18:04:44,986 train Epoch 044/150 | arcface 10.2876 | LR 2.52e-04
+2026-07-03 18:05:03,214 train Epoch 045/150 | arcface 10.1911 | LR 2.50e-04
+2026-07-03 18:05:21,241 train Epoch 046/150 | arcface 10.0653 | LR 2.47e-04
+2026-07-03 18:05:39,596 train Epoch 047/150 | arcface 9.9725 | LR 2.45e-04
+2026-07-03 18:05:57,878 train Epoch 048/150 | arcface 9.8532 | LR 2.42e-04
+2026-07-03 18:06:16,116 train Epoch 049/150 | arcface 9.7483 | LR 2.40e-04
+2026-07-03 18:06:34,538 verification [skip] no CSV for 131-03
+2026-07-03 18:06:34,538 verification Cached 58/59 subjects in cache_verification
+2026-07-03 18:06:36,557 train Epoch 050/150 | arcface 9.6594 | LR 2.37e-04 | val EER 6.78% rank1 63.8%  ★ best
+2026-07-03 18:06:55,050 train Epoch 051/150 | arcface 9.5237 | LR 2.34e-04
+2026-07-03 18:07:13,258 train Epoch 052/150 | arcface 9.4069 | LR 2.32e-04
+2026-07-03 18:07:31,487 train Epoch 053/150 | arcface 9.3222 | LR 2.29e-04
+2026-07-03 18:07:49,755 train Epoch 054/150 | arcface 9.1965 | LR 2.26e-04
+2026-07-03 18:08:08,001 train Epoch 055/150 | arcface 9.0960 | LR 2.23e-04
+2026-07-03 18:08:26,283 train Epoch 056/150 | arcface 8.9423 | LR 2.20e-04
+2026-07-03 18:08:44,334 train Epoch 057/150 | arcface 8.8801 | LR 2.17e-04
+2026-07-03 18:09:02,554 train Epoch 058/150 | arcface 8.7703 | LR 2.15e-04
+2026-07-03 18:09:20,845 train Epoch 059/150 | arcface 8.7170 | LR 2.12e-04
+2026-07-03 18:09:39,109 verification [skip] no CSV for 131-03
+2026-07-03 18:09:39,110 verification Cached 58/59 subjects in cache_verification
+2026-07-03 18:09:41,113 train Epoch 060/150 | arcface 8.6178 | LR 2.09e-04 | val EER 5.28% rank1 62.1%  ★ best
+2026-07-03 18:09:59,267 train Epoch 061/150 | arcface 8.4535 | LR 2.06e-04
+2026-07-03 18:10:17,484 train Epoch 062/150 | arcface 8.3788 | LR 2.03e-04
+2026-07-03 18:10:35,708 train Epoch 063/150 | arcface 8.3229 | LR 2.00e-04
+2026-07-03 18:10:53,912 train Epoch 064/150 | arcface 8.2324 | LR 1.96e-04
+2026-07-03 18:11:12,179 train Epoch 065/150 | arcface 8.1547 | LR 1.93e-04
+2026-07-03 18:11:30,490 train Epoch 066/150 | arcface 8.0927 | LR 1.90e-04
+2026-07-03 18:11:48,707 train Epoch 067/150 | arcface 7.9483 | LR 1.87e-04
+2026-07-03 18:12:06,922 train Epoch 068/150 | arcface 7.8929 | LR 1.84e-04
+2026-07-03 18:12:25,144 train Epoch 069/150 | arcface 7.7760 | LR 1.81e-04
+2026-07-03 18:12:43,440 verification [skip] no CSV for 131-03
+2026-07-03 18:12:43,441 verification Cached 58/59 subjects in cache_verification
+2026-07-03 18:12:45,439 train Epoch 070/150 | arcface 7.6610 | LR 1.78e-04 | val EER 6.90% rank1 58.6%
+2026-07-03 18:13:03,672 train Epoch 071/150 | arcface 7.6035 | LR 1.74e-04
+2026-07-03 18:13:21,876 train Epoch 072/150 | arcface 7.5118 | LR 1.71e-04
+2026-07-03 18:13:40,066 train Epoch 073/150 | arcface 7.3941 | LR 1.68e-04
+2026-07-03 18:13:58,254 train Epoch 074/150 | arcface 7.4073 | LR 1.65e-04
+2026-07-03 18:14:16,443 train Epoch 075/150 | arcface 7.2866 | LR 1.62e-04
+2026-07-03 18:14:34,650 train Epoch 076/150 | arcface 7.2044 | LR 1.58e-04
+2026-07-03 18:14:52,801 train Epoch 077/150 | arcface 7.1436 | LR 1.55e-04
+2026-07-03 18:15:10,980 train Epoch 078/150 | arcface 7.0752 | LR 1.52e-04
+2026-07-03 18:15:29,291 train Epoch 079/150 | arcface 7.0180 | LR 1.49e-04
+2026-07-03 18:15:47,551 verification [skip] no CSV for 131-03
+2026-07-03 18:15:47,551 verification Cached 58/59 subjects in cache_verification
+2026-07-03 18:15:49,573 train Epoch 080/150 | arcface 6.8704 | LR 1.45e-04 | val EER 6.70% rank1 65.5%
+2026-07-03 18:16:07,838 train Epoch 081/150 | arcface 6.8056 | LR 1.42e-04
+2026-07-03 18:16:26,141 train Epoch 082/150 | arcface 6.7415 | LR 1.39e-04
+2026-07-03 18:16:44,449 train Epoch 083/150 | arcface 6.6868 | LR 1.36e-04
+2026-07-03 18:17:02,619 train Epoch 084/150 | arcface 6.6161 | LR 1.32e-04
+2026-07-03 18:17:20,887 train Epoch 085/150 | arcface 6.5543 | LR 1.29e-04
+2026-07-03 18:17:39,155 train Epoch 086/150 | arcface 6.4400 | LR 1.26e-04
+2026-07-03 18:17:57,398 train Epoch 087/150 | arcface 6.4094 | LR 1.23e-04
+2026-07-03 18:18:15,682 train Epoch 088/150 | arcface 6.3459 | LR 1.20e-04
+2026-07-03 18:18:33,774 train Epoch 089/150 | arcface 6.2606 | LR 1.16e-04
+2026-07-03 18:18:51,998 verification [skip] no CSV for 131-03
+2026-07-03 18:18:51,999 verification Cached 58/59 subjects in cache_verification
+2026-07-03 18:18:54,016 train Epoch 090/150 | arcface 6.1736 | LR 1.13e-04 | val EER 5.17% rank1 69.0%  ★ best
+2026-07-03 18:19:12,500 train Epoch 091/150 | arcface 6.1198 | LR 1.10e-04
+2026-07-03 18:19:30,411 train Epoch 092/150 | arcface 6.0737 | LR 1.07e-04
+2026-07-03 18:19:48,446 train Epoch 093/150 | arcface 5.9957 | LR 1.04e-04
+2026-07-03 18:20:06,709 train Epoch 094/150 | arcface 5.9396 | LR 1.01e-04
+2026-07-03 18:20:24,965 train Epoch 095/150 | arcface 5.8813 | LR 9.77e-05
+2026-07-03 18:20:43,173 train Epoch 096/150 | arcface 5.8093 | LR 9.47e-05
+2026-07-03 18:21:01,455 train Epoch 097/150 | arcface 5.7750 | LR 9.17e-05
+2026-07-03 18:21:19,679 train Epoch 098/150 | arcface 5.7069 | LR 8.87e-05
+2026-07-03 18:21:37,370 train Epoch 099/150 | arcface 5.6896 | LR 8.58e-05
+2026-07-03 18:21:55,465 verification [skip] no CSV for 131-03
+2026-07-03 18:21:55,466 verification Cached 58/59 subjects in cache_verification
+2026-07-03 18:21:57,461 train Epoch 100/150 | arcface 5.6355 | LR 8.28e-05 | val EER 5.37% rank1 70.7%
+2026-07-03 18:22:14,920 train Epoch 101/150 | arcface 5.5579 | LR 8.00e-05
+2026-07-03 18:22:33,159 train Epoch 102/150 | arcface 5.5297 | LR 7.71e-05
+2026-07-03 18:22:51,310 train Epoch 103/150 | arcface 5.4541 | LR 7.43e-05
+2026-07-03 18:23:09,468 train Epoch 104/150 | arcface 5.3963 | LR 7.15e-05
+2026-07-03 18:23:27,704 train Epoch 105/150 | arcface 5.3808 | LR 6.88e-05
+2026-07-03 18:23:45,979 train Epoch 106/150 | arcface 5.3148 | LR 6.61e-05
+2026-07-03 18:24:04,219 train Epoch 107/150 | arcface 5.2407 | LR 6.34e-05
+2026-07-03 18:24:22,567 train Epoch 108/150 | arcface 5.2178 | LR 6.08e-05
+2026-07-03 18:24:40,532 train Epoch 109/150 | arcface 5.1824 | LR 5.82e-05
+2026-07-03 18:24:58,797 verification [skip] no CSV for 131-03
+2026-07-03 18:24:58,798 verification Cached 58/59 subjects in cache_verification
+2026-07-03 18:25:00,818 train Epoch 110/150 | arcface 5.1388 | LR 5.56e-05 | val EER 5.57% rank1 72.4%
+2026-07-03 18:25:19,085 train Epoch 111/150 | arcface 5.0796 | LR 5.31e-05
+2026-07-03 18:25:37,388 train Epoch 112/150 | arcface 5.0801 | LR 5.07e-05
+2026-07-03 18:25:55,672 train Epoch 113/150 | arcface 5.0167 | LR 4.83e-05
+2026-07-03 18:26:13,861 train Epoch 114/150 | arcface 4.9693 | LR 4.59e-05
+2026-07-03 18:26:32,189 train Epoch 115/150 | arcface 4.9557 | LR 4.36e-05
+2026-07-03 18:26:50,375 train Epoch 116/150 | arcface 4.9422 | LR 4.14e-05
+2026-07-03 18:27:08,606 train Epoch 117/150 | arcface 4.8705 | LR 3.92e-05
+2026-07-03 18:27:26,676 train Epoch 118/150 | arcface 4.8378 | LR 3.70e-05
+2026-07-03 18:27:44,997 train Epoch 119/150 | arcface 4.8231 | LR 3.49e-05
+2026-07-03 18:28:03,232 verification [skip] no CSV for 131-03
+2026-07-03 18:28:03,233 verification Cached 58/59 subjects in cache_verification
+2026-07-03 18:28:05,231 train Epoch 120/150 | arcface 4.7624 | LR 3.28e-05 | val EER 5.17% rank1 74.1%
+2026-07-03 18:28:23,524 train Epoch 121/150 | arcface 4.7382 | LR 3.09e-05
+2026-07-03 18:28:41,686 train Epoch 122/150 | arcface 4.7196 | LR 2.89e-05
+2026-07-03 18:28:59,901 train Epoch 123/150 | arcface 4.7028 | LR 2.70e-05
+2026-07-03 18:29:18,057 train Epoch 124/150 | arcface 4.6789 | LR 2.52e-05
+2026-07-03 18:29:36,332 train Epoch 125/150 | arcface 4.6053 | LR 2.35e-05
+2026-07-03 18:29:54,658 train Epoch 126/150 | arcface 4.6412 | LR 2.17e-05
+2026-07-03 18:30:12,951 train Epoch 127/150 | arcface 4.5924 | LR 2.01e-05
+2026-07-03 18:30:31,080 train Epoch 128/150 | arcface 4.5551 | LR 1.85e-05
+2026-07-03 18:30:49,292 train Epoch 129/150 | arcface 4.5850 | LR 1.70e-05
+2026-07-03 18:31:07,530 verification [skip] no CSV for 131-03
+2026-07-03 18:31:07,530 verification Cached 58/59 subjects in cache_verification
+2026-07-03 18:31:09,534 train Epoch 130/150 | arcface 4.5501 | LR 1.55e-05 | val EER 5.31% rank1 72.4%
+2026-07-03 18:31:27,555 train Epoch 131/150 | arcface 4.4966 | LR 1.41e-05
+2026-07-03 18:31:45,613 train Epoch 132/150 | arcface 4.4826 | LR 1.28e-05
+2026-07-03 18:32:03,890 train Epoch 133/150 | arcface 4.5000 | LR 1.16e-05
+2026-07-03 18:32:22,067 train Epoch 134/150 | arcface 4.4837 | LR 1.04e-05
+2026-07-03 18:32:40,246 train Epoch 135/150 | arcface 4.4694 | LR 9.21e-06
+2026-07-03 18:32:58,482 train Epoch 136/150 | arcface 4.4193 | LR 8.14e-06
+2026-07-03 18:33:16,432 train Epoch 137/150 | arcface 4.4520 | LR 7.14e-06
+2026-07-03 18:33:34,671 train Epoch 138/150 | arcface 4.4505 | LR 6.20e-06
+2026-07-03 18:33:52,946 train Epoch 139/150 | arcface 4.3919 | LR 5.34e-06
+2026-07-03 18:34:11,188 verification [skip] no CSV for 131-03
+2026-07-03 18:34:11,189 verification Cached 58/59 subjects in cache_verification
+2026-07-03 18:34:13,192 train Epoch 140/150 | arcface 4.4178 | LR 4.54e-06 | val EER 5.19% rank1 72.4%
+2026-07-03 18:34:31,391 train Epoch 141/150 | arcface 4.4065 | LR 3.80e-06
+2026-07-03 18:34:49,539 train Epoch 142/150 | arcface 4.4167 | LR 3.14e-06
+2026-07-03 18:35:07,746 train Epoch 143/150 | arcface 4.4155 | LR 2.55e-06
+2026-07-03 18:35:25,834 train Epoch 144/150 | arcface 4.3834 | LR 2.02e-06
+2026-07-03 18:35:44,013 train Epoch 145/150 | arcface 4.4106 | LR 1.56e-06
+2026-07-03 18:36:02,380 train Epoch 146/150 | arcface 4.3680 | LR 1.18e-06
+2026-07-03 18:36:20,707 train Epoch 147/150 | arcface 4.3968 | LR 8.62e-07
+2026-07-03 18:36:38,896 train Epoch 148/150 | arcface 4.3913 | LR 6.16e-07
+2026-07-03 18:36:57,082 train Epoch 149/150 | arcface 4.3896 | LR 4.41e-07
+2026-07-03 18:37:15,328 verification [skip] no CSV for 131-03
+2026-07-03 18:37:15,329 verification Cached 58/59 subjects in cache_verification
+2026-07-03 18:37:17,297 train Epoch 150/150 | arcface 4.3438 | LR 3.35e-07 | val EER 5.17% rank1 72.4%
+2026-07-03 18:37:17,504 train Done. Best val eer: 0.0517 → checkpoints_verification/s1b.pt
+2026-07-03 18:37:17,504 train Per-epoch history → checkpoints_verification/s1b_history.csv  (plot: python plot_metrics.py curves --history checkpoints_verification/s1b_history.csv)

@@ -1,0 +1,196 @@
+==================================================
+2026年  7月  3日 金曜日 19:22:37 JST: TRAIN s2a
+2026-07-03 19:22:39,096 train Device cuda | model s2a | seed 42
+2026-07-03 19:22:39,102 verification Split: train=816 val=59 test=224 | CSVs on disk=1095 | seed=42
+2026-07-03 19:22:39,102 verification window=300 stride=150 enroll_ratio=0.70 gap=1200 samples nan_ratio=0.20
+2026-07-03 19:22:39,106 verification [skip] no CSV for 133-06
+2026-07-03 19:22:39,107 verification [skip] no CSV for 134-14
+2026-07-03 19:22:39,107 verification [skip] no CSV for 137-11
+2026-07-03 19:22:39,113 verification Cached 813/816 subjects in cache_verification
+2026-07-03 19:22:43,223 verification Channel stats from 813 subjects, 95165321 frames.
+2026-07-03 19:22:43,439 train Dataset: 813 identities, 631782 windows.
+2026-07-03 19:22:43,804 train Loss: supcon
+2026-07-03 19:22:43,805 train Trainable parameters: 21645496
+2026-07-03 19:22:44,580 train Training 150 epochs (500 batches/epoch, batch=256)...
+2026-07-03 19:23:02,479 train Epoch 001/150 | supcon 5.3561 | LR 3.00e-05
+2026-07-03 19:23:18,821 train Epoch 002/150 | supcon 4.7474 | LR 8.40e-05
+2026-07-03 19:23:35,041 train Epoch 003/150 | supcon 4.4805 | LR 1.38e-04
+2026-07-03 19:23:51,377 train Epoch 004/150 | supcon 4.3630 | LR 1.92e-04
+2026-07-03 19:24:07,876 train Epoch 005/150 | supcon 4.3216 | LR 2.46e-04
+2026-07-03 19:24:24,909 train Epoch 006/150 | supcon 4.2190 | LR 3.00e-04
+2026-07-03 19:24:41,786 train Epoch 007/150 | supcon 4.1420 | LR 3.00e-04
+2026-07-03 19:24:58,345 train Epoch 008/150 | supcon 4.0293 | LR 3.00e-04
+2026-07-03 19:25:14,651 train Epoch 009/150 | supcon 3.9459 | LR 3.00e-04
+2026-07-03 19:25:31,065 verification [skip] no CSV for 131-03
+2026-07-03 19:25:31,066 verification Cached 58/59 subjects in cache_verification
+2026-07-03 19:25:33,265 train Epoch 010/150 | supcon 3.9205 | LR 2.99e-04 | val EER 5.60% rank1 44.8%  ★ best
+2026-07-03 19:25:50,163 train Epoch 011/150 | supcon 3.8490 | LR 2.99e-04
+2026-07-03 19:26:06,605 train Epoch 012/150 | supcon 3.8146 | LR 2.99e-04
+2026-07-03 19:26:23,222 train Epoch 013/150 | supcon 3.7872 | LR 2.98e-04
+2026-07-03 19:26:39,620 train Epoch 014/150 | supcon 3.7530 | LR 2.98e-04
+2026-07-03 19:26:56,480 train Epoch 015/150 | supcon 3.7332 | LR 2.97e-04
+2026-07-03 19:27:12,667 train Epoch 016/150 | supcon 3.7003 | LR 2.96e-04
+2026-07-03 19:27:29,395 train Epoch 017/150 | supcon 3.6611 | LR 2.96e-04
+2026-07-03 19:27:46,197 train Epoch 018/150 | supcon 3.6456 | LR 2.95e-04
+2026-07-03 19:28:02,622 train Epoch 019/150 | supcon 3.6277 | LR 2.94e-04
+2026-07-03 19:28:18,951 verification [skip] no CSV for 131-03
+2026-07-03 19:28:18,952 verification Cached 58/59 subjects in cache_verification
+2026-07-03 19:28:20,986 train Epoch 020/150 | supcon 3.5979 | LR 2.93e-04 | val EER 6.90% rank1 55.2%
+2026-07-03 19:28:37,577 train Epoch 021/150 | supcon 3.5667 | LR 2.92e-04
+2026-07-03 19:28:54,515 train Epoch 022/150 | supcon 3.5570 | LR 2.91e-04
+2026-07-03 19:29:11,352 train Epoch 023/150 | supcon 3.5351 | LR 2.90e-04
+2026-07-03 19:29:28,499 train Epoch 024/150 | supcon 3.5344 | LR 2.89e-04
+2026-07-03 19:29:45,501 train Epoch 025/150 | supcon 3.5064 | LR 2.87e-04
+2026-07-03 19:30:02,618 train Epoch 026/150 | supcon 3.4991 | LR 2.86e-04
+2026-07-03 19:30:19,602 train Epoch 027/150 | supcon 3.4734 | LR 2.85e-04
+2026-07-03 19:30:36,470 train Epoch 028/150 | supcon 3.4692 | LR 2.83e-04
+2026-07-03 19:30:52,956 train Epoch 029/150 | supcon 3.4544 | LR 2.82e-04
+2026-07-03 19:31:09,779 verification [skip] no CSV for 131-03
+2026-07-03 19:31:09,780 verification Cached 58/59 subjects in cache_verification
+2026-07-03 19:31:11,784 train Epoch 030/150 | supcon 3.4473 | LR 2.80e-04 | val EER 5.38% rank1 70.7%  ★ best
+2026-07-03 19:31:28,640 train Epoch 031/150 | supcon 3.4134 | LR 2.79e-04
+2026-07-03 19:31:45,623 train Epoch 032/150 | supcon 3.4181 | LR 2.77e-04
+2026-07-03 19:32:02,731 train Epoch 033/150 | supcon 3.3943 | LR 2.75e-04
+2026-07-03 19:32:18,953 train Epoch 034/150 | supcon 3.3740 | LR 2.73e-04
+2026-07-03 19:32:35,520 train Epoch 035/150 | supcon 3.3710 | LR 2.71e-04
+2026-07-03 19:32:52,577 train Epoch 036/150 | supcon 3.3654 | LR 2.69e-04
+2026-07-03 19:33:09,668 train Epoch 037/150 | supcon 3.3398 | LR 2.67e-04
+2026-07-03 19:33:26,189 train Epoch 038/150 | supcon 3.3360 | LR 2.65e-04
+2026-07-03 19:33:42,643 train Epoch 039/150 | supcon 3.3254 | LR 2.63e-04
+2026-07-03 19:33:58,852 verification [skip] no CSV for 131-03
+2026-07-03 19:33:58,853 verification Cached 58/59 subjects in cache_verification
+2026-07-03 19:34:00,864 train Epoch 040/150 | supcon 3.3147 | LR 2.61e-04 | val EER 5.49% rank1 63.8%
+2026-07-03 19:34:17,816 train Epoch 041/150 | supcon 3.3225 | LR 2.59e-04
+2026-07-03 19:34:34,400 train Epoch 042/150 | supcon 3.3046 | LR 2.57e-04
+2026-07-03 19:34:50,612 train Epoch 043/150 | supcon 3.2774 | LR 2.54e-04
+2026-07-03 19:35:06,879 train Epoch 044/150 | supcon 3.2851 | LR 2.52e-04
+2026-07-03 19:35:23,996 train Epoch 045/150 | supcon 3.2817 | LR 2.50e-04
+2026-07-03 19:35:40,785 train Epoch 046/150 | supcon 3.2556 | LR 2.47e-04
+2026-07-03 19:35:57,208 train Epoch 047/150 | supcon 3.2544 | LR 2.45e-04
+2026-07-03 19:36:14,051 train Epoch 048/150 | supcon 3.2430 | LR 2.42e-04
+2026-07-03 19:36:30,462 train Epoch 049/150 | supcon 3.2369 | LR 2.40e-04
+2026-07-03 19:36:46,850 verification [skip] no CSV for 131-03
+2026-07-03 19:36:46,850 verification Cached 58/59 subjects in cache_verification
+2026-07-03 19:36:48,865 train Epoch 050/150 | supcon 3.2215 | LR 2.37e-04 | val EER 4.99% rank1 67.2%  ★ best
+2026-07-03 19:37:05,494 train Epoch 051/150 | supcon 3.2242 | LR 2.34e-04
+2026-07-03 19:37:21,788 train Epoch 052/150 | supcon 3.2184 | LR 2.32e-04
+2026-07-03 19:37:38,295 train Epoch 053/150 | supcon 3.1987 | LR 2.29e-04
+2026-07-03 19:37:55,486 train Epoch 054/150 | supcon 3.1839 | LR 2.26e-04
+2026-07-03 19:38:12,072 train Epoch 055/150 | supcon 3.1751 | LR 2.23e-04
+2026-07-03 19:38:28,514 train Epoch 056/150 | supcon 3.1693 | LR 2.20e-04
+2026-07-03 19:38:45,438 train Epoch 057/150 | supcon 3.1634 | LR 2.17e-04
+2026-07-03 19:39:02,452 train Epoch 058/150 | supcon 3.1538 | LR 2.15e-04
+2026-07-03 19:39:19,551 train Epoch 059/150 | supcon 3.1543 | LR 2.12e-04
+2026-07-03 19:39:36,330 verification [skip] no CSV for 131-03
+2026-07-03 19:39:36,331 verification Cached 58/59 subjects in cache_verification
+2026-07-03 19:39:38,336 train Epoch 060/150 | supcon 3.1392 | LR 2.09e-04 | val EER 5.17% rank1 62.1%
+2026-07-03 19:39:54,543 train Epoch 061/150 | supcon 3.1257 | LR 2.06e-04
+2026-07-03 19:40:11,244 train Epoch 062/150 | supcon 3.1282 | LR 2.03e-04
+2026-07-03 19:40:28,304 train Epoch 063/150 | supcon 3.1273 | LR 2.00e-04
+2026-07-03 19:40:45,399 train Epoch 064/150 | supcon 3.1075 | LR 1.96e-04
+2026-07-03 19:41:02,421 train Epoch 065/150 | supcon 3.1023 | LR 1.93e-04
+2026-07-03 19:41:19,881 train Epoch 066/150 | supcon 3.1017 | LR 1.90e-04
+2026-07-03 19:41:36,270 train Epoch 067/150 | supcon 3.0714 | LR 1.87e-04
+2026-07-03 19:41:52,685 train Epoch 068/150 | supcon 3.0727 | LR 1.84e-04
+2026-07-03 19:42:08,999 train Epoch 069/150 | supcon 3.0712 | LR 1.81e-04
+2026-07-03 19:42:25,572 verification [skip] no CSV for 131-03
+2026-07-03 19:42:25,572 verification Cached 58/59 subjects in cache_verification
+2026-07-03 19:42:27,594 train Epoch 070/150 | supcon 3.0508 | LR 1.78e-04 | val EER 4.89% rank1 75.9%  ★ best
+2026-07-03 19:42:44,765 train Epoch 071/150 | supcon 3.0537 | LR 1.74e-04
+2026-07-03 19:43:01,483 train Epoch 072/150 | supcon 3.0531 | LR 1.71e-04
+2026-07-03 19:43:18,006 train Epoch 073/150 | supcon 3.0401 | LR 1.68e-04
+2026-07-03 19:43:34,977 train Epoch 074/150 | supcon 3.0387 | LR 1.65e-04
+2026-07-03 19:43:51,815 train Epoch 075/150 | supcon 3.0272 | LR 1.62e-04
+2026-07-03 19:44:08,759 train Epoch 076/150 | supcon 3.0205 | LR 1.58e-04
+2026-07-03 19:44:25,925 train Epoch 077/150 | supcon 3.0130 | LR 1.55e-04
+2026-07-03 19:44:42,882 train Epoch 078/150 | supcon 3.0151 | LR 1.52e-04
+2026-07-03 19:44:59,996 train Epoch 079/150 | supcon 2.9946 | LR 1.49e-04
+2026-07-03 19:45:16,646 verification [skip] no CSV for 131-03
+2026-07-03 19:45:16,646 verification Cached 58/59 subjects in cache_verification
+2026-07-03 19:45:18,658 train Epoch 080/150 | supcon 3.0001 | LR 1.45e-04 | val EER 3.48% rank1 79.3%  ★ best
+2026-07-03 19:45:35,826 train Epoch 081/150 | supcon 2.9878 | LR 1.42e-04
+2026-07-03 19:45:53,042 train Epoch 082/150 | supcon 2.9889 | LR 1.39e-04
+2026-07-03 19:46:10,414 train Epoch 083/150 | supcon 2.9670 | LR 1.36e-04
+2026-07-03 19:46:26,847 train Epoch 084/150 | supcon 2.9706 | LR 1.32e-04
+2026-07-03 19:46:43,564 train Epoch 085/150 | supcon 2.9671 | LR 1.29e-04
+2026-07-03 19:47:00,084 train Epoch 086/150 | supcon 2.9447 | LR 1.26e-04
+2026-07-03 19:47:16,634 train Epoch 087/150 | supcon 2.9490 | LR 1.23e-04
+2026-07-03 19:47:33,578 train Epoch 088/150 | supcon 2.9425 | LR 1.20e-04
+2026-07-03 19:47:50,212 train Epoch 089/150 | supcon 2.9257 | LR 1.16e-04
+2026-07-03 19:48:06,799 verification [skip] no CSV for 131-03
+2026-07-03 19:48:06,800 verification Cached 58/59 subjects in cache_verification
+2026-07-03 19:48:08,808 train Epoch 090/150 | supcon 2.9262 | LR 1.13e-04 | val EER 5.17% rank1 75.9%
+2026-07-03 19:48:25,091 train Epoch 091/150 | supcon 2.9239 | LR 1.10e-04
+2026-07-03 19:48:42,172 train Epoch 092/150 | supcon 2.9122 | LR 1.07e-04
+2026-07-03 19:48:59,114 train Epoch 093/150 | supcon 2.9088 | LR 1.04e-04
+2026-07-03 19:49:15,670 train Epoch 094/150 | supcon 2.8942 | LR 1.01e-04
+2026-07-03 19:49:32,345 train Epoch 095/150 | supcon 2.8906 | LR 9.77e-05
+2026-07-03 19:49:49,442 train Epoch 096/150 | supcon 2.8894 | LR 9.47e-05
+2026-07-03 19:50:05,872 train Epoch 097/150 | supcon 2.8872 | LR 9.17e-05
+2026-07-03 19:50:23,069 train Epoch 098/150 | supcon 2.8741 | LR 8.87e-05
+2026-07-03 19:50:40,301 train Epoch 099/150 | supcon 2.8721 | LR 8.58e-05
+2026-07-03 19:50:57,446 verification [skip] no CSV for 131-03
+2026-07-03 19:50:57,447 verification Cached 58/59 subjects in cache_verification
+2026-07-03 19:50:59,469 train Epoch 100/150 | supcon 2.8698 | LR 8.28e-05 | val EER 3.45% rank1 82.8%  ★ best
+2026-07-03 19:51:16,450 train Epoch 101/150 | supcon 2.8636 | LR 8.00e-05
+2026-07-03 19:51:32,964 train Epoch 102/150 | supcon 2.8697 | LR 7.71e-05
+2026-07-03 19:51:49,959 train Epoch 103/150 | supcon 2.8457 | LR 7.43e-05
+2026-07-03 19:52:06,346 train Epoch 104/150 | supcon 2.8365 | LR 7.15e-05
+2026-07-03 19:52:22,826 train Epoch 105/150 | supcon 2.8490 | LR 6.88e-05
+2026-07-03 19:52:39,427 train Epoch 106/150 | supcon 2.8480 | LR 6.61e-05
+2026-07-03 19:52:56,505 train Epoch 107/150 | supcon 2.8281 | LR 6.34e-05
+2026-07-03 19:53:13,289 train Epoch 108/150 | supcon 2.8318 | LR 6.08e-05
+2026-07-03 19:53:29,793 train Epoch 109/150 | supcon 2.8159 | LR 5.82e-05
+2026-07-03 19:53:46,162 verification [skip] no CSV for 131-03
+2026-07-03 19:53:46,163 verification Cached 58/59 subjects in cache_verification
+2026-07-03 19:53:48,178 train Epoch 110/150 | supcon 2.8122 | LR 5.56e-05 | val EER 3.60% rank1 82.8%
+2026-07-03 19:54:05,133 train Epoch 111/150 | supcon 2.8175 | LR 5.31e-05
+2026-07-03 19:54:21,563 train Epoch 112/150 | supcon 2.8077 | LR 5.07e-05
+2026-07-03 19:54:38,474 train Epoch 113/150 | supcon 2.8108 | LR 4.83e-05
+2026-07-03 19:54:55,102 train Epoch 114/150 | supcon 2.7915 | LR 4.59e-05
+2026-07-03 19:55:12,172 train Epoch 115/150 | supcon 2.8013 | LR 4.36e-05
+2026-07-03 19:55:28,509 train Epoch 116/150 | supcon 2.7981 | LR 4.14e-05
+2026-07-03 19:55:45,516 train Epoch 117/150 | supcon 2.7865 | LR 3.92e-05
+2026-07-03 19:56:02,126 train Epoch 118/150 | supcon 2.7825 | LR 3.70e-05
+2026-07-03 19:56:18,863 train Epoch 119/150 | supcon 2.7701 | LR 3.49e-05
+2026-07-03 19:56:35,672 verification [skip] no CSV for 131-03
+2026-07-03 19:56:35,673 verification Cached 58/59 subjects in cache_verification
+2026-07-03 19:56:37,685 train Epoch 120/150 | supcon 2.7687 | LR 3.28e-05 | val EER 3.45% rank1 81.0%
+2026-07-03 19:56:54,461 train Epoch 121/150 | supcon 2.7656 | LR 3.09e-05
+2026-07-03 19:57:10,663 train Epoch 122/150 | supcon 2.7620 | LR 2.89e-05
+2026-07-03 19:57:27,262 train Epoch 123/150 | supcon 2.7689 | LR 2.70e-05
+2026-07-03 19:57:44,206 train Epoch 124/150 | supcon 2.7561 | LR 2.52e-05
+2026-07-03 19:58:00,555 train Epoch 125/150 | supcon 2.7558 | LR 2.35e-05
+2026-07-03 19:58:17,612 train Epoch 126/150 | supcon 2.7558 | LR 2.17e-05
+2026-07-03 19:58:34,596 train Epoch 127/150 | supcon 2.7470 | LR 2.01e-05
+2026-07-03 19:58:51,654 train Epoch 128/150 | supcon 2.7439 | LR 1.85e-05
+2026-07-03 19:59:08,794 train Epoch 129/150 | supcon 2.7505 | LR 1.70e-05
+2026-07-03 19:59:25,655 verification [skip] no CSV for 131-03
+2026-07-03 19:59:25,656 verification Cached 58/59 subjects in cache_verification
+2026-07-03 19:59:27,662 train Epoch 130/150 | supcon 2.7444 | LR 1.55e-05 | val EER 3.86% rank1 81.0%
+2026-07-03 19:59:44,632 train Epoch 131/150 | supcon 2.7384 | LR 1.41e-05
+2026-07-03 20:00:01,742 train Epoch 132/150 | supcon 2.7355 | LR 1.28e-05
+2026-07-03 20:00:18,711 train Epoch 133/150 | supcon 2.7357 | LR 1.16e-05
+2026-07-03 20:00:35,065 train Epoch 134/150 | supcon 2.7326 | LR 1.04e-05
+2026-07-03 20:00:51,485 train Epoch 135/150 | supcon 2.7260 | LR 9.21e-06
+2026-07-03 20:01:07,846 train Epoch 136/150 | supcon 2.7289 | LR 8.14e-06
+2026-07-03 20:01:24,354 train Epoch 137/150 | supcon 2.7287 | LR 7.14e-06
+2026-07-03 20:01:40,985 train Epoch 138/150 | supcon 2.7282 | LR 6.20e-06
+2026-07-03 20:01:57,374 train Epoch 139/150 | supcon 2.7166 | LR 5.34e-06
+2026-07-03 20:02:13,891 verification [skip] no CSV for 131-03
+2026-07-03 20:02:13,891 verification Cached 58/59 subjects in cache_verification
+2026-07-03 20:02:15,912 train Epoch 140/150 | supcon 2.7177 | LR 4.54e-06 | val EER 4.98% rank1 79.3%
+2026-07-03 20:02:33,088 train Epoch 141/150 | supcon 2.7133 | LR 3.80e-06
+2026-07-03 20:02:50,330 train Epoch 142/150 | supcon 2.7219 | LR 3.14e-06
+2026-07-03 20:03:07,504 train Epoch 143/150 | supcon 2.7205 | LR 2.55e-06
+2026-07-03 20:03:24,496 train Epoch 144/150 | supcon 2.7171 | LR 2.02e-06
+2026-07-03 20:03:40,928 train Epoch 145/150 | supcon 2.7145 | LR 1.56e-06
+2026-07-03 20:03:57,622 train Epoch 146/150 | supcon 2.7105 | LR 1.18e-06
+2026-07-03 20:04:14,724 train Epoch 147/150 | supcon 2.7181 | LR 8.62e-07
+2026-07-03 20:04:31,906 train Epoch 148/150 | supcon 2.7170 | LR 6.16e-07
+2026-07-03 20:04:48,957 train Epoch 149/150 | supcon 2.7156 | LR 4.41e-07
+2026-07-03 20:05:06,017 verification [skip] no CSV for 131-03
+2026-07-03 20:05:06,018 verification Cached 58/59 subjects in cache_verification
+2026-07-03 20:05:08,027 train Epoch 150/150 | supcon 2.7072 | LR 3.35e-07 | val EER 4.85% rank1 82.8%
+2026-07-03 20:05:08,211 train Done. Best val eer: 0.0345 → checkpoints_verification/s2a.pt
+2026-07-03 20:05:08,211 train Per-epoch history → checkpoints_verification/s2a_history.csv  (plot: python plot_metrics.py curves --history checkpoints_verification/s2a_history.csv)

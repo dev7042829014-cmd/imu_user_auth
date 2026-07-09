@@ -1,9 +1,0 @@
-Traceback (most recent call last):
-  File "<frozen runpy>", line 198, in _run_module_as_main
-  File "<frozen runpy>", line 88, in _run_code
-  File "/home/dev/ContinAuth/continauth/run_all.py", line 21, in <module>
-    from .train import main as train_main
-  File "/home/dev/ContinAuth/continauth/train.py", line 76
-    ckpt = ckpt_path.parent / f"{args.config}_epoch{epoch}.pt"
-    ^^^^
-IndentationError: expected an indented block after 'if' statement on line 74

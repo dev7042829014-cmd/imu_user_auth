@@ -1,0 +1,45 @@
+{
+  "config": {
+    "model": "m2b",
+    "split": "test",
+    "seed": 42,
+    "n_subjects": 224,
+    "enroll_ratio": 0.7,
+    "gap_seconds": 60.0,
+    "impostors_per_user": 2000,
+    "checkpoint": "checkpoints_verification/m2b_adacos.best.pt"
+  },
+  "results": [
+    {
+      "scorer": "cosine",
+      "n_subjects": 223,
+      "n_genuine": 223,
+      "n_impostor": 49506,
+      "eer": 0.014200298953662182,
+      "threshold": 0.7320433855056763,
+      "far_at_eer": 0.014947683109118086,
+      "frr_at_eer": 0.013452914798206279,
+      "rank1": 0.852017937219731,
+      "rank1_n": 223,
+      "seed": 42,
+      "frr_at_far": {
+        "0.01": 0.07623318385650224,
+        "0.001": 0.4260089686098655,
+        "0.0001": 0.8026905829596412
+      }
+    }
+  ],
+  "bootstrap": {
+    "eer": [
+      0.01501091781814794,
+      0.008351454992588275,
+      0.027855128105843095
+    ],
+    "rank1": [
+      0.8975426008968609,
+      0.852017937219731,
+      0.9417040358744395
+    ],
+    "n_boot": 1000
+  }
+}

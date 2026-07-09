@@ -1,0 +1,62 @@
+2026-07-07 14:49:35,120 verification Split: train=816 val=59 test=224 | CSVs on disk=1095 | seed=42
+2026-07-07 14:49:35,120 verification window=300 stride=150 enroll_ratio=0.70 gap=1200 samples nan_ratio=0.20
+2026-07-07 14:49:35,123 verification Cached 224/224 subjects in cache_verification
+2026-07-07 14:49:35,123 eval Evaluating 224 test subjects.
+2026-07-07 14:49:35,128 verification [skip] no CSV for 133-06
+2026-07-07 14:49:35,128 verification [skip] no CSV for 134-14
+2026-07-07 14:49:35,129 verification [skip] no CSV for 137-11
+2026-07-07 14:49:35,135 verification Cached 813/816 subjects in cache_verification
+2026-07-07 14:49:44,383 verification Channel stats from 813 subjects, 95165321 frames.
+2026-07-07 14:50:45,008 verification B0 scaler fit on 49593 windows (248 features).
+2026-07-07 14:55:34,221 eval scorer: cosine
+2026-07-07 14:55:34,223 verification run_verification: skipped 1 subject(s) with empty enroll/verify.
+2026-07-07 14:55:34,345 eval scorer: ocsvm
+2026-07-07 14:55:34,346 verification run_verification: skipped 1 subject(s) with empty enroll/verify.
+2026-07-07 14:55:36,218 eval Score matrix (223, 223) (mean diag=0.388).
+2026-07-07 14:55:36,219 eval Wrote score matrix → logs/full_run_20260707_144928/b0_scores.npz
+2026-07-07 14:55:36,814 eval Wrote heatmap → logs/full_run_20260707_144928/b0_test_matrix.png
+2026-07-07 14:55:41,943 eval Wrote results → logs/full_run_20260707_144928/b0_test.json
+
+========================================================================
+OPEN-SET USER VERIFICATION — model: B0
+========================================================================
+Configuration:
+  enroll_ratio          : 0.7
+  gap_seconds           : 60.0
+  impostors_per_user    : 2000
+  model                 : b0
+  n_subjects            : 224
+  seed                  : 42
+  split                 : test
+========================================================================
+
+[ scorer = cosine ]
+  Test subjects (gallery)    : 223
+  Genuine / impostor attempts: 223 / 49,506
+  EER                        :  33.72 %
+  FAR @ EER threshold        :  33.81 %
+  FRR @ EER threshold        :  33.63 %
+  EER threshold (tau)        : 0.2238
+  FRR @ FAR=1%               :  88.79 %
+  FRR @ FAR=0.1%             :  94.17 %
+  FRR @ FAR=0.01%            :  98.65 %
+  Rank-1 identification acc. :  10.76 % (n=223)
+
+[ scorer = ocsvm ]
+  Test subjects (gallery)    : 223
+  Genuine / impostor attempts: 223 / 49,506
+  EER                        :  42.62 %
+  FAR @ EER threshold        :  42.63 %
+  FRR @ EER threshold        :  42.60 %
+  EER threshold (tau)        : 2.1444
+  FRR @ FAR=1%               :  96.86 %
+  FRR @ FAR=0.1%             :  99.10 %
+  FRR @ FAR=0.01%            :  99.55 %
+  Rank-1 identification acc. :   2.69 % (n=223)
+
+========================================================================
+[ bootstrap 95% CI over 223 subjects, 1000 resamples ]
+  EER    :  33.53 %   95% CI [29.33, 37.90]
+  Rank-1 :  12.36 %   95% CI [8.07, 17.04]
+
+========================================================================
