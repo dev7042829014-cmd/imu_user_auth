@@ -1,5 +1,17 @@
 # ContinAuth recreation on the Apple-Watch IMU dataset
 
+
+============================================================================
+CONTINAUTH A/B/C COMPARISON  (his Siamese-FCN + OCSVM on your dataset)
+============================================================================
+config                        ch   OCSVM EER  cosine EER    rank-1
+----------------------------------------------------------------------------
+A_his-feat_his-window          9      23.78%       8.87%    34.82%
+B_his-feat_my-window           9      21.31%       8.79%    35.27%
+C_my-28ch_my-window           28       4.23%       2.68%    50.89%
+D_my-28ch+mag_my-window       31       3.61%       2.23%    57.14%
+============================================================================
+
 A **self-contained** recreation of [dynobo/ContinAuth](https://github.com/dynobo/ContinAuth)
 (Buech, 2019 — *"Continuous Authentication via Smartphone Inertial Sensors"*),
 adapted to test **his model on your dataset**. It does **not** import your
