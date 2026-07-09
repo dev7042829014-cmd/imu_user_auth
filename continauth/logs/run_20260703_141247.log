@@ -1,0 +1,1784 @@
+2026-07-03 14:12:50,237 continauth.data Config A_his-feat_his-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 14:19:23,942 continauth.train Training windows: (954846, 9, 100) over 816 subjects.
+/home/dev/miniconda3/envs/imu_auth/lib/python3.12/site-packages/torch/nn/modules/conv.py:380: UserWarning: Using padding='same' with even kernel lengths and odd dilation may require a zero-padded copy of the input be created (Triggered internally at /pytorch/aten/src/ATen/native/Convolution.cpp:1090.)
+  return F.conv1d(
+2026-07-03 14:19:26,584 continauth.train Epoch 001/150 | contrastive 0.5168
+2026-07-03 14:19:27,884 continauth.train Epoch 002/150 | contrastive 0.4808
+2026-07-03 14:19:29,192 continauth.train Epoch 003/150 | contrastive 0.4639
+2026-07-03 14:19:30,497 continauth.train Epoch 004/150 | contrastive 0.4525
+2026-07-03 14:19:31,812 continauth.train Epoch 005/150 | contrastive 0.4462
+2026-07-03 14:19:33,121 continauth.train Epoch 006/150 | contrastive 0.4413
+2026-07-03 14:19:34,430 continauth.train Epoch 007/150 | contrastive 0.4336
+2026-07-03 14:19:35,741 continauth.train Epoch 008/150 | contrastive 0.4315
+2026-07-03 14:19:37,026 continauth.train Epoch 009/150 | contrastive 0.4290
+2026-07-03 14:19:38,358 continauth.train Epoch 010/150 | contrastive 0.4248
+2026-07-03 14:19:38,370 continauth.data Config A_his-feat_his-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 14:20:41,461 continauth.eval OCSVM tuned on val: nu=0.3 gamma=4.0 (val mean EER=27.82%)
+2026-07-03 14:21:04,075 continauth.eval Evaluating 59 val subjects.
+2026-07-03 14:21:06,017 continauth.train Saved checkpoint continauth/checkpoints/a_epoch10.pt
+2026-07-03 14:21:07,333 continauth.train Epoch 011/150 | contrastive 0.4243
+2026-07-03 14:21:08,611 continauth.train Epoch 012/150 | contrastive 0.4218
+2026-07-03 14:21:09,908 continauth.train Epoch 013/150 | contrastive 0.4194
+2026-07-03 14:21:11,185 continauth.train Epoch 014/150 | contrastive 0.4190
+2026-07-03 14:21:12,442 continauth.train Epoch 015/150 | contrastive 0.4165
+2026-07-03 14:21:13,701 continauth.train Epoch 016/150 | contrastive 0.4174
+2026-07-03 14:21:14,964 continauth.train Epoch 017/150 | contrastive 0.4157
+2026-07-03 14:21:16,230 continauth.train Epoch 018/150 | contrastive 0.4130
+2026-07-03 14:21:17,466 continauth.train Epoch 019/150 | contrastive 0.4136
+2026-07-03 14:21:18,702 continauth.train Epoch 020/150 | contrastive 0.4131
+2026-07-03 14:21:18,715 continauth.data Config A_his-feat_his-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 14:22:20,479 continauth.eval OCSVM tuned on val: nu=0.3 gamma=8.0 (val mean EER=25.40%)
+2026-07-03 14:22:42,781 continauth.eval Evaluating 59 val subjects.
+2026-07-03 14:22:44,718 continauth.train Saved checkpoint continauth/checkpoints/a_epoch20.pt
+2026-07-03 14:22:45,990 continauth.train Epoch 021/150 | contrastive 0.4103
+2026-07-03 14:22:47,252 continauth.train Epoch 022/150 | contrastive 0.4097
+2026-07-03 14:22:48,509 continauth.train Epoch 023/150 | contrastive 0.4102
+2026-07-03 14:22:49,755 continauth.train Epoch 024/150 | contrastive 0.4100
+2026-07-03 14:22:50,994 continauth.train Epoch 025/150 | contrastive 0.4071
+2026-07-03 14:22:52,256 continauth.train Epoch 026/150 | contrastive 0.4070
+2026-07-03 14:22:53,520 continauth.train Epoch 027/150 | contrastive 0.4036
+2026-07-03 14:22:54,777 continauth.train Epoch 028/150 | contrastive 0.4065
+2026-07-03 14:22:55,987 continauth.train Epoch 029/150 | contrastive 0.4058
+2026-07-03 14:22:57,240 continauth.train Epoch 030/150 | contrastive 0.4064
+2026-07-03 14:22:57,253 continauth.data Config A_his-feat_his-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 14:23:58,583 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=23.53%)
+2026-07-03 14:24:21,096 continauth.eval Evaluating 59 val subjects.
+2026-07-03 14:24:23,100 continauth.train Saved checkpoint continauth/checkpoints/a_epoch30.pt
+2026-07-03 14:24:24,387 continauth.train Epoch 031/150 | contrastive 0.4039
+2026-07-03 14:24:25,655 continauth.train Epoch 032/150 | contrastive 0.4055
+2026-07-03 14:24:26,919 continauth.train Epoch 033/150 | contrastive 0.4034
+2026-07-03 14:24:28,191 continauth.train Epoch 034/150 | contrastive 0.4021
+2026-07-03 14:24:29,460 continauth.train Epoch 035/150 | contrastive 0.4028
+2026-07-03 14:24:30,724 continauth.train Epoch 036/150 | contrastive 0.4025
+2026-07-03 14:24:31,987 continauth.train Epoch 037/150 | contrastive 0.4007
+2026-07-03 14:24:33,247 continauth.train Epoch 038/150 | contrastive 0.4017
+2026-07-03 14:24:34,507 continauth.train Epoch 039/150 | contrastive 0.4021
+2026-07-03 14:24:35,779 continauth.train Epoch 040/150 | contrastive 0.3997
+2026-07-03 14:24:35,792 continauth.data Config A_his-feat_his-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 14:25:37,720 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=22.88%)
+2026-07-03 14:26:00,018 continauth.eval Evaluating 59 val subjects.
+2026-07-03 14:26:02,018 continauth.train Saved checkpoint continauth/checkpoints/a_epoch40.pt
+2026-07-03 14:26:03,291 continauth.train Epoch 041/150 | contrastive 0.3999
+2026-07-03 14:26:04,559 continauth.train Epoch 042/150 | contrastive 0.3989
+2026-07-03 14:26:05,821 continauth.train Epoch 043/150 | contrastive 0.4005
+2026-07-03 14:26:07,065 continauth.train Epoch 044/150 | contrastive 0.3980
+2026-07-03 14:26:08,314 continauth.train Epoch 045/150 | contrastive 0.3995
+2026-07-03 14:26:09,585 continauth.train Epoch 046/150 | contrastive 0.3973
+2026-07-03 14:26:10,848 continauth.train Epoch 047/150 | contrastive 0.3996
+2026-07-03 14:26:12,108 continauth.train Epoch 048/150 | contrastive 0.3975
+2026-07-03 14:26:13,364 continauth.train Epoch 049/150 | contrastive 0.3979
+2026-07-03 14:26:14,626 continauth.train Epoch 050/150 | contrastive 0.3982
+2026-07-03 14:26:14,638 continauth.data Config A_his-feat_his-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 14:27:16,041 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=22.51%)
+2026-07-03 14:27:38,278 continauth.eval Evaluating 59 val subjects.
+2026-07-03 14:27:40,289 continauth.train Saved checkpoint continauth/checkpoints/a_epoch50.pt
+2026-07-03 14:27:41,528 continauth.train Epoch 051/150 | contrastive 0.3971
+2026-07-03 14:27:42,759 continauth.train Epoch 052/150 | contrastive 0.3962
+2026-07-03 14:27:43,990 continauth.train Epoch 053/150 | contrastive 0.3978
+2026-07-03 14:27:45,223 continauth.train Epoch 054/150 | contrastive 0.3962
+2026-07-03 14:27:46,485 continauth.train Epoch 055/150 | contrastive 0.3958
+2026-07-03 14:27:47,740 continauth.train Epoch 056/150 | contrastive 0.3975
+2026-07-03 14:27:48,999 continauth.train Epoch 057/150 | contrastive 0.3939
+2026-07-03 14:27:50,261 continauth.train Epoch 058/150 | contrastive 0.3949
+2026-07-03 14:27:51,519 continauth.train Epoch 059/150 | contrastive 0.3946
+2026-07-03 14:27:52,776 continauth.train Epoch 060/150 | contrastive 0.3964
+2026-07-03 14:27:52,789 continauth.data Config A_his-feat_his-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 14:28:54,248 continauth.eval OCSVM tuned on val: nu=0.3 gamma=8.0 (val mean EER=22.35%)
+2026-07-03 14:29:16,472 continauth.eval Evaluating 59 val subjects.
+2026-07-03 14:29:18,401 continauth.train Saved checkpoint continauth/checkpoints/a_epoch60.pt
+2026-07-03 14:29:19,679 continauth.train Epoch 061/150 | contrastive 0.3950
+2026-07-03 14:29:20,944 continauth.train Epoch 062/150 | contrastive 0.3936
+2026-07-03 14:29:22,185 continauth.train Epoch 063/150 | contrastive 0.3925
+2026-07-03 14:29:23,392 continauth.train Epoch 064/150 | contrastive 0.3931
+2026-07-03 14:29:24,656 continauth.train Epoch 065/150 | contrastive 0.3940
+2026-07-03 14:29:25,921 continauth.train Epoch 066/150 | contrastive 0.3961
+2026-07-03 14:29:27,180 continauth.train Epoch 067/150 | contrastive 0.3934
+2026-07-03 14:29:28,442 continauth.train Epoch 068/150 | contrastive 0.3944
+2026-07-03 14:29:29,708 continauth.train Epoch 069/150 | contrastive 0.3938
+2026-07-03 14:29:30,972 continauth.train Epoch 070/150 | contrastive 0.3926
+2026-07-03 14:29:30,986 continauth.data Config A_his-feat_his-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 14:30:32,053 continauth.eval OCSVM tuned on val: nu=0.3 gamma=8.0 (val mean EER=21.92%)
+2026-07-03 14:30:54,629 continauth.eval Evaluating 59 val subjects.
+2026-07-03 14:30:56,544 continauth.train Saved checkpoint continauth/checkpoints/a_epoch70.pt
+2026-07-03 14:30:57,784 continauth.train Epoch 071/150 | contrastive 0.3925
+2026-07-03 14:30:58,979 continauth.train Epoch 072/150 | contrastive 0.3921
+2026-07-03 14:31:00,226 continauth.train Epoch 073/150 | contrastive 0.3933
+2026-07-03 14:31:01,486 continauth.train Epoch 074/150 | contrastive 0.3928
+2026-07-03 14:31:02,745 continauth.train Epoch 075/150 | contrastive 0.3923
+2026-07-03 14:31:04,007 continauth.train Epoch 076/150 | contrastive 0.3919
+2026-07-03 14:31:05,271 continauth.train Epoch 077/150 | contrastive 0.3945
+2026-07-03 14:31:06,531 continauth.train Epoch 078/150 | contrastive 0.3928
+2026-07-03 14:31:07,786 continauth.train Epoch 079/150 | contrastive 0.3928
+2026-07-03 14:31:09,044 continauth.train Epoch 080/150 | contrastive 0.3932
+2026-07-03 14:31:09,057 continauth.data Config A_his-feat_his-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 14:32:10,517 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=21.71%)
+2026-07-03 14:32:32,834 continauth.eval Evaluating 59 val subjects.
+2026-07-03 14:32:34,810 continauth.train Saved checkpoint continauth/checkpoints/a_epoch80.pt
+2026-07-03 14:32:36,085 continauth.train Epoch 081/150 | contrastive 0.3926
+2026-07-03 14:32:37,354 continauth.train Epoch 082/150 | contrastive 0.3902
+2026-07-03 14:32:38,629 continauth.train Epoch 083/150 | contrastive 0.3909
+2026-07-03 14:32:39,892 continauth.train Epoch 084/150 | contrastive 0.3923
+2026-07-03 14:32:41,138 continauth.train Epoch 085/150 | contrastive 0.3900
+2026-07-03 14:32:42,367 continauth.train Epoch 086/150 | contrastive 0.3915
+2026-07-03 14:32:43,630 continauth.train Epoch 087/150 | contrastive 0.3897
+2026-07-03 14:32:44,893 continauth.train Epoch 088/150 | contrastive 0.3920
+2026-07-03 14:32:46,154 continauth.train Epoch 089/150 | contrastive 0.3898
+2026-07-03 14:32:47,420 continauth.train Epoch 090/150 | contrastive 0.3927
+2026-07-03 14:32:47,432 continauth.data Config A_his-feat_his-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 14:33:49,309 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=23.26%)
+2026-07-03 14:34:11,646 continauth.eval Evaluating 59 val subjects.
+2026-07-03 14:34:13,644 continauth.train Saved checkpoint continauth/checkpoints/a_epoch90.pt
+2026-07-03 14:34:14,963 continauth.train Epoch 091/150 | contrastive 0.3896
+2026-07-03 14:34:16,260 continauth.train Epoch 092/150 | contrastive 0.3918
+2026-07-03 14:34:17,554 continauth.train Epoch 093/150 | contrastive 0.3923
+2026-07-03 14:34:18,853 continauth.train Epoch 094/150 | contrastive 0.3901
+2026-07-03 14:34:20,150 continauth.train Epoch 095/150 | contrastive 0.3885
+2026-07-03 14:34:21,444 continauth.train Epoch 096/150 | contrastive 0.3896
+2026-07-03 14:34:22,740 continauth.train Epoch 097/150 | contrastive 0.3892
+2026-07-03 14:34:24,032 continauth.train Epoch 098/150 | contrastive 0.3899
+2026-07-03 14:34:25,331 continauth.train Epoch 099/150 | contrastive 0.3900
+2026-07-03 14:34:26,620 continauth.train Epoch 100/150 | contrastive 0.3897
+2026-07-03 14:34:26,633 continauth.data Config A_his-feat_his-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 14:35:28,037 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=21.69%)
+2026-07-03 14:35:50,386 continauth.eval Evaluating 59 val subjects.
+2026-07-03 14:35:52,361 continauth.train Saved checkpoint continauth/checkpoints/a_epoch100.pt
+2026-07-03 14:35:53,667 continauth.train Epoch 101/150 | contrastive 0.3876
+2026-07-03 14:35:54,972 continauth.train Epoch 102/150 | contrastive 0.3902
+2026-07-03 14:35:56,291 continauth.train Epoch 103/150 | contrastive 0.3883
+2026-07-03 14:35:57,584 continauth.train Epoch 104/150 | contrastive 0.3887
+2026-07-03 14:35:58,882 continauth.train Epoch 105/150 | contrastive 0.3877
+2026-07-03 14:36:00,173 continauth.train Epoch 106/150 | contrastive 0.3894
+2026-07-03 14:36:01,466 continauth.train Epoch 107/150 | contrastive 0.3906
+2026-07-03 14:36:02,754 continauth.train Epoch 108/150 | contrastive 0.3888
+2026-07-03 14:36:04,048 continauth.train Epoch 109/150 | contrastive 0.3883
+2026-07-03 14:36:05,341 continauth.train Epoch 110/150 | contrastive 0.3894
+2026-07-03 14:36:05,354 continauth.data Config A_his-feat_his-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 14:37:07,088 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=21.70%)
+2026-07-03 14:37:29,408 continauth.eval Evaluating 59 val subjects.
+2026-07-03 14:37:31,391 continauth.train Saved checkpoint continauth/checkpoints/a_epoch110.pt
+2026-07-03 14:37:32,693 continauth.train Epoch 111/150 | contrastive 0.3882
+2026-07-03 14:37:33,992 continauth.train Epoch 112/150 | contrastive 0.3900
+2026-07-03 14:37:35,286 continauth.train Epoch 113/150 | contrastive 0.3880
+2026-07-03 14:37:36,581 continauth.train Epoch 114/150 | contrastive 0.3878
+2026-07-03 14:37:37,877 continauth.train Epoch 115/150 | contrastive 0.3904
+2026-07-03 14:37:39,167 continauth.train Epoch 116/150 | contrastive 0.3890
+2026-07-03 14:37:40,458 continauth.train Epoch 117/150 | contrastive 0.3884
+2026-07-03 14:37:41,748 continauth.train Epoch 118/150 | contrastive 0.3885
+2026-07-03 14:37:43,045 continauth.train Epoch 119/150 | contrastive 0.3894
+2026-07-03 14:37:44,334 continauth.train Epoch 120/150 | contrastive 0.3889
+2026-07-03 14:37:44,347 continauth.data Config A_his-feat_his-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 14:38:45,061 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=21.67%)
+2026-07-03 14:39:07,438 continauth.eval Evaluating 59 val subjects.
+2026-07-03 14:39:09,409 continauth.train Saved checkpoint continauth/checkpoints/a_epoch120.pt
+2026-07-03 14:39:10,720 continauth.train Epoch 121/150 | contrastive 0.3868
+2026-07-03 14:39:12,018 continauth.train Epoch 122/150 | contrastive 0.3879
+2026-07-03 14:39:13,317 continauth.train Epoch 123/150 | contrastive 0.3880
+2026-07-03 14:39:14,583 continauth.train Epoch 124/150 | contrastive 0.3883
+2026-07-03 14:39:15,848 continauth.train Epoch 125/150 | contrastive 0.3871
+2026-07-03 14:39:17,140 continauth.train Epoch 126/150 | contrastive 0.3869
+2026-07-03 14:39:18,442 continauth.train Epoch 127/150 | contrastive 0.3890
+2026-07-03 14:39:19,733 continauth.train Epoch 128/150 | contrastive 0.3871
+2026-07-03 14:39:21,030 continauth.train Epoch 129/150 | contrastive 0.3870
+2026-07-03 14:39:22,322 continauth.train Epoch 130/150 | contrastive 0.3882
+2026-07-03 14:39:22,335 continauth.data Config A_his-feat_his-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 14:40:23,580 continauth.eval OCSVM tuned on val: nu=0.3 gamma=8.0 (val mean EER=20.58%)
+2026-07-03 14:40:46,001 continauth.eval Evaluating 59 val subjects.
+
+====================================================================
+CONTINAUTH RECREATION — A_his-feat_his-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : his   scaler: robust_subject
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=4.0, val-tuned) ]
+    mean EER         :  27.82 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :  13.56 %
+    Rank-1           :  37.29 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — A_his-feat_his-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : his   scaler: robust_subject
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=8.0, val-tuned) ]
+    mean EER         :  25.40 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :  11.86 %
+    Rank-1           :  37.29 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — A_his-feat_his-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : his   scaler: robust_subject
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :  23.53 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :  12.33 %
+    Rank-1           :  42.37 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — A_his-feat_his-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : his   scaler: robust_subject
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :  22.88 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :  10.17 %
+    Rank-1           :  49.15 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — A_his-feat_his-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : his   scaler: robust_subject
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :  22.51 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   9.56 %
+    Rank-1           :  45.76 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — A_his-feat_his-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : his   scaler: robust_subject
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=8.0, val-tuned) ]
+    mean EER         :  22.35 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   8.88 %
+    Rank-1           :  47.46 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — A_his-feat_his-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : his   scaler: robust_subject
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=8.0, val-tuned) ]
+    mean EER         :  21.92 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   9.47 %
+    Rank-1           :  47.46 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — A_his-feat_his-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : his   scaler: robust_subject
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :  21.71 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :  10.17 %
+    Rank-1           :  52.54 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — A_his-feat_his-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : his   scaler: robust_subject
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :  23.26 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :  11.51 %
+    Rank-1           :  47.46 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — A_his-feat_his-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : his   scaler: robust_subject
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :  21.69 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   8.56 %
+    Rank-1           :  52.54 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — A_his-feat_his-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : his   scaler: robust_subject
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :  21.70 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   8.47 %
+    Rank-1           :  50.85 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — A_his-feat_his-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : his   scaler: robust_subject
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :  21.67 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   9.00 %
+    Rank-1           :  54.24 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — A_his-feat_his-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : his   scaler: robust_subject
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=8.0, val-tuned) ]
+    mean EER         :  20.58 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   9.35 %
+    Rank-1           :  52.54 %
+====================================================================2026-07-03 14:40:47,940 continauth.train Saved checkpoint continauth/checkpoints/a_epoch130.pt
+2026-07-03 14:40:49,251 continauth.train Epoch 131/150 | contrastive 0.3869
+2026-07-03 14:40:50,554 continauth.train Epoch 132/150 | contrastive 0.3872
+2026-07-03 14:40:51,832 continauth.train Epoch 133/150 | contrastive 0.3889
+2026-07-03 14:40:53,092 continauth.train Epoch 134/150 | contrastive 0.3877
+2026-07-03 14:40:54,358 continauth.train Epoch 135/150 | contrastive 0.3878
+2026-07-03 14:40:55,620 continauth.train Epoch 136/150 | contrastive 0.3888
+2026-07-03 14:40:56,878 continauth.train Epoch 137/150 | contrastive 0.3890
+2026-07-03 14:40:58,159 continauth.train Epoch 138/150 | contrastive 0.3872
+2026-07-03 14:40:59,466 continauth.train Epoch 139/150 | contrastive 0.3885
+2026-07-03 14:41:00,768 continauth.train Epoch 140/150 | contrastive 0.3851
+2026-07-03 14:41:00,781 continauth.data Config A_his-feat_his-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 14:42:02,663 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=21.47%)
+2026-07-03 14:42:25,391 continauth.eval Evaluating 59 val subjects.
+2026-07-03 14:42:27,409 continauth.train Saved checkpoint continauth/checkpoints/a_epoch140.pt
+2026-07-03 14:42:28,754 continauth.train Epoch 141/150 | contrastive 0.3883
+2026-07-03 14:42:30,086 continauth.train Epoch 142/150 | contrastive 0.3865
+2026-07-03 14:42:31,421 continauth.train Epoch 143/150 | contrastive 0.3875
+2026-07-03 14:42:32,746 continauth.train Epoch 144/150 | contrastive 0.3849
+2026-07-03 14:42:34,078 continauth.train Epoch 145/150 | contrastive 0.3851
+2026-07-03 14:42:35,405 continauth.train Epoch 146/150 | contrastive 0.3868
+2026-07-03 14:42:36,730 continauth.train Epoch 147/150 | contrastive 0.3876
+2026-07-03 14:42:38,059 continauth.train Epoch 148/150 | contrastive 0.3849
+2026-07-03 14:42:39,379 continauth.train Epoch 149/150 | contrastive 0.3888
+2026-07-03 14:42:40,710 continauth.train Epoch 150/150 | contrastive 0.3856
+2026-07-03 14:42:40,722 continauth.data Config A_his-feat_his-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 14:43:42,505 continauth.eval OCSVM tuned on val: nu=0.3 gamma=8.0 (val mean EER=21.51%)
+2026-07-03 14:44:04,700 continauth.eval Evaluating 59 val subjects.
+2026-07-03 14:44:06,623 continauth.train Saved checkpoint continauth/checkpoints/a_epoch150.pt
+2026-07-03 14:44:06,625 continauth.train Saved checkpoint -> continauth/checkpoints/a.pt
+2026-07-03 14:44:06,625 continauth.train Best checkpoint: epoch 130 | EER 0.2058 | Rank1 0.5254
+2026-07-03 14:44:06,658 continauth.data Config A_his-feat_his-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 14:45:08,272 continauth.eval OCSVM tuned on val: nu=0.3 gamma=8.0 (val mean EER=21.51%)
+2026-07-03 14:46:32,746 continauth.eval Evaluating 224 test subjects.
+2026-07-03 14:46:40,271 continauth.eval Wrote results -> continauth/checkpoints/a.json
+2026-07-03 14:46:40,281 continauth.data Config B_his-feat_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 14:52:52,493 continauth.data Global z-score stats fit on 816 train subjects.
+2026-07-03 14:59:14,683 continauth.train Training windows: (635600, 9, 300) over 816 subjects.
+2026-07-03 14:59:15,961 continauth.train Epoch 001/150 | contrastive 0.5009
+2026-07-03 14:59:17,210 continauth.train Epoch 002/150 | contrastive 0.4868
+2026-07-03 14:59:18,480 continauth.train Epoch 003/150 | contrastive 0.4840
+2026-07-03 14:59:19,748 continauth.train Epoch 004/150 | contrastive 0.4816
+2026-07-03 14:59:21,020 continauth.train Epoch 005/150 | contrastive 0.4797
+2026-07-03 14:59:22,268 continauth.train Epoch 006/150 | contrastive 0.4790
+2026-07-03 14:59:23,509 continauth.train Epoch 007/150 | contrastive 0.4773
+2026-07-03 14:59:24,760 continauth.train Epoch 008/150 | contrastive 0.4757
+2026-07-03 14:59:26,009 continauth.train Epoch 009/150 | contrastive 0.4746
+2026-07-03 14:59:27,254 continauth.train Epoch 010/150 | contrastive 0.4740
+2026-07-03 14:59:27,267 continauth.data Config B_his-feat_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 15:00:16,231 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=33.49%)
+2026-07-03 15:00:38,382 continauth.eval Evaluating 59 val subjects.
+2026-07-03 15:00:39,755 continauth.train Saved checkpoint continauth/checkpoints/b_epoch10.pt
+2026-07-03 15:00:40,997 continauth.train Epoch 011/150 | contrastive 0.4743
+2026-07-03 15:00:42,245 continauth.train Epoch 012/150 | contrastive 0.4732
+2026-07-03 15:00:43,462 continauth.train Epoch 013/150 | contrastive 0.4734
+2026-07-03 15:00:44,704 continauth.train Epoch 014/150 | contrastive 0.4720
+2026-07-03 15:00:45,954 continauth.train Epoch 015/150 | contrastive 0.4718
+2026-07-03 15:00:47,186 continauth.train Epoch 016/150 | contrastive 0.4715
+2026-07-03 15:00:48,430 continauth.train Epoch 017/150 | contrastive 0.4698
+2026-07-03 15:00:49,679 continauth.train Epoch 018/150 | contrastive 0.4694
+2026-07-03 15:00:50,930 continauth.train Epoch 019/150 | contrastive 0.4690
+2026-07-03 15:00:52,181 continauth.train Epoch 020/150 | contrastive 0.4692
+2026-07-03 15:00:52,192 continauth.data Config B_his-feat_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 15:01:40,845 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=32.37%)
+2026-07-03 15:02:02,933 continauth.eval Evaluating 59 val subjects.
+2026-07-03 15:02:04,299 continauth.train Saved checkpoint continauth/checkpoints/b_epoch20.pt
+2026-07-03 15:02:05,558 continauth.train Epoch 021/150 | contrastive 0.4683
+2026-07-03 15:02:06,804 continauth.train Epoch 022/150 | contrastive 0.4671
+2026-07-03 15:02:08,046 continauth.train Epoch 023/150 | contrastive 0.4664
+2026-07-03 15:02:09,296 continauth.train Epoch 024/150 | contrastive 0.4661
+2026-07-03 15:02:10,535 continauth.train Epoch 025/150 | contrastive 0.4642
+2026-07-03 15:02:11,770 continauth.train Epoch 026/150 | contrastive 0.4656
+2026-07-03 15:02:13,015 continauth.train Epoch 027/150 | contrastive 0.4636
+2026-07-03 15:02:14,259 continauth.train Epoch 028/150 | contrastive 0.4633
+2026-07-03 15:02:15,504 continauth.train Epoch 029/150 | contrastive 0.4627
+2026-07-03 15:02:16,751 continauth.train Epoch 030/150 | contrastive 0.4629
+2026-07-03 15:02:16,767 continauth.data Config B_his-feat_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 15:03:05,901 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=30.32%)
+2026-07-03 15:03:27,902 continauth.eval Evaluating 59 val subjects.
+2026-07-03 15:03:29,281 continauth.train Saved checkpoint continauth/checkpoints/b_epoch30.pt
+2026-07-03 15:03:30,536 continauth.train Epoch 031/150 | contrastive 0.4617
+2026-07-03 15:03:31,772 continauth.train Epoch 032/150 | contrastive 0.4615
+2026-07-03 15:03:33,018 continauth.train Epoch 033/150 | contrastive 0.4611
+2026-07-03 15:03:34,246 continauth.train Epoch 034/150 | contrastive 0.4612
+2026-07-03 15:03:35,474 continauth.train Epoch 035/150 | contrastive 0.4597
+2026-07-03 15:03:36,703 continauth.train Epoch 036/150 | contrastive 0.4604
+2026-07-03 15:03:37,948 continauth.train Epoch 037/150 | contrastive 0.4598
+2026-07-03 15:03:39,181 continauth.train Epoch 038/150 | contrastive 0.4593
+2026-07-03 15:03:40,409 continauth.train Epoch 039/150 | contrastive 0.4594
+2026-07-03 15:03:41,648 continauth.train Epoch 040/150 | contrastive 0.4591
+2026-07-03 15:03:41,829 continauth.data Config B_his-feat_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 15:04:31,040 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=28.86%)
+2026-07-03 15:04:53,114 continauth.eval Evaluating 59 val subjects.
+2026-07-03 15:04:54,498 continauth.train Saved checkpoint continauth/checkpoints/b_epoch40.pt
+2026-07-03 15:04:55,733 continauth.train Epoch 041/150 | contrastive 0.4584
+2026-07-03 15:04:56,964 continauth.train Epoch 042/150 | contrastive 0.4582
+2026-07-03 15:04:58,184 continauth.train Epoch 043/150 | contrastive 0.4582
+2026-07-03 15:04:59,430 continauth.train Epoch 044/150 | contrastive 0.4577
+2026-07-03 15:05:00,667 continauth.train Epoch 045/150 | contrastive 0.4572
+2026-07-03 15:05:01,896 continauth.train Epoch 046/150 | contrastive 0.4575
+2026-07-03 15:05:03,145 continauth.train Epoch 047/150 | contrastive 0.4573
+2026-07-03 15:05:04,397 continauth.train Epoch 048/150 | contrastive 0.4569
+2026-07-03 15:05:05,636 continauth.train Epoch 049/150 | contrastive 0.4573
+2026-07-03 15:05:06,862 continauth.train Epoch 050/150 | contrastive 0.4566
+2026-07-03 15:05:06,876 continauth.data Config B_his-feat_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 15:05:55,687 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=28.43%)
+2026-07-03 15:06:17,320 continauth.eval Evaluating 59 val subjects.
+2026-07-03 15:06:18,722 continauth.train Saved checkpoint continauth/checkpoints/b_epoch50.pt
+2026-07-03 15:06:19,954 continauth.train Epoch 051/150 | contrastive 0.4565
+2026-07-03 15:06:21,182 continauth.train Epoch 052/150 | contrastive 0.4562
+2026-07-03 15:06:22,403 continauth.train Epoch 053/150 | contrastive 0.4562
+2026-07-03 15:06:23,632 continauth.train Epoch 054/150 | contrastive 0.4559
+2026-07-03 15:06:24,868 continauth.train Epoch 055/150 | contrastive 0.4555
+2026-07-03 15:06:26,095 continauth.train Epoch 056/150 | contrastive 0.4557
+2026-07-03 15:06:27,327 continauth.train Epoch 057/150 | contrastive 0.4543
+2026-07-03 15:06:28,554 continauth.train Epoch 058/150 | contrastive 0.4551
+2026-07-03 15:06:29,791 continauth.train Epoch 059/150 | contrastive 0.4553
+2026-07-03 15:06:31,018 continauth.train Epoch 060/150 | contrastive 0.4550
+2026-07-03 15:06:31,033 continauth.data Config B_his-feat_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 15:07:20,870 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=28.17%)
+2026-07-03 15:07:42,859 continauth.eval Evaluating 59 val subjects.
+2026-07-03 15:07:44,267 continauth.train Saved checkpoint continauth/checkpoints/b_epoch60.pt
+2026-07-03 15:07:45,503 continauth.train Epoch 061/150 | contrastive 0.4540
+2026-07-03 15:07:46,719 continauth.train Epoch 062/150 | contrastive 0.4549
+2026-07-03 15:07:47,944 continauth.train Epoch 063/150 | contrastive 0.4533
+2026-07-03 15:07:49,172 continauth.train Epoch 064/150 | contrastive 0.4535
+2026-07-03 15:07:50,395 continauth.train Epoch 065/150 | contrastive 0.4542
+2026-07-03 15:07:51,625 continauth.train Epoch 066/150 | contrastive 0.4539
+2026-07-03 15:07:52,856 continauth.train Epoch 067/150 | contrastive 0.4536
+2026-07-03 15:07:54,089 continauth.train Epoch 068/150 | contrastive 0.4549
+2026-07-03 15:07:55,318 continauth.train Epoch 069/150 | contrastive 0.4541
+2026-07-03 15:07:56,555 continauth.train Epoch 070/150 | contrastive 0.4542
+2026-07-03 15:07:56,568 continauth.data Config B_his-feat_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 15:08:45,445 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=28.37%)
+2026-07-03 15:09:07,387 continauth.eval Evaluating 59 val subjects.
+2026-07-03 15:09:08,770 continauth.train Saved checkpoint continauth/checkpoints/b_epoch70.pt
+2026-07-03 15:09:10,022 continauth.train Epoch 071/150 | contrastive 0.4544
+2026-07-03 15:09:11,272 continauth.train Epoch 072/150 | contrastive 0.4536
+2026-07-03 15:09:12,508 continauth.train Epoch 073/150 | contrastive 0.4537
+2026-07-03 15:09:13,763 continauth.train Epoch 074/150 | contrastive 0.4536
+2026-07-03 15:09:14,999 continauth.train Epoch 075/150 | contrastive 0.4523
+2026-07-03 15:09:16,230 continauth.train Epoch 076/150 | contrastive 0.4520
+2026-07-03 15:09:17,478 continauth.train Epoch 077/150 | contrastive 0.4533
+2026-07-03 15:09:18,709 continauth.train Epoch 078/150 | contrastive 0.4527
+2026-07-03 15:09:19,960 continauth.train Epoch 079/150 | contrastive 0.4532
+2026-07-03 15:09:21,188 continauth.train Epoch 080/150 | contrastive 0.4524
+2026-07-03 15:09:21,201 continauth.data Config B_his-feat_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 15:10:09,961 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=27.88%)
+2026-07-03 15:10:31,851 continauth.eval Evaluating 59 val subjects.
+2026-07-03 15:10:33,217 continauth.train Saved checkpoint continauth/checkpoints/b_epoch80.pt
+2026-07-03 15:10:34,457 continauth.train Epoch 081/150 | contrastive 0.4522
+2026-07-03 15:10:35,708 continauth.train Epoch 082/150 | contrastive 0.4524
+2026-07-03 15:10:36,943 continauth.train Epoch 083/150 | contrastive 0.4520
+2026-07-03 15:10:38,197 continauth.train Epoch 084/150 | contrastive 0.4527
+2026-07-03 15:10:39,432 continauth.train Epoch 085/150 | contrastive 0.4513
+2026-07-03 15:10:40,667 continauth.train Epoch 086/150 | contrastive 0.4522
+2026-07-03 15:10:41,906 continauth.train Epoch 087/150 | contrastive 0.4522
+2026-07-03 15:10:43,133 continauth.train Epoch 088/150 | contrastive 0.4515
+2026-07-03 15:10:44,361 continauth.train Epoch 089/150 | contrastive 0.4513
+2026-07-03 15:10:45,604 continauth.train Epoch 090/150 | contrastive 0.4528
+2026-07-03 15:10:45,619 continauth.data Config B_his-feat_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 15:11:34,991 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=27.65%)
+2026-07-03 15:11:56,912 continauth.eval Evaluating 59 val subjects.
+2026-07-03 15:11:58,298 continauth.train Saved checkpoint continauth/checkpoints/b_epoch90.pt
+2026-07-03 15:11:59,540 continauth.train Epoch 091/150 | contrastive 0.4511
+2026-07-03 15:12:00,781 continauth.train Epoch 092/150 | contrastive 0.4514
+2026-07-03 15:12:02,023 continauth.train Epoch 093/150 | contrastive 0.4521
+2026-07-03 15:12:03,262 continauth.train Epoch 094/150 | contrastive 0.4511
+2026-07-03 15:12:04,500 continauth.train Epoch 095/150 | contrastive 0.4511
+2026-07-03 15:12:05,741 continauth.train Epoch 096/150 | contrastive 0.4518
+2026-07-03 15:12:06,990 continauth.train Epoch 097/150 | contrastive 0.4508
+2026-07-03 15:12:08,214 continauth.train Epoch 098/150 | contrastive 0.4504
+2026-07-03 15:12:09,453 continauth.train Epoch 099/150 | contrastive 0.4515
+2026-07-03 15:12:10,701 continauth.train Epoch 100/150 | contrastive 0.4500
+2026-07-03 15:12:10,715 continauth.data Config B_his-feat_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 15:12:59,405 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=27.37%)
+2026-07-03 15:13:21,320 continauth.eval Evaluating 59 val subjects.
+
+
+====================================================================
+CONTINAUTH RECREATION — A_his-feat_his-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : his   scaler: robust_subject
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :  21.47 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   8.50 %
+    Rank-1           :  50.85 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — A_his-feat_his-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : his   scaler: robust_subject
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=8.0, val-tuned) ]
+    mean EER         :  21.51 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   8.27 %
+    Rank-1           :  49.15 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — A_his-feat_his-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : his   scaler: robust_subject
+  test subjects      : 224
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=8.0, val-tuned) ]
+    mean EER         :  21.98 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   7.32 %
+    Rank-1           :  42.86 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — B_his-feat_my-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :  33.49 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :  30.57 %
+    Rank-1           :  23.73 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — B_his-feat_my-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :  32.37 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :  30.39 %
+    Rank-1           :  27.12 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — B_his-feat_my-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :  30.32 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :  25.42 %
+    Rank-1           :  28.81 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — B_his-feat_my-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :  28.86 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :  24.69 %
+    Rank-1           :  42.37 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — B_his-feat_my-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :  28.43 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :  23.73 %
+    Rank-1           :  28.81 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — B_his-feat_my-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :  28.17 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :  23.73 %
+    Rank-1           :  40.68 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — B_his-feat_my-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :  28.37 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :  22.03 %
+    Rank-1           :  42.37 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — B_his-feat_my-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :  27.88 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :  22.03 %
+    Rank-1           :  40.68 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — B_his-feat_my-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :  27.65 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :  24.37 %
+    Rank-1           :  35.59 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — B_his-feat_my-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :  27.37 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :  20.98 %
+    Rank-1           :  38.98 %
+====================================================================2026-07-03 15:13:22,672 continauth.train Saved checkpoint continauth/checkpoints/b_epoch100.pt
+2026-07-03 15:13:23,912 continauth.train Epoch 101/150 | contrastive 0.4503
+2026-07-03 15:13:25,154 continauth.train Epoch 102/150 | contrastive 0.4509
+2026-07-03 15:13:26,389 continauth.train Epoch 103/150 | contrastive 0.4504
+2026-07-03 15:13:27,613 continauth.train Epoch 104/150 | contrastive 0.4498
+2026-07-03 15:13:28,867 continauth.train Epoch 105/150 | contrastive 0.4505
+2026-07-03 15:13:30,118 continauth.train Epoch 106/150 | contrastive 0.4502
+2026-07-03 15:13:31,354 continauth.train Epoch 107/150 | contrastive 0.4493
+2026-07-03 15:13:32,579 continauth.train Epoch 108/150 | contrastive 0.4514
+2026-07-03 15:13:33,808 continauth.train Epoch 109/150 | contrastive 0.4505
+2026-07-03 15:13:35,033 continauth.train Epoch 110/150 | contrastive 0.4504
+2026-07-03 15:13:35,049 continauth.data Config B_his-feat_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 15:14:24,732 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=27.64%)
+2026-07-03 15:14:46,537 continauth.eval Evaluating 59 val subjects.
+2026-07-03 15:14:47,963 continauth.train Saved checkpoint continauth/checkpoints/b_epoch110.pt
+2026-07-03 15:14:49,258 continauth.train Epoch 111/150 | contrastive 0.4494
+2026-07-03 15:14:50,555 continauth.train Epoch 112/150 | contrastive 0.4495
+2026-07-03 15:14:51,809 continauth.train Epoch 113/150 | contrastive 0.4512
+2026-07-03 15:14:53,038 continauth.train Epoch 114/150 | contrastive 0.4501
+2026-07-03 15:14:54,270 continauth.train Epoch 115/150 | contrastive 0.4495
+2026-07-03 15:14:55,499 continauth.train Epoch 116/150 | contrastive 0.4495
+2026-07-03 15:14:56,736 continauth.train Epoch 117/150 | contrastive 0.4496
+2026-07-03 15:14:57,965 continauth.train Epoch 118/150 | contrastive 0.4493
+2026-07-03 15:14:59,194 continauth.train Epoch 119/150 | contrastive 0.4500
+2026-07-03 15:15:00,422 continauth.train Epoch 120/150 | contrastive 0.4494
+2026-07-03 15:15:00,437 continauth.data Config B_his-feat_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 15:15:50,024 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=27.30%)
+2026-07-03 15:16:11,848 continauth.eval Evaluating 59 val subjects.
+2026-07-03 15:16:13,284 continauth.train Saved checkpoint continauth/checkpoints/b_epoch120.pt
+2026-07-03 15:16:14,521 continauth.train Epoch 121/150 | contrastive 0.4489
+2026-07-03 15:16:15,772 continauth.train Epoch 122/150 | contrastive 0.4491
+2026-07-03 15:16:17,024 continauth.train Epoch 123/150 | contrastive 0.4489
+2026-07-03 15:16:18,274 continauth.train Epoch 124/150 | contrastive 0.4494
+2026-07-03 15:16:19,525 continauth.train Epoch 125/150 | contrastive 0.4498
+2026-07-03 15:16:20,777 continauth.train Epoch 126/150 | contrastive 0.4489
+2026-07-03 15:16:22,029 continauth.train Epoch 127/150 | contrastive 0.4487
+2026-07-03 15:16:23,276 continauth.train Epoch 128/150 | contrastive 0.4484
+2026-07-03 15:16:24,505 continauth.train Epoch 129/150 | contrastive 0.4488
+2026-07-03 15:16:25,755 continauth.train Epoch 130/150 | contrastive 0.4482
+2026-07-03 15:16:25,770 continauth.data Config B_his-feat_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 15:17:15,192 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=27.07%)
+2026-07-03 15:17:36,964 continauth.eval Evaluating 59 val subjects.
+2026-07-03 15:17:38,372 continauth.train Saved checkpoint continauth/checkpoints/b_epoch130.pt
+2026-07-03 15:17:39,605 continauth.train Epoch 131/150 | contrastive 0.4484
+2026-07-03 15:17:40,833 continauth.train Epoch 132/150 | contrastive 0.4482
+2026-07-03 15:17:42,063 continauth.train Epoch 133/150 | contrastive 0.4477
+2026-07-03 15:17:43,291 continauth.train Epoch 134/150 | contrastive 0.4484
+2026-07-03 15:17:44,524 continauth.train Epoch 135/150 | contrastive 0.4480
+2026-07-03 15:17:45,752 continauth.train Epoch 136/150 | contrastive 0.4485
+2026-07-03 15:17:46,986 continauth.train Epoch 137/150 | contrastive 0.4496
+2026-07-03 15:17:48,215 continauth.train Epoch 138/150 | contrastive 0.4487
+2026-07-03 15:17:49,445 continauth.train Epoch 139/150 | contrastive 0.4480
+2026-07-03 15:17:50,673 continauth.train Epoch 140/150 | contrastive 0.4486
+2026-07-03 15:17:50,689 continauth.data Config B_his-feat_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 15:18:39,746 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=26.90%)
+2026-07-03 15:19:01,615 continauth.eval Evaluating 59 val subjects.
+2026-07-03 15:19:02,992 continauth.train Saved checkpoint continauth/checkpoints/b_epoch140.pt
+2026-07-03 15:19:04,295 continauth.train Epoch 141/150 | contrastive 0.4490
+2026-07-03 15:19:05,576 continauth.train Epoch 142/150 | contrastive 0.4472
+2026-07-03 15:19:06,852 continauth.train Epoch 143/150 | contrastive 0.4483
+2026-07-03 15:19:08,131 continauth.train Epoch 144/150 | contrastive 0.4479
+2026-07-03 15:19:09,418 continauth.train Epoch 145/150 | contrastive 0.4483
+2026-07-03 15:19:10,716 continauth.train Epoch 146/150 | contrastive 0.4477
+2026-07-03 15:19:11,999 continauth.train Epoch 147/150 | contrastive 0.4477
+2026-07-03 15:19:13,296 continauth.train Epoch 148/150 | contrastive 0.4476
+2026-07-03 15:19:14,546 continauth.train Epoch 149/150 | contrastive 0.4485
+2026-07-03 15:19:15,797 continauth.train Epoch 150/150 | contrastive 0.4487
+2026-07-03 15:19:15,811 continauth.data Config B_his-feat_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 15:20:04,951 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=27.34%)
+2026-07-03 15:20:26,763 continauth.eval Evaluating 59 val subjects.
+2026-07-03 15:20:28,157 continauth.train Saved checkpoint continauth/checkpoints/b_epoch150.pt
+2026-07-03 15:20:28,159 continauth.train Saved checkpoint -> continauth/checkpoints/b.pt
+2026-07-03 15:20:28,160 continauth.train Best checkpoint: epoch 140 | EER 0.2690 | Rank1 0.4068
+2026-07-03 15:20:28,202 continauth.data Config B_his-feat_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=9
+2026-07-03 15:21:17,488 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=27.34%)
+2026-07-03 15:22:44,157 continauth.eval Evaluating 224 test subjects.
+2026-07-03 15:22:49,528 continauth.eval Wrote results -> continauth/checkpoints/b.json
+2026-07-03 15:22:49,538 continauth.data Config C_my-28ch_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=11
+2026-07-03 15:31:44,741 continauth.data Global z-score stats fit on 816 train subjects.
+2026-07-03 15:46:25,443 continauth.train Training windows: (635600, 28, 300) over 816 subjects.
+2026-07-03 15:46:27,080 continauth.train Epoch 001/150 | contrastive 0.4250
+2026-07-03 15:46:28,638 continauth.train Epoch 002/150 | contrastive 0.3234
+2026-07-03 15:46:30,276 continauth.train Epoch 003/150 | contrastive 0.3041
+2026-07-03 15:46:31,812 continauth.train Epoch 004/150 | contrastive 0.2944
+2026-07-03 15:46:33,355 continauth.train Epoch 005/150 | contrastive 0.2857
+2026-07-03 15:46:34,889 continauth.train Epoch 006/150 | contrastive 0.2741
+2026-07-03 15:46:36,425 continauth.train Epoch 007/150 | contrastive 0.2747
+2026-07-03 15:46:37,958 continauth.train Epoch 008/150 | contrastive 0.2683
+2026-07-03 15:46:39,504 continauth.train Epoch 009/150 | contrastive 0.2634
+2026-07-03 15:46:41,041 continauth.train Epoch 010/150 | contrastive 0.2608
+2026-07-03 15:46:41,056 continauth.data Config C_my-28ch_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=11
+2026-07-03 15:47:31,665 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=13.14%)
+2026-07-03 15:48:02,226 continauth.eval Evaluating 59 val subjects.
+2026-07-03 15:48:03,567 continauth.train Saved checkpoint continauth/checkpoints/c_epoch10.pt
+2026-07-03 15:48:05,113 continauth.train Epoch 011/150 | contrastive 0.2606
+2026-07-03 15:48:06,653 continauth.train Epoch 012/150 | contrastive 0.2536
+2026-07-03 15:48:08,190 continauth.train Epoch 013/150 | contrastive 0.2547
+2026-07-03 15:48:09,740 continauth.train Epoch 014/150 | contrastive 0.2523
+2026-07-03 15:48:11,281 continauth.train Epoch 015/150 | contrastive 0.2506
+2026-07-03 15:48:12,819 continauth.train Epoch 016/150 | contrastive 0.2503
+2026-07-03 15:48:14,353 continauth.train Epoch 017/150 | contrastive 0.2480
+2026-07-03 15:48:15,895 continauth.train Epoch 018/150 | contrastive 0.2443
+2026-07-03 15:48:17,432 continauth.train Epoch 019/150 | contrastive 0.2408
+2026-07-03 15:48:18,968 continauth.train Epoch 020/150 | contrastive 0.2415
+2026-07-03 15:48:18,981 continauth.data Config C_my-28ch_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=11
+2026-07-03 15:49:09,523 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=10.59%)
+2026-07-03 15:49:40,107 continauth.eval Evaluating 59 val subjects.
+2026-07-03 15:49:41,408 continauth.train Saved checkpoint continauth/checkpoints/c_epoch20.pt
+2026-07-03 15:49:44,027 continauth.train Epoch 021/150 | contrastive 0.2411
+2026-07-03 15:49:46,206 continauth.train Epoch 022/150 | contrastive 0.2384
+2026-07-03 15:49:48,370 continauth.train Epoch 023/150 | contrastive 0.2367
+2026-07-03 15:49:50,421 continauth.train Epoch 024/150 | contrastive 0.2370
+2026-07-03 15:49:52,439 continauth.train Epoch 025/150 | contrastive 0.2368
+2026-07-03 15:49:54,484 continauth.train Epoch 026/150 | contrastive 0.2368
+2026-07-03 15:49:56,484 continauth.train Epoch 027/150 | contrastive 0.2327
+2026-07-03 15:49:58,457 continauth.train Epoch 028/150 | contrastive 0.2325
+2026-07-03 15:50:00,417 continauth.train Epoch 029/150 | contrastive 0.2370
+2026-07-03 15:50:02,355 continauth.train Epoch 030/150 | contrastive 0.2347
+2026-07-03 15:50:02,368 continauth.data Config C_my-28ch_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=11
+2026-07-03 15:50:52,868 continauth.eval OCSVM tuned on val: nu=0.2 gamma=16.0 (val mean EER=9.51%)
+2026-07-03 15:51:23,515 continauth.eval Evaluating 59 val subjects.
+2026-07-03 15:51:24,587 continauth.train Saved checkpoint continauth/checkpoints/c_epoch30.pt
+2026-07-03 15:51:26,851 continauth.train Epoch 031/150 | contrastive 0.2315
+2026-07-03 15:51:29,027 continauth.train Epoch 032/150 | contrastive 0.2307
+2026-07-03 15:51:31,132 continauth.train Epoch 033/150 | contrastive 0.2326
+2026-07-03 15:51:33,189 continauth.train Epoch 034/150 | contrastive 0.2314
+2026-07-03 15:51:35,211 continauth.train Epoch 035/150 | contrastive 0.2329
+2026-07-03 15:51:37,201 continauth.train Epoch 036/150 | contrastive 0.2286
+2026-07-03 15:51:39,167 continauth.train Epoch 037/150 | contrastive 0.2284
+2026-07-03 15:51:41,107 continauth.train Epoch 038/150 | contrastive 0.2288
+2026-07-03 15:51:43,023 continauth.train Epoch 039/150 | contrastive 0.2304
+2026-07-03 15:51:44,912 continauth.train Epoch 040/150 | contrastive 0.2284
+2026-07-03 15:51:44,926 continauth.data Config C_my-28ch_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=11
+2026-07-03 15:52:35,390 continauth.eval OCSVM tuned on val: nu=0.1 gamma=16.0 (val mean EER=9.40%)
+2026-07-03 15:53:05,899 continauth.eval Evaluating 59 val subjects.
+2026-07-03 15:53:06,652 continauth.train Saved checkpoint continauth/checkpoints/c_epoch40.pt
+2026-07-03 15:53:08,824 continauth.train Epoch 041/150 | contrastive 0.2263
+2026-07-03 15:53:10,913 continauth.train Epoch 042/150 | contrastive 0.2313
+2026-07-03 15:53:12,933 continauth.train Epoch 043/150 | contrastive 0.2283
+2026-07-03 15:53:14,906 continauth.train Epoch 044/150 | contrastive 0.2261
+2026-07-03 15:53:16,869 continauth.train Epoch 045/150 | contrastive 0.2259
+2026-07-03 15:53:18,851 continauth.train Epoch 046/150 | contrastive 0.2254
+2026-07-03 15:53:20,718 continauth.train Epoch 047/150 | contrastive 0.2247
+2026-07-03 15:53:22,563 continauth.train Epoch 048/150 | contrastive 0.2222
+2026-07-03 15:53:24,382 continauth.train Epoch 049/150 | contrastive 0.2243
+2026-07-03 15:53:26,182 continauth.train Epoch 050/150 | contrastive 0.2237
+2026-07-03 15:53:26,195 continauth.data Config C_my-28ch_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=11
+2026-07-03 15:54:16,130 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=9.00%)
+2026-07-03 15:54:46,607 continauth.eval Evaluating 59 val subjects.
+2026-07-03 15:54:47,971 continauth.train Saved checkpoint continauth/checkpoints/c_epoch50.pt
+2026-07-03 15:54:50,122 continauth.train Epoch 051/150 | contrastive 0.2243
+2026-07-03 15:54:52,199 continauth.train Epoch 052/150 | contrastive 0.2244
+2026-07-03 15:54:54,214 continauth.train Epoch 053/150 | contrastive 0.2256
+2026-07-03 15:54:56,239 continauth.train Epoch 054/150 | contrastive 0.2234
+2026-07-03 15:54:58,155 continauth.train Epoch 055/150 | contrastive 0.2192
+2026-07-03 15:55:00,009 continauth.train Epoch 056/150 | contrastive 0.2186
+2026-07-03 15:55:01,823 continauth.train Epoch 057/150 | contrastive 0.2175
+2026-07-03 15:55:03,616 continauth.train Epoch 058/150 | contrastive 0.2232
+2026-07-03 15:55:05,385 continauth.train Epoch 059/150 | contrastive 0.2214
+2026-07-03 15:55:07,152 continauth.train Epoch 060/150 | contrastive 0.2198
+2026-07-03 15:55:07,166 continauth.data Config C_my-28ch_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=11
+2026-07-03 15:55:57,320 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=8.49%)
+2026-07-03 15:56:27,498 continauth.eval Evaluating 59 val subjects.
+2026-07-03 15:56:28,889 continauth.train Saved checkpoint continauth/checkpoints/c_epoch60.pt
+2026-07-03 15:56:31,061 continauth.train Epoch 061/150 | contrastive 0.2179
+2026-07-03 15:56:33,132 continauth.train Epoch 062/150 | contrastive 0.2205
+2026-07-03 15:56:35,134 continauth.train Epoch 063/150 | contrastive 0.2210
+2026-07-03 15:56:37,078 continauth.train Epoch 064/150 | contrastive 0.2200
+2026-07-03 15:56:38,967 continauth.train Epoch 065/150 | contrastive 0.2211
+2026-07-03 15:56:40,815 continauth.train Epoch 066/150 | contrastive 0.2177
+2026-07-03 15:56:42,616 continauth.train Epoch 067/150 | contrastive 0.2179
+2026-07-03 15:56:44,391 continauth.train Epoch 068/150 | contrastive 0.2164
+2026-07-03 15:56:46,132 continauth.train Epoch 069/150 | contrastive 0.2154
+2026-07-03 15:56:47,853 continauth.train Epoch 070/150 | contrastive 0.2168
+2026-07-03 15:56:47,868 continauth.data Config C_my-28ch_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=11
+2026-07-03 15:57:37,874 continauth.eval OCSVM tuned on val: nu=0.2 gamma=4.0 (val mean EER=7.74%)
+2026-07-03 15:58:08,200 continauth.eval Evaluating 59 val subjects.
+
+
+====================================================================
+CONTINAUTH RECREATION — B_his-feat_my-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :  27.64 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :  20.43 %
+    Rank-1           :  40.68 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — B_his-feat_my-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :  27.30 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :  21.86 %
+    Rank-1           :  38.98 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — B_his-feat_my-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :  27.07 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :  22.15 %
+    Rank-1           :  40.68 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — B_his-feat_my-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :  26.90 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :  20.98 %
+    Rank-1           :  40.68 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — B_his-feat_my-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :  27.34 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :  22.03 %
+    Rank-1           :  38.98 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — B_his-feat_my-window
+====================================================================
+  feature_set        : acc_gyro_mag9 (9 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 224
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :  26.91 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :  17.98 %
+    Rank-1           :  30.80 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — C_my-28ch_my-window
+====================================================================
+  feature_set        : mine28 (28 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :  13.14 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   9.26 %
+    Rank-1           :  27.12 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — C_my-28ch_my-window
+====================================================================
+  feature_set        : mine28 (28 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :  10.59 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   7.16 %
+    Rank-1           :  47.46 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — C_my-28ch_my-window
+====================================================================
+  feature_set        : mine28 (28 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.2 gamma=16.0, val-tuned) ]
+    mean EER         :   9.51 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   6.46 %
+    Rank-1           :  38.98 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — C_my-28ch_my-window
+====================================================================
+  feature_set        : mine28 (28 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.1 gamma=16.0, val-tuned) ]
+    mean EER         :   9.40 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   6.37 %
+    Rank-1           :  40.68 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — C_my-28ch_my-window
+====================================================================
+  feature_set        : mine28 (28 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :   9.00 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   7.10 %
+    Rank-1           :  54.24 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — C_my-28ch_my-window
+====================================================================
+  feature_set        : mine28 (28 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :   8.49 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   6.78 %
+    Rank-1           :  52.54 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — C_my-28ch_my-window
+====================================================================
+  feature_set        : mine28 (28 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.2 gamma=4.0, val-tuned) ]
+    mean EER         :   7.74 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   5.08 %
+    Rank-1           :  52.54 %
+====================================================================2026-07-03 15:58:09,220 continauth.train Saved checkpoint continauth/checkpoints/c_epoch70.pt
+2026-07-03 15:58:11,402 continauth.train Epoch 071/150 | contrastive 0.2199
+2026-07-03 15:58:13,490 continauth.train Epoch 072/150 | contrastive 0.2183
+2026-07-03 15:58:15,507 continauth.train Epoch 073/150 | contrastive 0.2167
+2026-07-03 15:58:17,476 continauth.train Epoch 074/150 | contrastive 0.2167
+2026-07-03 15:58:19,400 continauth.train Epoch 075/150 | contrastive 0.2199
+2026-07-03 15:58:21,283 continauth.train Epoch 076/150 | contrastive 0.2194
+2026-07-03 15:58:23,138 continauth.train Epoch 077/150 | contrastive 0.2126
+2026-07-03 15:58:24,963 continauth.train Epoch 078/150 | contrastive 0.2180
+2026-07-03 15:58:26,759 continauth.train Epoch 079/150 | contrastive 0.2144
+2026-07-03 15:58:28,532 continauth.train Epoch 080/150 | contrastive 0.2165
+2026-07-03 15:58:28,545 continauth.data Config C_my-28ch_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=11
+2026-07-03 15:59:18,713 continauth.eval OCSVM tuned on val: nu=0.05 gamma=scale (val mean EER=9.86%)
+2026-07-03 15:59:49,385 continauth.eval Evaluating 59 val subjects.
+2026-07-03 15:59:50,029 continauth.train Saved checkpoint continauth/checkpoints/c_epoch80.pt
+2026-07-03 15:59:52,264 continauth.train Epoch 081/150 | contrastive 0.2152
+2026-07-03 15:59:54,324 continauth.train Epoch 082/150 | contrastive 0.2147
+2026-07-03 15:59:56,302 continauth.train Epoch 083/150 | contrastive 0.2162
+2026-07-03 15:59:58,221 continauth.train Epoch 084/150 | contrastive 0.2148
+2026-07-03 16:00:00,112 continauth.train Epoch 085/150 | contrastive 0.2151
+2026-07-03 16:00:01,973 continauth.train Epoch 086/150 | contrastive 0.2128
+2026-07-03 16:00:03,810 continauth.train Epoch 087/150 | contrastive 0.2146
+2026-07-03 16:00:05,626 continauth.train Epoch 088/150 | contrastive 0.2150
+2026-07-03 16:00:07,425 continauth.train Epoch 089/150 | contrastive 0.2155
+2026-07-03 16:00:09,204 continauth.train Epoch 090/150 | contrastive 0.2125
+2026-07-03 16:00:09,217 continauth.data Config C_my-28ch_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=11
+2026-07-03 16:00:59,412 continauth.eval OCSVM tuned on val: nu=0.1 gamma=4.0 (val mean EER=7.66%)
+2026-07-03 16:01:29,965 continauth.eval Evaluating 59 val subjects.
+2026-07-03 16:01:30,711 continauth.train Saved checkpoint continauth/checkpoints/c_epoch90.pt
+2026-07-03 16:01:32,864 continauth.train Epoch 091/150 | contrastive 0.2141
+2026-07-03 16:01:34,935 continauth.train Epoch 092/150 | contrastive 0.2136
+2026-07-03 16:01:36,924 continauth.train Epoch 093/150 | contrastive 0.2141
+2026-07-03 16:01:38,856 continauth.train Epoch 094/150 | contrastive 0.2140
+2026-07-03 16:01:40,744 continauth.train Epoch 095/150 | contrastive 0.2132
+2026-07-03 16:01:42,592 continauth.train Epoch 096/150 | contrastive 0.2145
+2026-07-03 16:01:44,396 continauth.train Epoch 097/150 | contrastive 0.2110
+2026-07-03 16:01:46,172 continauth.train Epoch 098/150 | contrastive 0.2090
+2026-07-03 16:01:47,913 continauth.train Epoch 099/150 | contrastive 0.2153
+2026-07-03 16:01:49,630 continauth.train Epoch 100/150 | contrastive 0.2129
+2026-07-03 16:01:49,643 continauth.data Config C_my-28ch_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=11
+2026-07-03 16:02:40,161 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=8.30%)
+2026-07-03 16:03:11,246 continauth.eval Evaluating 59 val subjects.
+2026-07-03 16:03:12,582 continauth.train Saved checkpoint continauth/checkpoints/c_epoch100.pt
+2026-07-03 16:03:14,886 continauth.train Epoch 101/150 | contrastive 0.2138
+2026-07-03 16:03:17,096 continauth.train Epoch 102/150 | contrastive 0.2138
+2026-07-03 16:03:19,244 continauth.train Epoch 103/150 | contrastive 0.2114
+2026-07-03 16:03:21,338 continauth.train Epoch 104/150 | contrastive 0.2133
+2026-07-03 16:03:23,377 continauth.train Epoch 105/150 | contrastive 0.2088
+2026-07-03 16:03:25,377 continauth.train Epoch 106/150 | contrastive 0.2140
+2026-07-03 16:03:27,352 continauth.train Epoch 107/150 | contrastive 0.2130
+2026-07-03 16:03:29,295 continauth.train Epoch 108/150 | contrastive 0.2111
+2026-07-03 16:03:31,211 continauth.train Epoch 109/150 | contrastive 0.2116
+2026-07-03 16:03:33,105 continauth.train Epoch 110/150 | contrastive 0.2102
+2026-07-03 16:03:33,118 continauth.data Config C_my-28ch_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=11
+2026-07-03 16:04:23,379 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=8.69%)
+2026-07-03 16:04:54,380 continauth.eval Evaluating 59 val subjects.
+2026-07-03 16:04:55,749 continauth.train Saved checkpoint continauth/checkpoints/c_epoch110.pt
+2026-07-03 16:04:57,955 continauth.train Epoch 111/150 | contrastive 0.2108
+2026-07-03 16:05:00,072 continauth.train Epoch 112/150 | contrastive 0.2086
+2026-07-03 16:05:02,131 continauth.train Epoch 113/150 | contrastive 0.2089
+2026-07-03 16:05:04,133 continauth.train Epoch 114/150 | contrastive 0.2126
+2026-07-03 16:05:06,091 continauth.train Epoch 115/150 | contrastive 0.2078
+2026-07-03 16:05:08,009 continauth.train Epoch 116/150 | contrastive 0.2059
+2026-07-03 16:05:09,887 continauth.train Epoch 117/150 | contrastive 0.2114
+2026-07-03 16:05:11,733 continauth.train Epoch 118/150 | contrastive 0.2085
+2026-07-03 16:05:13,550 continauth.train Epoch 119/150 | contrastive 0.2113
+2026-07-03 16:05:15,345 continauth.train Epoch 120/150 | contrastive 0.2080
+2026-07-03 16:05:15,360 continauth.data Config C_my-28ch_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=11
+2026-07-03 16:06:05,791 continauth.eval OCSVM tuned on val: nu=0.2 gamma=scale (val mean EER=9.17%)
+2026-07-03 16:06:36,613 continauth.eval Evaluating 59 val subjects.
+2026-07-03 16:06:37,701 continauth.train Saved checkpoint continauth/checkpoints/c_epoch120.pt
+2026-07-03 16:06:39,996 continauth.train Epoch 121/150 | contrastive 0.2099
+2026-07-03 16:06:42,199 continauth.train Epoch 122/150 | contrastive 0.2110
+2026-07-03 16:06:44,324 continauth.train Epoch 123/150 | contrastive 0.2087
+2026-07-03 16:06:46,381 continauth.train Epoch 124/150 | contrastive 0.2061
+2026-07-03 16:06:48,385 continauth.train Epoch 125/150 | contrastive 0.2093
+2026-07-03 16:06:50,338 continauth.train Epoch 126/150 | contrastive 0.2101
+2026-07-03 16:06:52,254 continauth.train Epoch 127/150 | contrastive 0.2089
+2026-07-03 16:06:54,138 continauth.train Epoch 128/150 | contrastive 0.2106
+2026-07-03 16:06:55,986 continauth.train Epoch 129/150 | contrastive 0.2050
+2026-07-03 16:06:57,809 continauth.train Epoch 130/150 | contrastive 0.2099
+2026-07-03 16:06:57,824 continauth.data Config C_my-28ch_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=11
+2026-07-03 16:07:48,022 continauth.eval OCSVM tuned on val: nu=0.3 gamma=8.0 (val mean EER=7.74%)
+2026-07-03 16:08:18,642 continauth.eval Evaluating 59 val subjects.
+2026-07-03 16:08:20,002 continauth.train Saved checkpoint continauth/checkpoints/c_epoch130.pt
+2026-07-03 16:08:22,255 continauth.train Epoch 131/150 | contrastive 0.2090
+2026-07-03 16:08:24,434 continauth.train Epoch 132/150 | contrastive 0.2093
+2026-07-03 16:08:26,517 continauth.train Epoch 133/150 | contrastive 0.2097
+2026-07-03 16:08:28,556 continauth.train Epoch 134/150 | contrastive 0.2091
+2026-07-03 16:08:30,578 continauth.train Epoch 135/150 | contrastive 0.2068
+2026-07-03 16:08:32,571 continauth.train Epoch 136/150 | contrastive 0.2075
+2026-07-03 16:08:34,491 continauth.train Epoch 137/150 | contrastive 0.2083
+2026-07-03 16:08:36,319 continauth.train Epoch 138/150 | contrastive 0.2098
+2026-07-03 16:08:38,130 continauth.train Epoch 139/150 | contrastive 0.2070
+2026-07-03 16:08:39,923 continauth.train Epoch 140/150 | contrastive 0.2082
+2026-07-03 16:08:39,936 continauth.data Config C_my-28ch_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=11
+2026-07-03 16:09:29,843 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=8.44%)
+2026-07-03 16:10:00,124 continauth.eval Evaluating 59 val subjects.
+2026-07-03 16:10:01,481 continauth.train Saved checkpoint continauth/checkpoints/c_epoch140.pt
+2026-07-03 16:10:03,621 continauth.train Epoch 141/150 | contrastive 0.2090
+2026-07-03 16:10:05,676 continauth.train Epoch 142/150 | contrastive 0.2045
+2026-07-03 16:10:07,666 continauth.train Epoch 143/150 | contrastive 0.2065
+2026-07-03 16:10:09,615 continauth.train Epoch 144/150 | contrastive 0.2069
+2026-07-03 16:10:11,513 continauth.train Epoch 145/150 | contrastive 0.2085
+2026-07-03 16:10:13,386 continauth.train Epoch 146/150 | contrastive 0.2080
+2026-07-03 16:10:15,240 continauth.train Epoch 147/150 | contrastive 0.2087
+2026-07-03 16:10:17,056 continauth.train Epoch 148/150 | contrastive 0.2062
+2026-07-03 16:10:18,854 continauth.train Epoch 149/150 | contrastive 0.2073
+2026-07-03 16:10:20,626 continauth.train Epoch 150/150 | contrastive 0.2069
+2026-07-03 16:10:20,639 continauth.data Config C_my-28ch_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=11
+2026-07-03 16:11:10,964 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=8.54%)
+2026-07-03 16:11:41,304 continauth.eval Evaluating 59 val subjects.
+2026-07-03 16:11:42,655 continauth.train Saved checkpoint continauth/checkpoints/c_epoch150.pt
+2026-07-03 16:11:42,657 continauth.train Saved checkpoint -> continauth/checkpoints/c.pt
+2026-07-03 16:11:42,658 continauth.train Best checkpoint: epoch 90 | EER 0.0766 | Rank1 0.5593
+2026-07-03 16:11:43,772 continauth.data Config C_my-28ch_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=11
+2026-07-03 16:12:33,866 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=8.54%)
+2026-07-03 16:14:41,253 continauth.eval Evaluating 224 test subjects.
+2026-07-03 16:14:47,090 continauth.eval Wrote results -> continauth/checkpoints/c.json
+2026-07-03 16:14:47,452 continauth.data Config D_my-28ch+mag_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=14
+2026-07-03 16:23:20,523 continauth.data Global z-score stats fit on 816 train subjects.
+2026-07-03 16:35:50,079 continauth.train Training windows: (635600, 31, 300) over 816 subjects.
+2026-07-03 16:35:51,842 continauth.train Epoch 001/150 | contrastive 0.4162
+2026-07-03 16:35:53,581 continauth.train Epoch 002/150 | contrastive 0.3281
+2026-07-03 16:35:55,345 continauth.train Epoch 003/150 | contrastive 0.3100
+2026-07-03 16:35:57,064 continauth.train Epoch 004/150 | contrastive 0.2954
+2026-07-03 16:35:58,779 continauth.train Epoch 005/150 | contrastive 0.2894
+2026-07-03 16:36:00,486 continauth.train Epoch 006/150 | contrastive 0.2770
+2026-07-03 16:36:02,204 continauth.train Epoch 007/150 | contrastive 0.2783
+2026-07-03 16:36:03,905 continauth.train Epoch 008/150 | contrastive 0.2690
+2026-07-03 16:36:05,617 continauth.train Epoch 009/150 | contrastive 0.2645
+2026-07-03 16:36:07,324 continauth.train Epoch 010/150 | contrastive 0.2620
+2026-07-03 16:36:07,339 continauth.data Config D_my-28ch+mag_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=14
+2026-07-03 16:37:00,193 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=13.37%)
+2026-07-03 16:37:34,903 continauth.eval Evaluating 59 val subjects.
+2026-07-03 16:37:36,503 continauth.train Saved checkpoint continauth/checkpoints/d_epoch10.pt
+2026-07-03 16:37:38,218 continauth.train Epoch 011/150 | contrastive 0.2620
+2026-07-03 16:37:39,932 continauth.train Epoch 012/150 | contrastive 0.2558
+2026-07-03 16:37:41,640 continauth.train Epoch 013/150 | contrastive 0.2558
+2026-07-03 16:37:43,338 continauth.train Epoch 014/150 | contrastive 0.2532
+2026-07-03 16:37:45,045 continauth.train Epoch 015/150 | contrastive 0.2518
+2026-07-03 16:37:46,753 continauth.train Epoch 016/150 | contrastive 0.2517
+2026-07-03 16:37:48,461 continauth.train Epoch 017/150 | contrastive 0.2492
+2026-07-03 16:37:50,183 continauth.train Epoch 018/150 | contrastive 0.2449
+2026-07-03 16:37:51,900 continauth.train Epoch 019/150 | contrastive 0.2427
+2026-07-03 16:37:53,613 continauth.train Epoch 020/150 | contrastive 0.2419
+2026-07-03 16:37:53,628 continauth.data Config D_my-28ch+mag_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=14
+2026-07-03 16:38:46,102 continauth.eval OCSVM tuned on val: nu=0.3 gamma=0.1 (val mean EER=9.99%)
+2026-07-03 16:39:20,252 continauth.eval Evaluating 59 val subjects.
+2026-07-03 16:39:21,772 continauth.train Saved checkpoint continauth/checkpoints/d_epoch20.pt
+2026-07-03 16:39:23,406 continauth.train Epoch 021/150 | contrastive 0.2410
+2026-07-03 16:39:25,034 continauth.train Epoch 022/150 | contrastive 0.2392
+2026-07-03 16:39:26,666 continauth.train Epoch 023/150 | contrastive 0.2380
+2026-07-03 16:39:28,238 continauth.train Epoch 024/150 | contrastive 0.2384
+2026-07-03 16:39:29,853 continauth.train Epoch 025/150 | contrastive 0.2372
+2026-07-03 16:39:31,464 continauth.train Epoch 026/150 | contrastive 0.2372
+2026-07-03 16:39:33,076 continauth.train Epoch 027/150 | contrastive 0.2326
+2026-07-03 16:39:34,691 continauth.train Epoch 028/150 | contrastive 0.2333
+2026-07-03 16:39:36,285 continauth.train Epoch 029/150 | contrastive 0.2372
+2026-07-03 16:39:37,900 continauth.train Epoch 030/150 | contrastive 0.2355
+2026-07-03 16:39:37,913 continauth.data Config D_my-28ch+mag_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=14
+2026-07-03 16:40:29,997 continauth.eval OCSVM tuned on val: nu=0.2 gamma=16.0 (val mean EER=10.19%)
+2026-07-03 16:41:04,324 continauth.eval Evaluating 59 val subjects.
+2026-07-03 16:41:05,369 continauth.train Saved checkpoint continauth/checkpoints/d_epoch30.pt
+2026-07-03 16:41:08,454 continauth.train Epoch 031/150 | contrastive 0.2321
+2026-07-03 16:41:10,472 continauth.train Epoch 032/150 | contrastive 0.2320
+2026-07-03 16:41:12,414 continauth.train Epoch 033/150 | contrastive 0.2324
+2026-07-03 16:41:14,426 continauth.train Epoch 034/150 | contrastive 0.2308
+2026-07-03 16:41:16,359 continauth.train Epoch 035/150 | contrastive 0.2320
+2026-07-03 16:41:18,265 continauth.train Epoch 036/150 | contrastive 0.2275
+2026-07-03 16:41:20,116 continauth.train Epoch 037/150 | contrastive 0.2272
+2026-07-03 16:41:21,944 continauth.train Epoch 038/150 | contrastive 0.2273
+2026-07-03 16:41:23,762 continauth.train Epoch 039/150 | contrastive 0.2293
+2026-07-03 16:41:25,602 continauth.train Epoch 040/150 | contrastive 0.2281
+2026-07-03 16:41:25,615 continauth.data Config D_my-28ch+mag_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=14
+2026-07-03 16:42:17,950 continauth.eval OCSVM tuned on val: nu=0.3 gamma=4.0 (val mean EER=8.88%)
+2026-07-03 16:42:52,182 continauth.eval Evaluating 59 val subjects.
+
+
+====================================================================
+CONTINAUTH RECREATION — C_my-28ch_my-window
+====================================================================
+  feature_set        : mine28 (28 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.05 gamma=scale, val-tuned) ]
+    mean EER         :   9.86 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   6.78 %
+    Rank-1           :  47.46 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — C_my-28ch_my-window
+====================================================================
+  feature_set        : mine28 (28 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.1 gamma=4.0, val-tuned) ]
+    mean EER         :   7.66 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   4.94 %
+    Rank-1           :  55.93 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — C_my-28ch_my-window
+====================================================================
+  feature_set        : mine28 (28 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :   8.30 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   5.08 %
+    Rank-1           :  47.46 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — C_my-28ch_my-window
+====================================================================
+  feature_set        : mine28 (28 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :   8.69 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   7.54 %
+    Rank-1           :  50.85 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — C_my-28ch_my-window
+====================================================================
+  feature_set        : mine28 (28 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.2 gamma=scale, val-tuned) ]
+    mean EER         :   9.17 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   6.14 %
+    Rank-1           :  49.15 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — C_my-28ch_my-window
+====================================================================
+  feature_set        : mine28 (28 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=8.0, val-tuned) ]
+    mean EER         :   7.74 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   6.78 %
+    Rank-1           :  47.46 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — C_my-28ch_my-window
+====================================================================
+  feature_set        : mine28 (28 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :   8.44 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   6.78 %
+    Rank-1           :  37.29 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — C_my-28ch_my-window
+====================================================================
+  feature_set        : mine28 (28 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :   8.54 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   6.78 %
+    Rank-1           :  49.15 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — C_my-28ch_my-window
+====================================================================
+  feature_set        : mine28 (28 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 224
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :   8.54 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   6.25 %
+    Rank-1           :  20.98 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — D_my-28ch+mag_my-window
+====================================================================
+  feature_set        : mine28_mag (31 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :  13.37 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   9.91 %
+    Rank-1           :  40.68 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — D_my-28ch+mag_my-window
+====================================================================
+  feature_set        : mine28_mag (31 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=0.1, val-tuned) ]
+    mean EER         :   9.99 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   6.63 %
+    Rank-1           :  52.54 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — D_my-28ch+mag_my-window
+====================================================================
+  feature_set        : mine28_mag (31 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.2 gamma=16.0, val-tuned) ]
+    mean EER         :  10.19 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   7.36 %
+    Rank-1           :  42.37 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — D_my-28ch+mag_my-window
+====================================================================
+  feature_set        : mine28_mag (31 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=4.0, val-tuned) ]
+    mean EER         :   8.88 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   5.00 %
+    Rank-1           :  54.24 %
+====================================================================2026-07-03 16:42:53,769 continauth.train Saved checkpoint continauth/checkpoints/d_epoch40.pt
+2026-07-03 16:42:55,551 continauth.train Epoch 041/150 | contrastive 0.2242
+2026-07-03 16:42:57,263 continauth.train Epoch 042/150 | contrastive 0.2309
+2026-07-03 16:42:58,971 continauth.train Epoch 043/150 | contrastive 0.2277
+2026-07-03 16:43:00,670 continauth.train Epoch 044/150 | contrastive 0.2253
+2026-07-03 16:43:02,352 continauth.train Epoch 045/150 | contrastive 0.2240
+2026-07-03 16:43:04,025 continauth.train Epoch 046/150 | contrastive 0.2248
+2026-07-03 16:43:05,705 continauth.train Epoch 047/150 | contrastive 0.2248
+2026-07-03 16:43:07,384 continauth.train Epoch 048/150 | contrastive 0.2217
+2026-07-03 16:43:09,064 continauth.train Epoch 049/150 | contrastive 0.2239
+2026-07-03 16:43:10,748 continauth.train Epoch 050/150 | contrastive 0.2237
+2026-07-03 16:43:10,762 continauth.data Config D_my-28ch+mag_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=14
+2026-07-03 16:44:02,800 continauth.eval OCSVM tuned on val: nu=0.1 gamma=8.0 (val mean EER=8.68%)
+2026-07-03 16:44:37,517 continauth.eval Evaluating 59 val subjects.
+2026-07-03 16:44:38,507 continauth.train Saved checkpoint continauth/checkpoints/d_epoch50.pt
+2026-07-03 16:44:40,681 continauth.train Epoch 051/150 | contrastive 0.2241
+2026-07-03 16:44:42,762 continauth.train Epoch 052/150 | contrastive 0.2234
+2026-07-03 16:44:44,792 continauth.train Epoch 053/150 | contrastive 0.2245
+2026-07-03 16:44:46,772 continauth.train Epoch 054/150 | contrastive 0.2244
+2026-07-03 16:44:48,709 continauth.train Epoch 055/150 | contrastive 0.2181
+2026-07-03 16:44:50,618 continauth.train Epoch 056/150 | contrastive 0.2185
+2026-07-03 16:44:52,504 continauth.train Epoch 057/150 | contrastive 0.2173
+2026-07-03 16:44:54,355 continauth.train Epoch 058/150 | contrastive 0.2229
+2026-07-03 16:44:56,185 continauth.train Epoch 059/150 | contrastive 0.2221
+2026-07-03 16:44:57,997 continauth.train Epoch 060/150 | contrastive 0.2206
+2026-07-03 16:44:58,012 continauth.data Config D_my-28ch+mag_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=14
+2026-07-03 16:45:50,385 continauth.eval OCSVM tuned on val: nu=0.3 gamma=8.0 (val mean EER=7.71%)
+2026-07-03 16:46:24,830 continauth.eval Evaluating 59 val subjects.
+2026-07-03 16:46:26,414 continauth.train Saved checkpoint continauth/checkpoints/d_epoch60.pt
+2026-07-03 16:46:28,476 continauth.train Epoch 061/150 | contrastive 0.2174
+2026-07-03 16:46:30,466 continauth.train Epoch 062/150 | contrastive 0.2202
+2026-07-03 16:46:32,417 continauth.train Epoch 063/150 | contrastive 0.2203
+2026-07-03 16:46:34,318 continauth.train Epoch 064/150 | contrastive 0.2189
+2026-07-03 16:46:36,181 continauth.train Epoch 065/150 | contrastive 0.2214
+2026-07-03 16:46:38,008 continauth.train Epoch 066/150 | contrastive 0.2177
+2026-07-03 16:46:39,814 continauth.train Epoch 067/150 | contrastive 0.2183
+2026-07-03 16:46:41,588 continauth.train Epoch 068/150 | contrastive 0.2156
+2026-07-03 16:46:43,334 continauth.train Epoch 069/150 | contrastive 0.2154
+2026-07-03 16:46:45,059 continauth.train Epoch 070/150 | contrastive 0.2163
+2026-07-03 16:46:45,074 continauth.data Config D_my-28ch+mag_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=14
+2026-07-03 16:47:36,912 continauth.eval OCSVM tuned on val: nu=0.3 gamma=8.0 (val mean EER=9.10%)
+2026-07-03 16:48:11,293 continauth.eval Evaluating 59 val subjects.
+2026-07-03 16:48:12,856 continauth.train Saved checkpoint continauth/checkpoints/d_epoch70.pt
+2026-07-03 16:48:14,989 continauth.train Epoch 071/150 | contrastive 0.2188
+2026-07-03 16:48:17,012 continauth.train Epoch 072/150 | contrastive 0.2183
+2026-07-03 16:48:19,020 continauth.train Epoch 073/150 | contrastive 0.2159
+2026-07-03 16:48:20,985 continauth.train Epoch 074/150 | contrastive 0.2167
+2026-07-03 16:48:23,003 continauth.train Epoch 075/150 | contrastive 0.2199
+2026-07-03 16:48:24,950 continauth.train Epoch 076/150 | contrastive 0.2182
+2026-07-03 16:48:26,792 continauth.train Epoch 077/150 | contrastive 0.2119
+2026-07-03 16:48:28,681 continauth.train Epoch 078/150 | contrastive 0.2187
+2026-07-03 16:48:30,567 continauth.train Epoch 079/150 | contrastive 0.2147
+2026-07-03 16:48:32,396 continauth.train Epoch 080/150 | contrastive 0.2175
+2026-07-03 16:48:32,410 continauth.data Config D_my-28ch+mag_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=14
+2026-07-03 16:49:24,148 continauth.eval OCSVM tuned on val: nu=0.3 gamma=8.0 (val mean EER=9.67%)
+2026-07-03 16:49:58,260 continauth.eval Evaluating 59 val subjects.
+2026-07-03 16:49:59,784 continauth.train Saved checkpoint continauth/checkpoints/d_epoch80.pt
+2026-07-03 16:50:01,839 continauth.train Epoch 081/150 | contrastive 0.2139
+2026-07-03 16:50:03,822 continauth.train Epoch 082/150 | contrastive 0.2137
+2026-07-03 16:50:05,776 continauth.train Epoch 083/150 | contrastive 0.2162
+2026-07-03 16:50:07,752 continauth.train Epoch 084/150 | contrastive 0.2151
+2026-07-03 16:50:09,604 continauth.train Epoch 085/150 | contrastive 0.2152
+2026-07-03 16:50:11,426 continauth.train Epoch 086/150 | contrastive 0.2129
+2026-07-03 16:50:13,267 continauth.train Epoch 087/150 | contrastive 0.2145
+2026-07-03 16:50:15,030 continauth.train Epoch 088/150 | contrastive 0.2149
+2026-07-03 16:50:16,763 continauth.train Epoch 089/150 | contrastive 0.2148
+2026-07-03 16:50:18,486 continauth.train Epoch 090/150 | contrastive 0.2122
+2026-07-03 16:50:18,499 continauth.data Config D_my-28ch+mag_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=14
+2026-07-03 16:51:10,295 continauth.eval OCSVM tuned on val: nu=0.3 gamma=8.0 (val mean EER=7.72%)
+2026-07-03 16:51:44,767 continauth.eval Evaluating 59 val subjects.
+2026-07-03 16:51:46,293 continauth.train Saved checkpoint continauth/checkpoints/d_epoch90.pt
+2026-07-03 16:51:48,480 continauth.train Epoch 091/150 | contrastive 0.2136
+2026-07-03 16:51:50,588 continauth.train Epoch 092/150 | contrastive 0.2138
+2026-07-03 16:51:52,623 continauth.train Epoch 093/150 | contrastive 0.2141
+2026-07-03 16:51:54,617 continauth.train Epoch 094/150 | contrastive 0.2138
+2026-07-03 16:51:56,583 continauth.train Epoch 095/150 | contrastive 0.2139
+2026-07-03 16:51:58,402 continauth.train Epoch 096/150 | contrastive 0.2131
+2026-07-03 16:52:00,198 continauth.train Epoch 097/150 | contrastive 0.2100
+2026-07-03 16:52:02,069 continauth.train Epoch 098/150 | contrastive 0.2091
+2026-07-03 16:52:03,834 continauth.train Epoch 099/150 | contrastive 0.2143
+2026-07-03 16:52:05,582 continauth.train Epoch 100/150 | contrastive 0.2130
+2026-07-03 16:52:05,597 continauth.data Config D_my-28ch+mag_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=14
+2026-07-03 16:52:57,945 continauth.eval OCSVM tuned on val: nu=0.3 gamma=4.0 (val mean EER=8.71%)
+2026-07-03 16:53:32,282 continauth.eval Evaluating 59 val subjects.
+2026-07-03 16:53:33,823 continauth.train Saved checkpoint continauth/checkpoints/d_epoch100.pt
+2026-07-03 16:53:36,005 continauth.train Epoch 101/150 | contrastive 0.2138
+2026-07-03 16:53:38,084 continauth.train Epoch 102/150 | contrastive 0.2139
+2026-07-03 16:53:40,130 continauth.train Epoch 103/150 | contrastive 0.2114
+2026-07-03 16:53:42,071 continauth.train Epoch 104/150 | contrastive 0.2116
+2026-07-03 16:53:43,936 continauth.train Epoch 105/150 | contrastive 0.2074
+2026-07-03 16:53:45,762 continauth.train Epoch 106/150 | contrastive 0.2137
+2026-07-03 16:53:47,580 continauth.train Epoch 107/150 | contrastive 0.2122
+2026-07-03 16:53:49,420 continauth.train Epoch 108/150 | contrastive 0.2106
+2026-07-03 16:53:51,290 continauth.train Epoch 109/150 | contrastive 0.2120
+2026-07-03 16:53:53,150 continauth.train Epoch 110/150 | contrastive 0.2093
+2026-07-03 16:53:53,165 continauth.data Config D_my-28ch+mag_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=14
+2026-07-03 16:54:44,932 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=9.48%)
+2026-07-03 16:55:19,340 continauth.eval Evaluating 59 val subjects.
+2026-07-03 16:55:20,862 continauth.train Saved checkpoint continauth/checkpoints/d_epoch110.pt
+2026-07-03 16:55:22,918 continauth.train Epoch 111/150 | contrastive 0.2109
+2026-07-03 16:55:24,903 continauth.train Epoch 112/150 | contrastive 0.2086
+2026-07-03 16:55:26,852 continauth.train Epoch 113/150 | contrastive 0.2089
+2026-07-03 16:55:28,770 continauth.train Epoch 114/150 | contrastive 0.2122
+2026-07-03 16:55:30,649 continauth.train Epoch 115/150 | contrastive 0.2082
+2026-07-03 16:55:32,490 continauth.train Epoch 116/150 | contrastive 0.2066
+2026-07-03 16:55:34,331 continauth.train Epoch 117/150 | contrastive 0.2115
+2026-07-03 16:55:36,143 continauth.train Epoch 118/150 | contrastive 0.2088
+2026-07-03 16:55:37,932 continauth.train Epoch 119/150 | contrastive 0.2110
+2026-07-03 16:55:39,700 continauth.train Epoch 120/150 | contrastive 0.2080
+2026-07-03 16:55:39,713 continauth.data Config D_my-28ch+mag_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=14
+2026-07-03 16:56:31,541 continauth.eval OCSVM tuned on val: nu=0.3 gamma=4.0 (val mean EER=8.97%)
+2026-07-03 16:57:05,562 continauth.eval Evaluating 59 val subjects.
+2026-07-03 16:57:07,123 continauth.train Saved checkpoint continauth/checkpoints/d_epoch120.pt
+2026-07-03 16:57:09,133 continauth.train Epoch 121/150 | contrastive 0.2104
+2026-07-03 16:57:11,090 continauth.train Epoch 122/150 | contrastive 0.2108
+2026-07-03 16:57:13,015 continauth.train Epoch 123/150 | contrastive 0.2086
+2026-07-03 16:57:14,913 continauth.train Epoch 124/150 | contrastive 0.2073
+2026-07-03 16:57:16,783 continauth.train Epoch 125/150 | contrastive 0.2088
+2026-07-03 16:57:18,632 continauth.train Epoch 126/150 | contrastive 0.2089
+2026-07-03 16:57:20,462 continauth.train Epoch 127/150 | contrastive 0.2084
+2026-07-03 16:57:22,280 continauth.train Epoch 128/150 | contrastive 0.2098
+2026-07-03 16:57:24,085 continauth.train Epoch 129/150 | contrastive 0.2058
+2026-07-03 16:57:25,880 continauth.train Epoch 130/150 | contrastive 0.2097
+2026-07-03 16:57:25,894 continauth.data Config D_my-28ch+mag_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=14
+2026-07-03 16:58:18,335 continauth.eval OCSVM tuned on val: nu=0.3 gamma=4.0 (val mean EER=8.07%)
+2026-07-03 16:58:52,693 continauth.eval Evaluating 59 val subjects.
+2026-07-03 16:58:54,247 continauth.train Saved checkpoint continauth/checkpoints/d_epoch130.pt
+2026-07-03 16:58:56,297 continauth.train Epoch 131/150 | contrastive 0.2103
+2026-07-03 16:58:58,361 continauth.train Epoch 132/150 | contrastive 0.2094
+2026-07-03 16:59:00,377 continauth.train Epoch 133/150 | contrastive 0.2105
+2026-07-03 16:59:02,349 continauth.train Epoch 134/150 | contrastive 0.2098
+2026-07-03 16:59:04,289 continauth.train Epoch 135/150 | contrastive 0.2071
+2026-07-03 16:59:06,156 continauth.train Epoch 136/150 | contrastive 0.2076
+2026-07-03 16:59:07,975 continauth.train Epoch 137/150 | contrastive 0.2086
+2026-07-03 16:59:09,756 continauth.train Epoch 138/150 | contrastive 0.2097
+2026-07-03 16:59:11,508 continauth.train Epoch 139/150 | contrastive 0.2072
+2026-07-03 16:59:13,206 continauth.train Epoch 140/150 | contrastive 0.2079
+2026-07-03 16:59:13,222 continauth.data Config D_my-28ch+mag_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=14
+2026-07-03 17:00:05,432 continauth.eval OCSVM tuned on val: nu=0.3 gamma=16.0 (val mean EER=8.73%)
+2026-07-03 17:00:39,890 continauth.eval Evaluating 59 val subjects.
+2026-07-03 17:00:41,421 continauth.train Saved checkpoint continauth/checkpoints/d_epoch140.pt
+2026-07-03 17:00:43,512 continauth.train Epoch 141/150 | contrastive 0.2094
+2026-07-03 17:00:45,531 continauth.train Epoch 142/150 | contrastive 0.2050
+2026-07-03 17:00:47,502 continauth.train Epoch 143/150 | contrastive 0.2060
+2026-07-03 17:00:49,502 continauth.train Epoch 144/150 | contrastive 0.2064
+2026-07-03 17:00:51,493 continauth.train Epoch 145/150 | contrastive 0.2083
+2026-07-03 17:00:53,429 continauth.train Epoch 146/150 | contrastive 0.2082
+2026-07-03 17:00:55,364 continauth.train Epoch 147/150 | contrastive 0.2078
+2026-07-03 17:00:57,250 continauth.train Epoch 148/150 | contrastive 0.2072
+2026-07-03 17:00:59,024 continauth.train Epoch 149/150 | contrastive 0.2085
+2026-07-03 17:01:00,785 continauth.train Epoch 150/150 | contrastive 0.2070
+2026-07-03 17:01:00,798 continauth.data Config D_my-28ch+mag_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=14
+2026-07-03 17:01:52,639 continauth.eval OCSVM tuned on val: nu=0.3 gamma=8.0 (val mean EER=8.29%)
+2026-07-03 17:02:27,128 continauth.eval Evaluating 59 val subjects.
+2026-07-03 17:02:28,691 continauth.train Saved checkpoint continauth/checkpoints/d_epoch150.pt
+2026-07-03 17:02:28,693 continauth.train Saved checkpoint -> continauth/checkpoints/d.pt
+2026-07-03 17:02:28,694 continauth.train Best checkpoint: epoch 60 | EER 0.0771 | Rank1 0.5254
+2026-07-03 17:02:29,611 continauth.data Config D_my-28ch+mag_my-window | subjects on disk=1099 | split file continauth/split_ids.json -> train=816 val=59 test=224 | cols=14
+2026-07-03 17:03:21,276 continauth.eval OCSVM tuned on val: nu=0.3 gamma=8.0 (val mean EER=8.29%)
+2026-07-03 17:05:42,233 continauth.eval Evaluating 224 test subjects.
+2026-07-03 17:05:47,893 continauth.eval Wrote results -> continauth/checkpoints/d.json
+
+
+====================================================================
+CONTINAUTH RECREATION — D_my-28ch+mag_my-window
+====================================================================
+  feature_set        : mine28_mag (31 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.1 gamma=8.0, val-tuned) ]
+    mean EER         :   8.68 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   5.73 %
+    Rank-1           :  42.37 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — D_my-28ch+mag_my-window
+====================================================================
+  feature_set        : mine28_mag (31 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=8.0, val-tuned) ]
+    mean EER         :   7.71 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   6.11 %
+    Rank-1           :  52.54 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — D_my-28ch+mag_my-window
+====================================================================
+  feature_set        : mine28_mag (31 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=8.0, val-tuned) ]
+    mean EER         :   9.10 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   5.84 %
+    Rank-1           :  45.76 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — D_my-28ch+mag_my-window
+====================================================================
+  feature_set        : mine28_mag (31 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=8.0, val-tuned) ]
+    mean EER         :   9.67 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   6.78 %
+    Rank-1           :  45.76 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — D_my-28ch+mag_my-window
+====================================================================
+  feature_set        : mine28_mag (31 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=8.0, val-tuned) ]
+    mean EER         :   7.72 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   5.55 %
+    Rank-1           :  57.63 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — D_my-28ch+mag_my-window
+====================================================================
+  feature_set        : mine28_mag (31 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=4.0, val-tuned) ]
+    mean EER         :   8.71 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   6.40 %
+    Rank-1           :  49.15 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — D_my-28ch+mag_my-window
+====================================================================
+  feature_set        : mine28_mag (31 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :   9.48 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   8.47 %
+    Rank-1           :  50.85 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — D_my-28ch+mag_my-window
+====================================================================
+  feature_set        : mine28_mag (31 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=4.0, val-tuned) ]
+    mean EER         :   8.97 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   5.82 %
+    Rank-1           :  45.76 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — D_my-28ch+mag_my-window
+====================================================================
+  feature_set        : mine28_mag (31 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=4.0, val-tuned) ]
+    mean EER         :   8.07 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   5.08 %
+    Rank-1           :  42.37 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — D_my-28ch+mag_my-window
+====================================================================
+  feature_set        : mine28_mag (31 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=16.0, val-tuned) ]
+    mean EER         :   8.73 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   5.79 %
+    Rank-1           :  35.59 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — D_my-28ch+mag_my-window
+====================================================================
+  feature_set        : mine28_mag (31 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 59
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=8.0, val-tuned) ]
+    mean EER         :   8.29 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   5.08 %
+    Rank-1           :  59.32 %
+====================================================================
+
+====================================================================
+CONTINAUTH RECREATION — D_my-28ch+mag_my-window
+====================================================================
+  feature_set        : mine28_mag (31 ch)
+  window_mode        : mine   scaler: zscore_global
+  test subjects      : 224
+====================================================================
+  [ HIS metric: per-user OCSVM (rbf nu=0.3 gamma=8.0, val-tuned) ]
+    mean EER         :   8.46 %
+  [ Comparable: cosine gallery/probe (mean-enroll template) ]
+    EER              :   5.36 %
+    Rank-1           :  24.55 %
+====================================================================
+
+============================================================================
+CONTINAUTH A/B/C COMPARISON  (his Siamese-FCN + OCSVM on your dataset)
+============================================================================
+config                        ch   OCSVM EER  cosine EER    rank-1
+----------------------------------------------------------------------------
+A_his-feat_his-window          9      21.98%       7.32%    42.86%
+B_his-feat_my-window           9      26.91%      17.98%    30.80%
+C_my-28ch_my-window           28       8.54%       6.25%    20.98%
+D_my-28ch+mag_my-window       31       8.46%       5.36%    24.55%
+============================================================================

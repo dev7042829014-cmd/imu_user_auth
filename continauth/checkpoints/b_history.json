@@ -1,0 +1,107 @@
+[
+  {
+    "epoch": 10,
+    "train_loss": 0.474035991926988,
+    "eer": 0.334890445705099,
+    "rank1": 0.23728813559322035,
+    "checkpoint": "continauth/checkpoints/b_epoch10.pt"
+  },
+  {
+    "epoch": 20,
+    "train_loss": 0.46923584590355555,
+    "eer": 0.3237023588818941,
+    "rank1": 0.2711864406779661,
+    "checkpoint": "continauth/checkpoints/b_epoch20.pt"
+  },
+  {
+    "epoch": 30,
+    "train_loss": 0.4628502110640208,
+    "eer": 0.3032216328057538,
+    "rank1": 0.288135593220339,
+    "checkpoint": "continauth/checkpoints/b_epoch30.pt"
+  },
+  {
+    "epoch": 40,
+    "train_loss": 0.4591443876425425,
+    "eer": 0.2885570376791608,
+    "rank1": 0.423728813559322,
+    "checkpoint": "continauth/checkpoints/b_epoch40.pt"
+  },
+  {
+    "epoch": 50,
+    "train_loss": 0.45664704342683154,
+    "eer": 0.2843489401757943,
+    "rank1": 0.288135593220339,
+    "checkpoint": "continauth/checkpoints/b_epoch50.pt"
+  },
+  {
+    "epoch": 60,
+    "train_loss": 0.45504436870416004,
+    "eer": 0.28167962788376055,
+    "rank1": 0.4067796610169492,
+    "checkpoint": "continauth/checkpoints/b_epoch60.pt"
+  },
+  {
+    "epoch": 70,
+    "train_loss": 0.4542178114255269,
+    "eer": 0.2836778336330215,
+    "rank1": 0.423728813559322,
+    "checkpoint": "continauth/checkpoints/b_epoch70.pt"
+  },
+  {
+    "epoch": 80,
+    "train_loss": 0.4524403664469719,
+    "eer": 0.27877957409542004,
+    "rank1": 0.4067796610169492,
+    "checkpoint": "continauth/checkpoints/b_epoch80.pt"
+  },
+  {
+    "epoch": 90,
+    "train_loss": 0.4528039374947548,
+    "eer": 0.2765152222647219,
+    "rank1": 0.3559322033898305,
+    "checkpoint": "continauth/checkpoints/b_epoch90.pt"
+  },
+  {
+    "epoch": 100,
+    "train_loss": 0.44999642769495646,
+    "eer": 0.273662224316123,
+    "rank1": 0.3898305084745763,
+    "checkpoint": "continauth/checkpoints/b_epoch100.pt"
+  },
+  {
+    "epoch": 110,
+    "train_loss": 0.4504041828711828,
+    "eer": 0.27643138720835864,
+    "rank1": 0.4067796610169492,
+    "checkpoint": "continauth/checkpoints/b_epoch110.pt"
+  },
+  {
+    "epoch": 120,
+    "train_loss": 0.44942634930213293,
+    "eer": 0.27299067425486073,
+    "rank1": 0.3898305084745763,
+    "checkpoint": "continauth/checkpoints/b_epoch120.pt"
+  },
+  {
+    "epoch": 130,
+    "train_loss": 0.44823917786280315,
+    "eer": 0.270683092926338,
+    "rank1": 0.4067796610169492,
+    "checkpoint": "continauth/checkpoints/b_epoch130.pt"
+  },
+  {
+    "epoch": 140,
+    "train_loss": 0.4486234662930171,
+    "eer": 0.26895354367809055,
+    "rank1": 0.4067796610169492,
+    "checkpoint": "continauth/checkpoints/b_epoch140.pt"
+  },
+  {
+    "epoch": 150,
+    "train_loss": 0.4486506476998329,
+    "eer": 0.27340720805086133,
+    "rank1": 0.3898305084745763,
+    "checkpoint": "continauth/checkpoints/b_epoch150.pt"
+  }
+]
