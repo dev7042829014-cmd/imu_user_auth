@@ -88,6 +88,29 @@ def per_owner_ocsvm_eer(feats: Dict[str, Dict[str, np.ndarray]],
             "per_owner": per_owner, "n_owners": len(per_owner)}
 
 
+def tune_ocsvm(feats_val: Dict[str, Dict[str, np.ndarray]],
+               nu_grid, gamma_grid, impostors_per_owner: int = 2000,
+               seed: int = 712):
+    """
+    Grid-search (nu, gamma) on VAL deep features, minimising the mean per-owner
+    EER — ContinAuth's own OCSVM tuning objective (their fixed H-MOG nu/gamma do
+    not transfer to this feature space). Returns (best_nu, best_gamma, best_eer).
+    """
+    best = (float("inf"), nu_grid[0], gamma_grid[0])
+    for nu in nu_grid:
+        for g in gamma_grid:
+            try:
+                r = per_owner_ocsvm_eer(feats_val, nu=nu, gamma=g,
+                                        impostors_per_owner=impostors_per_owner, seed=seed)
+            except Exception as e:                                    # noqa: BLE001
+                log.warning("OCSVM nu=%s gamma=%s failed: %s", nu, g, e)
+                continue
+            e = r["mean_eer"]
+            if e == e and e < best[0]:
+                best = (e, nu, g)
+    return best[1], best[2], best[0]
+
+
 # ---------------------------------------------------------------------------
 # Cosine gallery/probe (the user's protocol) — for direct comparability
 # ---------------------------------------------------------------------------

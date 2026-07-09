@@ -18,22 +18,24 @@ The ContinAuth final model (`VALID-FCN-ROBUST`) is a two-stage pipeline:
    Conv1D(64, k=5, same) → BN → ReLU → Dropout(0.1)
    Conv1D(32, k=3, same) → BN → ReLU
    GlobalAveragePooling1D
-   Dense(32, sigmoid)          # 32-d deep feature (embedding)
+   Dense(32) → L2-normalise    # 32-d deep feature (embedding)
    ```
-   Euclidean distance between the twin embeddings, contrastive margin = 1,
-   Adam lr 1e-3, batch 300, 40 epochs.
+   Trained with **contrastive loss** (margin = 1, Adam lr 1e-3) over
+   identity-balanced P×K batches. See *Notes* for the two deliberate upgrades
+   over his exact recipe (L2-normalised embedding instead of sigmoid; val-tuned
+   OCSVM) that keep the baseline fair on this data.
 
-2. **Per-user one-class SVM** (RBF, `nu=0.165`, `gamma=8.296`) fit on the owner's
-   deep features; verification score = the SVM decision function. Performance is
-   reported as **Equal Error Rate (EER)** averaged over owners (his `utils_eer`,
-   `roc_curve` + `brentq`).
+2. **Per-user one-class SVM** (RBF) fit on the owner's deep features;
+   verification score = the SVM decision function. `nu`/`gamma` are **tuned on
+   the val split** (his H-MOG `nu=0.165, gamma=8.296` do not transfer). Reported
+   as **Equal Error Rate (EER)** averaged over owners (`roc_curve` + `brentq`).
 
 His original recipe used **25 Hz**, **5 s non-overlapping windows** (125 samples),
 `acc_x/y/z` features, **RobustScaler per subject** (fit on train only), and a
 **subject-disjoint** split.
 
-Faithfully ported to **PyTorch** here (his code is Keras/TF) so it runs in your
-torch environment. The architecture, loss, and OCSVM settings match his.
+Ported to **PyTorch** (his code is Keras/TF) so it runs in your torch
+environment; the FCN architecture and contrastive loss match his.
 
 ## The three experiments
 
@@ -45,6 +47,12 @@ is exactly the "how does his model hold up against my work" comparison.
 | **A** — `his-feat / his-window` | acc + gyro + **magnetometer** (9 ch)¹ | his 5 s **non-overlapping** windows; temporal 70/30 enroll→verify per subject | RobustScaler **per subject** |
 | **B** — `his-feat / my-window` | acc + gyro + **magnetometer** (9 ch)¹ | **your** 15 s / 300-sample windows, stride 150 (50 % overlap), contiguous enroll→verify with 1-min guard gap | 8 Hz low-pass + global z-score (train stats) |
 | **C** — `my-28ch / my-window` | **your 28 channels** (11 raw + 17 derived) | same as B | same as B |
+| **D** — `my-28ch+mag / my-window` | **your 28 channels + magnetometer** (31 ch) | same as B | same as B |
+
+Config **D** is C plus the 3 magnetometer channels appended (channels 0–27 are
+byte-for-byte C's; 28–30 are the magnetometer), to test whether adding the
+magnetometer to your derived feature set helps. C→D isolates the magnetometer's
+contribution on top of your features.
 
 ¹ ContinAuth's input is **acc + gyro + magnetometer (9 ch)** — the default for
 A/B. The dataset is a CoreMotion/SensorLog export, so the magnetometer columns
@@ -106,6 +114,11 @@ python -m continauth.run_all --data_dirs /path/to/dataset \
 # reuse an existing split file instead of the internal split:
 python -m continauth.run_all --data_dirs /path/to/dataset --split_file split_ids.json
 
+# hold the normalisation CONSTANT across A/B/C/D (removes the scaler confounder,
+# so configs differ only in features/windowing) — e.g. his RobustScaler for all:
+python -m continauth.run_all --data_dirs /path/to/dataset \
+    --split_file split_ids.json --scaler robust_subject
+
 # his exact final model (acc only) for A:
 python -m continauth.train --config a --feature_set acc3 --data_dirs /path/to/dataset
 ```
@@ -122,9 +135,9 @@ python -m continauth.selftest
 |------|---------|
 | `config.py` | `ExperimentConfig` + the A/B/C presets, feature-set definitions |
 | `data.py` | CSV loading, magnetometer resolution (hard error, no fallback), 8 Hz low-pass + 28-ch derived features, both windowing regimes, scaling, enroll/verify split, internal subject split |
-| `model.py` | Siamese FCN (+ his `1d` variant), euclidean distance, contrastive loss |
-| `pairs.py` | balanced positive/negative pair sampler |
-| `ocsvm_eval.py` | his EER, per-user OCSVM protocol, cosine gallery/probe EER + rank-1 |
+| `model.py` | FCN encoder (L2-normalised embedding), in-batch contrastive loss |
+| `pairs.py` | identity-balanced P×K batch iterator |
+| `ocsvm_eval.py` | EER, per-user OCSVM protocol, val OCSVM tuning, cosine gallery/probe EER + rank-1 |
 | `train.py` | CLI: train the Siamese net for one config |
 | `evaluate.py` | CLI: extract deep features + report OCSVM/cosine metrics |
 | `run_all.py` | CLI: train+evaluate A/B/C and print a comparison table |
@@ -132,7 +145,18 @@ python -m continauth.selftest
 
 ## Notes / deviations from the original
 
-* **Framework**: PyTorch (his is Keras/TF) — same architecture, loss, OCSVM.
+* **Framework**: PyTorch (his is Keras/TF) — same FCN architecture, loss, OCSVM.
+* **Embedding**: L2-normalised (his final Dense had a `sigmoid`). The sigmoid
+  confines features to the positive orthant, which cripples cosine separation
+  and mis-scales the contrastive margin; normalising to the unit sphere makes
+  distance ∈ [0,2], `margin=1` meaningful, and cosine usable — a fairer baseline.
+* **Training loss**: in-batch contrastive over identity-balanced **P×K batches**
+  (P subjects × K windows), with the positive and negative terms averaged
+  separately (his balanced pos/neg pairing). Tunables: `subjects_per_batch`,
+  `windows_per_subject`, `batches_per_epoch` in `config.py`.
+* **OCSVM**: `nu`/`gamma` are **grid-searched on the val split** (objective =
+  mean per-owner EER), not his H-MOG constants `nu=0.165, gamma=8.296` (which do
+  not transfer to this feature space). Pass `--no_tune_ocsvm` to use fixed values.
 * **Sampling rate**: your data is **20 Hz** (his was 25 Hz). His 5 s window is
   kept as *seconds* → 100 samples at 20 Hz for config A.
 * **Sessions**: H-MOG has ~24 sessions/subject; your dataset is one continuous

@@ -27,9 +27,10 @@ import numpy as np
 import torch
 
 from .config import CONFIGS, FEATURE_SETS
+from .config import OCSVM_NU_GRID, OCSVM_GAMMA_GRID
 from .data import ContinAuthData
-from .model import build_base, SiameseNet
-from .ocsvm_eval import per_owner_ocsvm_eer, cosine_eer_rank1
+from .model import build_base
+from .ocsvm_eval import per_owner_ocsvm_eer, cosine_eer_rank1, tune_ocsvm
 
 
 def _batched(arr, n):
@@ -37,18 +38,19 @@ def _batched(arr, n):
         yield arr[i:i + n]
 
 
-def extract_features(net: SiameseNet, feats_windows: Dict[str, Dict[str, np.ndarray]],
+def extract_features(model, feats_windows: Dict[str, Dict[str, np.ndarray]],
                      device, batch_size: int = 256) -> Dict[str, Dict[str, np.ndarray]]:
-    net.eval()
+    model.eval()
+    edim = getattr(model, "embed_dim", 32)
     out: Dict[str, Dict[str, np.ndarray]] = {}
     with torch.no_grad():
         for sid, roles in feats_windows.items():
             entry = {}
             for role, w in roles.items():
-                chunks = [net.embed(torch.from_numpy(b).to(device)).cpu().numpy()
+                chunks = [model(torch.from_numpy(b).to(device)).cpu().numpy()
                           for b in _batched(w, batch_size)]
                 entry[role] = (np.concatenate(chunks, 0) if chunks
-                               else np.zeros((0, net.embed_dim or 32), np.float32))
+                               else np.zeros((0, edim), np.float32))
             out[sid] = entry
     return out
 
@@ -59,10 +61,12 @@ def evaluate(cfg, args) -> dict:
                           else "cpu")
     ckpt = torch.load(args.checkpoint, map_location=device, weights_only=False)
 
-    base = build_base(ckpt["variant"], ckpt["n_channels"], ckpt["window"],
-                      ckpt["filters"], ckpt["embed_dim"])
-    net = SiameseNet(base).to(device)
-    net.base.load_state_dict(ckpt["base_state"])
+    model = build_base(ckpt["variant"], ckpt["n_channels"], ckpt["window"],
+                       ckpt["filters"], ckpt["embed_dim"]).to(device)
+    model.load_state_dict(ckpt["base_state"])
+
+    # Preprocess exactly as at train time (the scaler was recorded in the ckpt).
+    cfg.scaler = ckpt.get("scaler", cfg.scaler)
 
     # Reuse the exact magnetometer columns resolved at train time (if any), so
     # eval loads identical channels regardless of which CSV header is sampled.
@@ -77,11 +81,25 @@ def evaluate(cfg, args) -> dict:
             raise RuntimeError("checkpoint has no channel stats but config uses z-score")
         data.set_global_stats(ckpt["channel_mean"], ckpt["channel_std"])
 
+    # --- OCSVM hyper-params: tune (nu, gamma) on the VAL split by default -----
+    tune = getattr(args, "tune_ocsvm", cfg.tune_ocsvm)
+    nu, gamma = cfg.ocsvm_nu, cfg.ocsvm_gamma
+    if tune:
+        val_windows = data.enroll_verify(data.split["val"])
+        if len(val_windows) >= 2:
+            val_feats = extract_features(model, val_windows, device, args.batch_size)
+            nu, gamma, veer = tune_ocsvm(val_feats, OCSVM_NU_GRID, OCSVM_GAMMA_GRID,
+                                         args.impostors_per_owner, args.seed)
+            log.info("OCSVM tuned on val: nu=%s gamma=%s (val mean EER=%.2f%%)",
+                     nu, gamma, veer * 100)
+        else:
+            log.warning("val split too small to tune OCSVM; using nu=%s gamma=%s", nu, gamma)
+
     windows = data.enroll_verify(data.split[args.split])
     log.info("Evaluating %d %s subjects.", len(windows), args.split)
-    feats = extract_features(net, windows, device, args.batch_size)
+    feats = extract_features(model, windows, device, args.batch_size)
 
-    ocsvm = per_owner_ocsvm_eer(feats, nu=cfg.ocsvm_nu, gamma=cfg.ocsvm_gamma,
+    ocsvm = per_owner_ocsvm_eer(feats, nu=nu, gamma=gamma,
                                 impostors_per_owner=args.impostors_per_owner,
                                 seed=args.seed)
     cos = cosine_eer_rank1(feats, impostors_per_owner=args.impostors_per_owner,
@@ -96,7 +114,8 @@ def evaluate(cfg, args) -> dict:
         f"  window_mode        : {cfg.window_mode}   scaler: {cfg.scaler}",
         f"  test subjects      : {ocsvm['n_owners']}",
         bar,
-        "  [ HIS metric: per-user OCSVM (rbf nu=%.3f gamma=%.3f) ]" % (cfg.ocsvm_nu, cfg.ocsvm_gamma),
+        "  [ HIS metric: per-user OCSVM (rbf nu=%s gamma=%s%s) ]"
+        % (nu, gamma, ", val-tuned" if tune else ""),
         f"    mean EER         : {ocsvm['mean_eer']*100:6.2f} %",
         "  [ Comparable: cosine gallery/probe (mean-enroll template) ]",
         f"    EER              : {cos['eer']*100:6.2f} %",
@@ -107,6 +126,7 @@ def evaluate(cfg, args) -> dict:
 
     result = {"config": cfg.name, "feature_set": cfg.feature_set,
               "n_channels": cfg.n_channels, "window_mode": cfg.window_mode,
+              "ocsvm_nu": nu, "ocsvm_gamma": gamma, "ocsvm_tuned": bool(tune),
               "ocsvm_mean_eer": ocsvm["mean_eer"], "n_owners": ocsvm["n_owners"],
               "cosine_eer": cos["eer"], "cosine_rank1": cos["rank1"]}
     if args.out_json:
@@ -132,6 +152,9 @@ def build_argparser():
     p.add_argument("--train_frac", type=float, default=0.6)
     p.add_argument("--val_frac", type=float, default=0.1)
     p.add_argument("--split", choices=["val", "test"], default="test")
+    p.add_argument("--no_tune_ocsvm", dest="tune_ocsvm", action="store_false",
+                   help="skip val grid-search; use the fixed cfg nu/gamma instead")
+    p.set_defaults(tune_ocsvm=True)
     p.add_argument("--impostors_per_owner", type=int, default=2000)
     p.add_argument("--out_json", default=None)
     p.add_argument("--batch_size", type=int, default=256)
@@ -145,7 +168,7 @@ def main(args):
     cfg = CONFIGS[args.config]
     if args.feature_set:
         cfg.feature_set = args.feature_set
-        cfg.derive = (args.feature_set == "mine28")
+        cfg.derive = args.feature_set in ("mine28", "mine28_mag")
     evaluate(cfg, args)
 
 

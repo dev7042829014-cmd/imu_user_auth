@@ -86,15 +86,17 @@ def main():
                 data_dirs=[str(data_dir)], split_file=sf,
                 train_frac=0.6, val_frac=0.15,
                 out=str(ckpt), epochs=3, device="cpu", workers=0, seed=712)
-            # shrink pairs for speed via the config object
-            cfg.pairs_per_epoch = 1500
+            # shrink the run for speed via the config object
             cfg.epochs = 3
+            cfg.batches_per_epoch = 40
+            cfg.subjects_per_batch = 6
+            cfg.windows_per_subject = 8
             train_main(targs)
 
             eargs = SimpleNamespace(
                 config=key, feature_set=None, checkpoint=str(ckpt), mag_cols=None,
                 data_dirs=[str(data_dir)], split_file=sf,
-                train_frac=0.6, val_frac=0.15,
+                train_frac=0.6, val_frac=0.15, tune_ocsvm=True,
                 split="test", impostors_per_owner=2000, out_json=None,
                 batch_size=128, device="cpu", seed=712)
             res = evaluate(_C[key], eargs)

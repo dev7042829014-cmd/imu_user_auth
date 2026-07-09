@@ -86,10 +86,16 @@ FEATURE_SETS = {
     "acc3": ACC3,
     "acc_gyro6": ACC_GYRO6,
     "acc_gyro_mag9": ACC_GYRO_MAG9,
-    "mine28": "DERIVED_28",   # special sentinel: full 28-channel derived set
+    "mine28": "DERIVED_28",         # sentinel: full 28-channel derived set
+    "mine28_mag": "DERIVED_28_MAG", # sentinel: 28 derived + 3 magnetometer = 31 ch
 }
 
 SAMPLING_RATE = 20  # Apple-Watch CoreMotion export is 20 Hz
+
+# OCSVM grid for the val tuning (objective = mean per-owner EER). gamma accepts
+# sklearn's 'scale' plus a log range; nu spans loose -> tight decision boundaries.
+OCSVM_NU_GRID = [0.02, 0.05, 0.10, 0.15, 0.20, 0.30]
+OCSVM_GAMMA_GRID = ["scale", 0.01, 0.1, 1.0, 4.0, 8.0, 16.0]
 
 
 @dataclass
@@ -117,18 +123,24 @@ class ExperimentConfig:
     # --- normalisation ---
     scaler: str                 # "robust_subject" | "zscore_global"
 
-    # --- siamese network (his FCN) ---
+    # --- siamese-FCN encoder (his architecture; L2-normalised embedding) ---
     filters: List[int] = field(default_factory=lambda: [32, 64, 32])
     embed_dim: int = 32
     margin: float = 1.0
-    epochs: int = 40
-    batch_size: int = 300
+    epochs: int = 150
     lr: float = 1e-3
-    pairs_per_epoch: int = 20000
+    # identity-balanced P x K batches for the in-batch contrastive loss
+    subjects_per_batch: int = 32       # P
+    windows_per_subject: int = 8       # K
+    batches_per_epoch: int = 300
 
-    # --- one-class SVM (his tuned defaults) ---
-    ocsvm_nu: float = 0.165
-    ocsvm_gamma: float = 8.296
+    # --- one-class SVM ---
+    # nu/gamma are TUNED on the val split by default (grid search, minimising EER)
+    # — his H-MOG values (nu=0.165, gamma=8.296) are dataset-specific and NOT
+    # reused. These stay only as the fallback when --no_tune_ocsvm is passed.
+    tune_ocsvm: bool = True
+    ocsvm_nu: float = 0.1
+    ocsvm_gamma: float = 0.1
 
     def resolve_feature_cols(self) -> List[str]:
         """
@@ -137,18 +149,21 @@ class ExperimentConfig:
         For mine28 the 11 raw columns are loaded and derived to 28 downstream.
         """
         if self.feature_set == "mine28":
-            return list(RAW_FEATURES)          # load all 11 raw, derive to 28 later
+            return list(RAW_FEATURES)                    # 11 raw -> derive to 28 later
+        if self.feature_set == "mine28_mag":
+            return list(RAW_FEATURES) + list(MAG_COLS)   # 11 raw + 3 mag -> 28 derived + 3 mag
         return list(FEATURE_SETS[self.feature_set])
 
     @property
     def uses_magnetometer(self) -> bool:
-        fs = FEATURE_SETS.get(self.feature_set, [])
-        return isinstance(fs, list) and any(c in MAG_COLS for c in fs)
+        return any(c in MAG_COLS for c in self.resolve_feature_cols())
 
     @property
     def n_channels(self) -> int:
         if self.feature_set == "mine28":
             return 28
+        if self.feature_set == "mine28_mag":
+            return 31                                    # 28 derived + 3 magnetometer
         return len(FEATURE_SETS[self.feature_set])
 
 
@@ -204,4 +219,19 @@ VERSION_C = ExperimentConfig(
     scaler="zscore_global",
 )
 
-CONFIGS = {"a": VERSION_A, "b": VERSION_B, "c": VERSION_C}
+VERSION_D = ExperimentConfig(
+    name="D_my-28ch+mag_my-window",
+    feature_set="mine28_mag",          # 28 derived channels + 3 magnetometer = 31
+    lowpass=True,
+    derive=True,
+    window_mode="mine",
+    window_seconds=0.0,
+    step_seconds=0.0,
+    window_samples=300,
+    window_stride=150,
+    enroll_ratio=0.7,
+    gap_seconds=60.0,
+    scaler="zscore_global",
+)
+
+CONFIGS = {"a": VERSION_A, "b": VERSION_B, "c": VERSION_C, "d": VERSION_D}

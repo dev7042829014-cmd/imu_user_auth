@@ -38,6 +38,13 @@ def main():
     p.add_argument("--mag_cols", nargs=3, default=None,
                    help="explicit magnetometer column names (X Y Z) for configs A/B; "
                         "default = auto-detect from the CSV header")
+    p.add_argument("--no_tune_ocsvm", dest="tune_ocsvm", action="store_false",
+                   help="skip the val OCSVM grid-search (use fixed nu/gamma)")
+    p.set_defaults(tune_ocsvm=True)
+    p.add_argument("--scaler", choices=["robust_subject", "zscore_global"], default=None,
+                   help="force the SAME normalisation for A/B/C/D so they differ only in "
+                        "features/windowing (e.g. --scaler robust_subject to use his scaler "
+                        "everywhere). Default keeps each config's own.")
     p.add_argument("--seed", type=int, default=712)
     args = p.parse_args()
 
@@ -52,13 +59,14 @@ def main():
         ckpt = str(Path(args.ckpt_dir) / f"{key}.pt")
         train_main(SimpleNamespace(
             config=key, feature_set=None, variant="fcn", mag_cols=args.mag_cols,
+            scaler=args.scaler,
             data_dirs=args.data_dirs, split_file=args.split_file, out=ckpt,
             train_frac=args.train_frac, val_frac=args.val_frac,
             epochs=args.epochs, device=args.device, workers=args.workers, seed=args.seed))
         res = evaluate(cfg, SimpleNamespace(
             config=key, feature_set=None, checkpoint=ckpt, mag_cols=args.mag_cols,
             data_dirs=args.data_dirs, split_file=args.split_file, split=args.split,
-            train_frac=args.train_frac, val_frac=args.val_frac,
+            train_frac=args.train_frac, val_frac=args.val_frac, tune_ocsvm=args.tune_ocsvm,
             impostors_per_owner=args.impostors_per_owner, out_json=ckpt.replace(".pt", ".json"),
             batch_size=256, device=args.device, seed=args.seed))
         results.append(res)

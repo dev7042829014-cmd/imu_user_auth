@@ -30,7 +30,18 @@ import torch.nn.functional as F
 
 
 class FCNBase(nn.Module):
-    """His fully-convolutional base network -> 32-d sigmoid embedding."""
+    """
+    His fully-convolutional base network -> 32-d embedding.
+
+    Architecture is his (filters [32,64,32], kernels [8,5,3], each
+    Conv1d->BatchNorm->ReLU, then GlobalAveragePooling1D).  One deliberate change
+    from the Keras original: the final Dense uses NO sigmoid and the embedding is
+    L2-NORMALISED.  His sigmoid pushed every feature into [0,1] (the positive
+    orthant), which cripples cosine separation and makes the contrastive margin
+    ill-scaled.  L2-normalising puts embeddings on the unit sphere, so Euclidean
+    distance is in [0, 2] and margin=1 is meaningful (and cosine works) — this is
+    what a modern Siamese/contrastive setup does and what makes the baseline fair.
+    """
 
     def __init__(self, n_channels: int, filters: List[int] = (32, 64, 32),
                  embed_dim: int = 32, dropout: float = 0.1):
@@ -53,8 +64,8 @@ class FCNBase(nn.Module):
         x = self.drop2(F.relu(self.bn2(self.conv2(x))))
         x = F.relu(self.bn3(self.conv3(x)))
         x = x.mean(dim=-1)                       # GlobalAveragePooling1D
-        x = torch.sigmoid(self.dense(x))         # his Dense(32, sigmoid)
-        return x
+        x = self.dense(x)
+        return F.normalize(x, dim=-1)           # L2-normalised embedding
 
 
 class CNN1DBase(nn.Module):
@@ -105,11 +116,35 @@ class SiameseNet(nn.Module):
 def contrastive_loss(dist: torch.Tensor, label: torch.Tensor,
                      margin: float = 1.0) -> torch.Tensor:
     """
-    Contrastive loss (Hadsell-Chopra-LeCun 2006), his `k_contrastive_loss`:
+    Pairwise contrastive loss (Hadsell-Chopra-LeCun 2006), his `k_contrastive_loss`:
         L = mean( y * d^2 + (1-y) * max(margin - d, 0)^2 )
-    label = 1 for positive (same subject), 0 for negative (different subjects).
+    label = 1 for positive (same subject), 0 for negative. Kept for reference;
+    training uses the in-batch form below.
     """
     label = label.float()
     pos = label * dist.pow(2)
     neg = (1.0 - label) * torch.clamp(margin - dist, min=0.0).pow(2)
     return (pos + neg).mean()
+
+
+def contrastive_loss_inbatch(embeddings: torch.Tensor, labels: torch.Tensor,
+                             margin: float = 1.0) -> torch.Tensor:
+    """
+    In-batch contrastive loss over all pairs in an identity-balanced (P x K) batch.
+
+    Same Hadsell contrastive objective, but the positive and negative terms are
+    averaged SEPARATELY (each over its own pair count) and summed. This mirrors
+    ContinAuth's balanced positive/negative pair sampling: otherwise the few
+    positives are swamped by the many easy negatives (mostly already beyond the
+    margin -> zero gradient) and the encoder barely learns.
+
+    Embeddings must be L2-normalised (FCNBase does this), so Euclidean distance
+    is in [0, 2] and margin=1 is meaningful.
+    """
+    d = torch.cdist(embeddings, embeddings)                       # (B, B)
+    same = (labels.view(-1, 1) == labels.view(1, -1)).float()
+    off = 1.0 - torch.eye(d.size(0), device=d.device)            # drop self-pairs
+    pos, neg = same * off, (1.0 - same) * off
+    l_pos = (pos * d.pow(2)).sum() / pos.sum().clamp(min=1.0)
+    l_neg = (neg * torch.clamp(margin - d, min=0.0).pow(2)).sum() / neg.sum().clamp(min=1.0)
+    return l_pos + l_neg

@@ -215,6 +215,14 @@ def load_subject_signal(csv_path: Path, cfg: ExperimentConfig,
 
     data = df.values.astype(np.float32)
 
+    if cfg.feature_set == "mine28_mag":
+        # load_cols = 11 raw + 3 magnetometer (in that order). Derive the 28
+        # channels from the 11 raw (identical to config C's 0..27), then append
+        # the 3 magnetometer channels -> 31. Channels 0..27 match mine28 exactly.
+        data = lowpass_filter(data)                         # (T, 14)
+        raw11, mag3 = data[:, :11], data[:, 11:14]
+        return np.concatenate([append_derived_features(raw11), mag3], axis=1)  # (T, 31)
+
     if cfg.lowpass:
         data = lowpass_filter(data)
     if cfg.derive:
@@ -355,7 +363,13 @@ class ContinAuthData:
         # Subject split: use split_ids.json if one is supplied, otherwise build a
         # subject-disjoint split from the CSVs on disk (his methodology). This
         # keeps the bundle self-contained — no dependency on the user's split file.
-        if split_file and Path(split_file).exists():
+        # If a split_file is EXPLICITLY given but missing, abort (no silent
+        # fallback) so a wrong path can't masquerade as the internal split.
+        if split_file:
+            if not Path(split_file).exists():
+                raise FileNotFoundError(
+                    f"--split_file '{split_file}' not found (cwd={Path.cwd()}). "
+                    "Give the correct path, or omit --split_file to use the internal split.")
             self.split = load_split(split_file)
             split_src = f"file {split_file}"
         else:

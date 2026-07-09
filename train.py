@@ -20,14 +20,18 @@ from pathlib import Path
 
 import numpy as np
 import torch
-from torch.utils.data import DataLoader
 from torch.optim import Adam
 
 from .config import CONFIGS, FEATURE_SETS
 from .data import ContinAuthData
-from .model import build_base, SiameseNet, contrastive_loss
-from .pairs import PairDataset
+from .model import build_base, contrastive_loss_inbatch
+from .pairs import iter_pk_batches
 
+from .evaluate import evaluate
+from types import SimpleNamespace
+
+import shutil
+import json
 
 def set_seed(seed: int):
     import random
@@ -51,28 +55,84 @@ def train(cfg, args) -> dict:
     X, y = data.training_windows(data.split["train"])
     log.info("Training windows: %s over %d subjects.", X.shape, len(np.unique(y)))
 
-    base = build_base(args.variant, cfg.n_channels, X.shape[-1], cfg.filters, cfg.embed_dim)
-    net = SiameseNet(base).to(device)
-    opt = Adam(net.parameters(), lr=cfg.lr)
-
-    ds = PairDataset(X, y, n_pairs=cfg.pairs_per_epoch, seed=args.seed)
-    loader = DataLoader(ds, batch_size=cfg.batch_size, shuffle=True,
-                        num_workers=args.workers, drop_last=False)
-
-    net.train()
-    for epoch in range(1, cfg.epochs + 1):
-        ds.new_epoch()
-        total, n = 0.0, 0
-        for left, right, lab in loader:
-            left, right, lab = left.to(device), right.to(device), lab.to(device)
-            dist = net(left, right)
-            loss = contrastive_loss(dist, lab, margin=cfg.margin)
-            opt.zero_grad(); loss.backward(); opt.step()
-            total += loss.item() * len(lab); n += len(lab)
-        log.info("Epoch %03d/%d | contrastive %.4f", epoch, cfg.epochs, total / max(1, n))
+    model = build_base(args.variant, cfg.n_channels, X.shape[-1],
+                       cfg.filters, cfg.embed_dim).to(device)
+    opt = Adam(model.parameters(), lr=cfg.lr)   # Adam 1e-3, as in ContinAuth
 
     ckpt_path = Path(args.out or f"continauth/checkpoints/{cfg.name.split('_')[0].lower()}.pt")
     ckpt_path.parent.mkdir(parents=True, exist_ok=True)
+
+    history = []
+
+    model.train()
+    for epoch in range(1, cfg.epochs + 1):
+        total, n = 0.0, 0
+        for xb, yb in iter_pk_batches(X, y, cfg.subjects_per_batch,
+                                      cfg.windows_per_subject, cfg.batches_per_epoch,
+                                      seed=args.seed + epoch):
+            xb, yb = xb.to(device), yb.to(device)
+            emb = model(xb)
+            loss = contrastive_loss_inbatch(emb, yb, margin=cfg.margin)
+            opt.zero_grad(); loss.backward()
+            torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+            opt.step()
+            total += loss.item(); n += 1
+        log.info("Epoch %03d/%d | contrastive %.4f", epoch, cfg.epochs, total / max(1, n))
+
+        if epoch % 10 == 0:
+            
+            ckpt = ckpt_path.parent / f"{args.config}_epoch{epoch}.pt"
+
+            torch.save({
+                "config_key": args.config,
+                "config_name": cfg.name,
+                "variant": args.variant,
+                "n_channels": cfg.n_channels,
+                "window": int(X.shape[-1]),
+                "filters": cfg.filters,
+                "embed_dim": cfg.embed_dim,
+                "base_state": model.state_dict(),
+                "channel_mean": data.channel_mean,
+                "channel_std": data.channel_std,
+                "feature_set": cfg.feature_set,
+                "scaler": cfg.scaler,
+                "load_cols": data.load_cols, }, ckpt)
+
+            result = evaluate( cfg, SimpleNamespace(config=args.config,
+                    feature_set=None,
+                    checkpoint=str(ckpt),
+                    mag_cols=args.mag_cols,
+                    data_dirs=args.data_dirs,
+                    split_file=args.split_file,
+                    split="val",
+                    train_frac=args.train_frac,
+                    val_frac=args.val_frac,
+                    tune_ocsvm=True,
+                    impostors_per_owner=2000,
+                    out_json=None,
+                    batch_size=256,
+                    device=args.device,
+                    seed=args.seed,),)
+            
+            history.append({
+                "epoch": epoch,
+                "train_loss": total / max(1, n),
+                "eer": result["ocsvm_mean_eer"],
+                "rank1": result["cosine_rank1"],
+                "checkpoint": str(ckpt),})
+
+            
+
+            with open(
+                ckpt_path.parent / f"{args.config}_history.json",
+                "w"
+            ) as f:
+                json.dump(history, f, indent=2)
+
+            log.info("Saved checkpoint %s", ckpt)
+    
+    
+
     torch.save({
         "config_key": args.config,
         "config_name": cfg.name,
@@ -81,14 +141,44 @@ def train(cfg, args) -> dict:
         "window": int(X.shape[-1]),
         "filters": cfg.filters,
         "embed_dim": cfg.embed_dim,
-        "base_state": net.base.state_dict(),
+        "base_state": model.state_dict(),
         "channel_mean": data.channel_mean,
         "channel_std": data.channel_std,
         "feature_set": cfg.feature_set,
+        "scaler": cfg.scaler,                  # so eval preprocesses identically
         "load_cols": data.load_cols,           # concrete columns incl. resolved magnetometer
     }, ckpt_path)
     log.info("Saved checkpoint -> %s", ckpt_path)
+    
+    if not history:
+        raise RuntimeError(
+            "No validation checkpoints were created. "
+            "Increase epochs or reduce the checkpoint interval."
+        )
+
+    best = min(
+    history,
+    key=lambda x: (
+        x["eer"],
+        -x["rank1"], ),)
+    
+    best_path = ckpt_path.parent / f"{args.config}_best.pt"
+    
+    shutil.copy(
+    best["checkpoint"],
+    best_path,)
+
+    log.info(
+        "Best checkpoint: epoch %d | EER %.4f | Rank1 %.4f",
+        best["epoch"],
+        best["eer"],
+        best["rank1"],
+    )
+
+
     return {"checkpoint": str(ckpt_path)}
+
+
 
 
 def build_argparser():
@@ -109,6 +199,9 @@ def build_argparser():
                    help="train fraction for the internal split (when no --split_file)")
     p.add_argument("--val_frac", type=float, default=0.1,
                    help="val fraction for the internal split (rest = test)")
+    p.add_argument("--scaler", choices=["robust_subject", "zscore_global"], default=None,
+                   help="force the SAME normalisation across configs (default keeps each "
+                        "config's own: A=robust_subject, B/C/D=zscore_global)")
     p.add_argument("--out", default=None)
     p.add_argument("--epochs", type=int, default=None, help="override cfg.epochs")
     p.add_argument("--device", default="cuda", choices=["cuda", "cpu"])
@@ -122,7 +215,9 @@ def main(args):
     cfg = CONFIGS[args.config]
     if args.feature_set:
         cfg.feature_set = args.feature_set
-        cfg.derive = (args.feature_set == "mine28")
+        cfg.derive = args.feature_set in ("mine28", "mine28_mag")
+    if getattr(args, "scaler", None):
+        cfg.scaler = args.scaler
     if args.epochs:
         cfg.epochs = args.epochs
     train(cfg, args)
