@@ -1,0 +1,46 @@
+{
+  "config": {
+    "model": "g2a",
+    "split": "test",
+    "seed": 42,
+    "n_subjects": 224,
+    "enroll_ratio": 0.7,
+    "enroll_first": true,
+    "gap_seconds": 60.0,
+    "impostors_per_user": 2000,
+    "checkpoint": "./checkpoints_verification/g2a_t0.09_e70v30_s42.best.pt"
+  },
+  "results": [
+    {
+      "scorer": "cosine",
+      "n_subjects": 223,
+      "n_genuine": 223,
+      "n_impostor": 49506,
+      "eer": 0.008897911364279077,
+      "threshold": 0.9606761336326599,
+      "far_at_eer": 0.008827212863087302,
+      "frr_at_eer": 0.008968609865470852,
+      "rank1": 0.8071748878923767,
+      "rank1_n": 223,
+      "seed": 42,
+      "frr_at_far": {
+        "0.01": 0.0,
+        "0.001": 0.49327354260089684,
+        "0.0001": 0.9192825112107623
+      }
+    }
+  ],
+  "bootstrap": {
+    "eer": [
+      0.007838082501783352,
+      0.0037937202959573532,
+      0.015011132130888828
+    ],
+    "rank1": [
+      0.8637219730941704,
+      0.8070627802690583,
+      0.9192825112107623
+    ],
+    "n_boot": 1000
+  }
+}

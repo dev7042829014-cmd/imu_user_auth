@@ -1,0 +1,7 @@
+protocol,split,selected_temp,selection_metric,n_test_seeds,n_val_seeds,test_eer_mean_pct,test_eer_std_pct,test_eer_ci95_pct,test_rank1_mean_pct,test_rank1_std_pct,test_rank1_ci95_pct,val_eer_mean_pct,val_eer_std_pct,val_eer_ci95_pct,val_rank1_mean_pct,val_rank1_std_pct,val_rank1_ci95_pct,frr@far1%_test_mean_pct,frr@far0.1%_test_mean_pct,frr@far0.01%_test_mean_pct
+e50v50,enroll=50% (enroll-first),0.12,mean val EER (tiebreak: mean val rank1),10,10,0.813,0.113,0.081,83.722,2.135,1.528,0.265,0.02,0.015,99.31,0.89,0.637,0.314,45.74,89.238
+e70v30,enroll=70% (enroll-first),0.15,mean val EER (tiebreak: mean val rank1),10,10,0.897,0.035,0.025,77.713,3.994,2.857,0.138,0.013,0.009,98.966,0.89,0.637,0.717,86.816,98.027
+e80v20,enroll=80% (enroll-first),0.1,mean val EER (tiebreak: mean val rank1),10,10,0.957,0.106,0.075,80.404,2.666,1.907,0.139,0.026,0.018,99.31,0.89,0.637,1.076,53.767,86.009
+v50e50,enroll=50% (verify-first),0.12,mean val EER (tiebreak: mean val rank1),10,10,0.813,0.113,0.081,82.915,2.349,1.68,0.265,0.02,0.015,99.31,0.89,0.637,0.314,45.74,89.238
+v30e70,enroll=70% (verify-first),0.15,mean val EER (tiebreak: mean val rank1),10,10,0.744,0.138,0.099,83.946,2.881,2.061,1.54,0.032,0.023,95.345,1.636,1.17,0.179,81.794,97.354
+v20e80,enroll=80% (verify-first),0.05,mean val EER (tiebreak: mean val rank1),10,10,1.969,0.26,0.186,59.821,5.897,4.218,1.724,0.0,0.0,96.724,0.545,0.39,14.305,83.184,96.816

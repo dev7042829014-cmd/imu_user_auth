@@ -1,0 +1,110 @@
+==============================================================================
+G2A MULTI-SEED SWEEP: protocol-best-temperature analysis
+==============================================================================
+Temperature is tuned on validation per protocol; protocols are compared on test.
+Best temperature selection = lowest mean validation EER, tiebreak by mean validation rank-1.
+
+Selected temperature per protocol
+----------------------------------
+e50v50  : temp=0.12 | test seeds=10 | val seeds=10 | val EER=0.265±0.020 | val rank1=99.310±0.890
+e70v30  : temp=0.15 | test seeds=10 | val seeds=10 | val EER=0.138±0.013 | val rank1=98.966±0.890
+e80v20  : temp=0.1 | test seeds=10 | val seeds=10 | val EER=0.139±0.026 | val rank1=99.310±0.890
+v50e50  : temp=0.12 | test seeds=10 | val seeds=10 | val EER=0.265±0.020 | val rank1=99.310±0.890
+v30e70  : temp=0.15 | test seeds=10 | val seeds=10 | val EER=1.540±0.032 | val rank1=95.345±1.636
+v20e80  : temp=0.05 | test seeds=10 | val seeds=10 | val EER=1.724±0.000 | val rank1=96.724±0.545
+
+HEADLINE comparison: protocols at each protocol's own best temperature
+--------------------------------------------------------------------------
+Protocol effect on TEST EER (test EER)
+--------------------------------------
+Friedman: chi2=37.738, p=4.259e-07  ** significant
+Pairwise Wilcoxon (Holm-corrected):
+  ** e50v50 vs e70v30                   p_holm=3.516e-02  Δ=-0.084pp  d=-0.78
+     e50v50 vs e80v20                   p_holm=6.836e-02  Δ=-0.144pp  d=-0.67
+  ** e50v50 vs v20e80                   p_holm=2.930e-02  Δ=-1.156pp  d=-3.70
+     e50v50 vs v30e70                   p_holm=5.801e-01  Δ=+0.068pp  d=+0.39
+     e50v50 vs v50e50                   p_holm=1.000e+00  Δ=+0.000pp  d=+0.00
+     e70v30 vs e80v20                   p_holm=4.062e-01  Δ=-0.060pp  d=-0.49
+  ** e70v30 vs v20e80                   p_holm=2.930e-02  Δ=-1.072pp  d=-4.26
+     e70v30 vs v30e70                   p_holm=6.836e-02  Δ=+0.152pp  d=+0.95
+  ** e70v30 vs v50e50                   p_holm=3.516e-02  Δ=+0.084pp  d=+0.78
+  ** e80v20 vs v20e80                   p_holm=2.930e-02  Δ=-1.012pp  d=-3.82
+  ** e80v20 vs v30e70                   p_holm=2.930e-02  Δ=+0.212pp  d=+1.29
+     e80v20 vs v50e50                   p_holm=6.836e-02  Δ=+0.144pp  d=+0.67
+  ** v20e80 vs v30e70                   p_holm=2.930e-02  Δ=+1.224pp  d=+3.83
+  ** v20e80 vs v50e50                   p_holm=2.930e-02  Δ=+1.156pp  d=+3.70
+     v30e70 vs v50e50                   p_holm=5.801e-01  Δ=-0.068pp  d=-0.39
+
+Protocol effect on TEST rank1 (test rank1)
+------------------------------------------
+Friedman: chi2=37.579, p=4.584e-07  ** significant
+Pairwise Wilcoxon (Holm-corrected):
+  ** e50v50 vs e70v30                   p_holm=2.930e-02  Δ=+6.009pp  d=+1.63
+     e50v50 vs e80v20                   p_holm=1.289e-01  Δ=+3.318pp  d=+0.81
+  ** e50v50 vs v20e80                   p_holm=2.930e-02  Δ=+23.901pp  d=+4.15
+     e50v50 vs v30e70                   p_holm=7.578e-01  Δ=-0.224pp  d=-0.06
+     e50v50 vs v50e50                   p_holm=7.578e-01  Δ=+0.807pp  d=+0.38
+     e70v30 vs e80v20                   p_holm=7.578e-01  Δ=-2.691pp  d=-0.49
+  ** e70v30 vs v20e80                   p_holm=2.930e-02  Δ=+17.892pp  d=+3.00
+  ** e70v30 vs v30e70                   p_holm=2.930e-02  Δ=-6.233pp  d=-1.52
+  ** e70v30 vs v50e50                   p_holm=3.125e-02  Δ=-5.202pp  d=-1.00
+  ** e80v20 vs v20e80                   p_holm=2.930e-02  Δ=+20.583pp  d=+3.12
+     e80v20 vs v30e70                   p_holm=8.203e-02  Δ=-3.543pp  d=-0.90
+     e80v20 vs v50e50                   p_holm=3.711e-01  Δ=-2.511pp  d=-0.70
+  ** v20e80 vs v30e70                   p_holm=2.930e-02  Δ=-24.126pp  d=-3.86
+  ** v20e80 vs v50e50                   p_holm=2.930e-02  Δ=-23.094pp  d=-3.74
+     v30e70 vs v50e50                   p_holm=7.578e-01  Δ=+1.031pp  d=+0.28
+
+LANDSCAPE comparison: temperatures across the full sweep
+-------------------------------------------------------------
+Temperature effect on TEST EER (test EER)
+-----------------------------------------
+Friedman: chi2=21.095, p=1.764e-03  ** significant
+Pairwise Wilcoxon (Holm-corrected):
+     0.03 vs 0.05                       p_holm=4.802e-01  Δ=+0.076pp  d=+0.24
+     0.03 vs 0.07                       p_holm=9.304e-02  Δ=+0.097pp  d=+0.30
+  ** 0.03 vs 0.09                       p_holm=3.164e-03  Δ=+0.177pp  d=+0.51
+  ** 0.03 vs 0.1                        p_holm=6.605e-04  Δ=+0.249pp  d=+0.60
+  ** 0.03 vs 0.12                       p_holm=2.107e-03  Δ=+0.278pp  d=+0.58
+  ** 0.03 vs 0.15                       p_holm=2.887e-04  Δ=+0.302pp  d=+0.63
+     0.05 vs 0.07                       p_holm=1.000e+00  Δ=+0.021pp  d=+0.06
+     0.05 vs 0.09                       p_holm=1.000e+00  Δ=+0.101pp  d=+0.30
+     0.05 vs 0.1                        p_holm=2.183e-01  Δ=+0.172pp  d=+0.42
+     0.05 vs 0.12                       p_holm=7.576e-01  Δ=+0.202pp  d=+0.42
+     0.05 vs 0.15                       p_holm=4.925e-01  Δ=+0.225pp  d=+0.47
+     0.07 vs 0.09                       p_holm=1.000e+00  Δ=+0.080pp  d=+0.25
+     0.07 vs 0.1                        p_holm=1.139e-01  Δ=+0.151pp  d=+0.35
+     0.07 vs 0.12                       p_holm=6.426e-01  Δ=+0.181pp  d=+0.38
+     0.07 vs 0.15                       p_holm=4.925e-01  Δ=+0.204pp  d=+0.41
+     0.09 vs 0.1                        p_holm=1.000e+00  Δ=+0.071pp  d=+0.18
+     0.09 vs 0.12                       p_holm=1.000e+00  Δ=+0.101pp  d=+0.28
+     0.09 vs 0.15                       p_holm=1.000e+00  Δ=+0.124pp  d=+0.33
+     0.1 vs 0.12                        p_holm=1.000e+00  Δ=+0.030pp  d=+0.10
+     0.1 vs 0.15                        p_holm=1.000e+00  Δ=+0.053pp  d=+0.17
+     0.12 vs 0.15                       p_holm=1.000e+00  Δ=+0.023pp  d=+0.13
+
+Temperature effect on TEST rank1 (test rank1)
+---------------------------------------------
+Friedman: chi2=29.649, p=4.583e-05  ** significant
+Pairwise Wilcoxon (Holm-corrected):
+     0.03 vs 0.05                       p_holm=2.338e-01  Δ=-3.079pp  d=-0.33
+     0.03 vs 0.07                       p_holm=4.235e-01  Δ=-2.593pp  d=-0.30
+  ** 0.03 vs 0.09                       p_holm=5.608e-03  Δ=-4.806pp  d=-0.50
+  ** 0.03 vs 0.1                        p_holm=1.773e-03  Δ=-6.599pp  d=-0.55
+  ** 0.03 vs 0.12                       p_holm=6.010e-03  Δ=-6.286pp  d=-0.53
+     0.03 vs 0.15                       p_holm=9.343e-01  Δ=-4.126pp  d=-0.32
+     0.05 vs 0.07                       p_holm=1.000e+00  Δ=+0.486pp  d=+0.05
+     0.05 vs 0.09                       p_holm=1.000e+00  Δ=-1.726pp  d=-0.22
+     0.05 vs 0.1                        p_holm=1.000e+00  Δ=-3.520pp  d=-0.33
+     0.05 vs 0.12                       p_holm=1.000e+00  Δ=-3.206pp  d=-0.28
+     0.05 vs 0.15                       p_holm=1.000e+00  Δ=-1.046pp  d=-0.08
+     0.07 vs 0.09                       p_holm=8.339e-01  Δ=-2.212pp  d=-0.25
+     0.07 vs 0.1                        p_holm=1.000e+00  Δ=-4.006pp  d=-0.33
+     0.07 vs 0.12                       p_holm=1.000e+00  Δ=-3.692pp  d=-0.30
+     0.07 vs 0.15                       p_holm=1.000e+00  Δ=-1.532pp  d=-0.12
+     0.09 vs 0.1                        p_holm=1.000e+00  Δ=-1.794pp  d=-0.19
+     0.09 vs 0.12                       p_holm=1.000e+00  Δ=-1.480pp  d=-0.15
+     0.09 vs 0.15                       p_holm=2.367e-01  Δ=+0.680pp  d=+0.06
+     0.1 vs 0.12                        p_holm=2.250e-01  Δ=+0.314pp  d=+0.05
+  ** 0.1 vs 0.15                        p_holm=3.813e-03  Δ=+2.474pp  d=+0.29
+     0.12 vs 0.15                       p_holm=1.783e-01  Δ=+2.160pp  d=+0.39
